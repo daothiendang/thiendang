@@ -1,0 +1,80 @@
+********************************************************************************
+PACKAGE-LOG: 2014-05-03 09:47:39
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	0.5.2
+WORDPRESS:	3.9
+PHP INFO:	5.4.22 | SAPI: apache2handler
+SERVER:		Apache/2.4.7 (Win32) OpenSSL/0.9.8y PHP/5.4.22 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 5000M (128M default) 
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   PHP
+MYSQLDUMP:    Not Supported
+MYSQLTIMEOUT: 5000 
+TABLES: total:12 | filtered:0 | create:12 
+FILTERED: [] 
+wp_commentmeta (0) 
+wp_comments (1) 
+wp_duplicator_packages (1) 
+wp_links (7) 
+wp_options (152) 
+wp_postmeta (10) 
+wp_posts (5) 
+wp_term_relationships (9) 
+wp_term_taxonomy (4) 
+wp_terms (4) 
+wp_usermeta (18) 
+wp_users (1) 
+SQL CREATED: 20140503_vicuocsongtuoidep_5364bb3bb1ba42666140503094739_database.sql 
+SQL FILE SIZE: 404.08KB 
+SQL RUNTIME: 0.23 sec. 
+
+******************************************************************************** 
+ARCHIVE (ZIP): 
+******************************************************************************** 
+ARCHIVE DIR:  D:/xampp/htdocs/thiendang 
+ARCHIVE FILE: 20140503_vicuocsongtuoidep_5364bb3bb1ba42666140503094739_archive.zip 
+FILTER DIRS:   
+FILTER EXTS:   
+---------------------------------------- 
+SCANNING 
+FILTERS *OFF* 
+STATS:	Dirs 219 | Files 1380 | Links 0 
+SIZE:	20.32MB 
+TIME:	2.40 sec. 
+---------------------------------------- 
+COMPRESSING 
+SQL ADDED: 20140503_vicuocsongtuoidep_5364bb3bb1ba42666140503094739_database.sql 
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 1600
+    [filename] => D:\xampp\htdocs\thiendang\wp-snapshots\tmp\20140503_vicuocsongtuoidep_5364bb3bb1ba42666140503094739_archive.zip
+    [comment] => 
+)
+ 
+COMPRESSION RESULT: '1' 
+COMPRESSED SIZE: 7.52MB 
+ARCHIVE RUNTIME: 6.10 sec. 
+
+******************************************************************************** 
+INSTALLER: 
+******************************************************************************** 
+INSTALLER FILE: Build Start 
+INSTALLER FILE: Build Finished 
+INSTALLER FILE: Preping for use 
+INSTALLER FILE: Template parsed with new data 
+INSTALLER FILE: Complete [D:/xampp/htdocs/thiendang/wp-snapshots/tmp/20140503_vicuocsongtuoidep_5364bb3bb1ba42666140503094739_installer.php] 
+
+********************************************************************************
+RECORD ID:[1]
+FILE SIZE: Archive:7.52MB | SQL:404.08KB | Installer:408.52KB
+TOTAL PROCESS RUNTIME: 6.77 sec.
+DONE PROCESSING => 20140503_vicuocsongtuoidep 2014-05-03 09:47:46
+********************************************************************************
+ 
