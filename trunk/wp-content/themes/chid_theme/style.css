@@ -1,0 +1,15 @@
+/*
+Theme Name:		My Child Theme
+Theme URL:		http: //presscoders.com/designfolio
+Description:            Child theme for the Twenty Fourteen theme
+Author:			dangdt
+Author URL:		http: //www.presscoders.com/
+Template:		twentyfourteen
+Version:		0.1.0
+*/
+
+@import url('../twentyfourteen/style.css');
+
+#container {
+    
+}
