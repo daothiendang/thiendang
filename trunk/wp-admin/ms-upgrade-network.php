@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Multisite upgrade administration panel.
  *
@@ -6,8 +7,7 @@
  * @subpackage Multisite
  * @since 3.0.0
  */
+require_once( dirname(__FILE__) . '/admin.php' );
 
-require_once( dirname( __FILE__ ) . '/admin.php' );
-
-wp_redirect( network_admin_url('upgrade.php') );
+wp_redirect(network_admin_url('upgrade.php'));
 exit;
