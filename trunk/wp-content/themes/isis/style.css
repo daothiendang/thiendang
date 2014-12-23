@@ -2689,3 +2689,6 @@ margin-bottom: 10px;  }
 
 }
 
+.post_info_wrap .embedded_music, .post_info_wrap .embedded_music object {
+    height: 330px;
+}
