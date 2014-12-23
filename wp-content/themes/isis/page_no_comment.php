@@ -1,3 +1,9 @@
+<?php
+/*
+  Template Name: Page No Comment
+ */
+?>
+
 <?php get_header(); ?>
 <div class="row">
 
@@ -10,35 +16,26 @@
     </div>
     <div id="content">
         <div class="top-content">
-
-            <?php if (have_posts()): ?><?php while (have_posts()): ?><?php the_post(); ?>
+            <?php if (have_posts()): ?>
+                <?php while (have_posts()): ?>
+                    <?php the_post(); ?>
                     <div <?php post_class(); ?> id="post-<?php the_ID(); ?>"> 
 
                         <div class="post_content">
-
                             <a class="postimg"><?php the_post_thumbnail('medium'); ?></a>
-
-
                             <div class="metadate"> <?php edit_post_link(); ?></div> 
                         </div>
                         <div style="clear:both"></div>	
-                        <div class="post_info_wrap"><?php the_content(); ?> </div>
-                        <div style="clear:both"></div>	
-
-                        <div class="post_wrap_n">         
-
-
+                        <div class="post_info_wrap">
+                            <?php the_content(); ?>
                         </div>
-
-
-
+                        <div style="clear:both"></div>	
+                        <div class="post_wrap_n"></div>
                     <?php endwhile ?> 
-
-                </div>   
-                <div class="comments_template"><?php comments_template('', true); ?></div>
+                    </div>
+                <!--<div class="comments_template"><?php // comments_template('', true); ?></div>-->
             <?php endif ?>
-
-
+            <div class="fb-comments" data-href="https://thiendang.tk" data-numposts="7" data-colorscheme="light"></div>
         </div>
 
 
