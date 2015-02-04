@@ -20,6 +20,7 @@
                                     <div class="center" style="margin: 0 0 0 80px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 26 đến bài 50</h2>
+                                        <div style="text-align:center;">(Bấm vào tiêu đề để xem nội dung bài học)</div>
                                         <div class="paging">
                                             <a href="<?php echo esc_url( home_url( '/')); ?>giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
                                         </div>
@@ -458,7 +459,7 @@
                                                         <span class="bold">* Cách dùng:</span> し được dùng để liệt kê các nội dung khác nhau của một đề tài
                                                         hoặc trình bày nhiều hơn một nguyên nhân, lý do (có thể nhiều hơn 2, nhưng thường chỉ liệt kê 2)<br>
                                                         <span class="bold">* Chú ý:</span> trong mẫu câu này, ta dùng trợ từ「も 」 để thay thế cho trợ từ「が」hay「を」với hàm ý 
-                                                        nhấn mạnh vào các lý do đưa ra
+                                                        nhấn mạnh vào các lý do đưa ra<br>
                                                         <span class="bold">a) ~し, ~し, (それに)~:</span> vừa …vừa…, hơn nữa<br>
                                                         Có thể dùng mẫu câu này để miêu tả những nội dung khác nhau của một đề tài<br>
                                                         <span class="bold">* Ví dụ:</span><br>
@@ -3450,7 +3451,7 @@
                                                     <div class="hide">
                                                         Trước đây, ở bài 8 ta đã học từ 「ところ」với ý nghĩa là nơi, chỗ (chỉ vị trí, địa điểm). Đến bài này 
                                                         「ところ」sẽ được mở rộng hơn với 1 ý nghĩa khác: “thể hiện thời điểm” với mẫu câu<br>
-                                                        <div class="box" style="width: 100px;">Vところです</div>
+                                                        <div class="jap_box" style="width: 100px;">Vところです</div>
                                                         Ý nghĩa chỉ thời điểm của 「ところ」sẽ thay đổi tùy theo thời của động từ đi trước nó.
                                                         (vì 「ところ」là 1 danh từ nên động từ kết hợp với nó tất cả đều là dạng ngắn). Cụ thể gồm 3 trường hợp sau:
                                                     </div>
@@ -3993,7 +3994,7 @@
                                                         <span class="bold">* Cách dùng:</span> Dùng để xin phép, nhờ vả, yêu cầu người nghe xác nhận và cho phép mình 
                                                         được thực hiện 1 hành động nào đó<br>
                                                         <span class="italic">* Cấu trúc mẫu câu:</span><br>
-                                                        <div class="box">Động từ 使役 chia dạng て + いただけませんか</div><br>
+                                                        <div class="jap_box">Động từ 使役 chia dạng て + いただけませんか</div><br>
                                                         <span class="bold">* Ví dụ:</span><br>
                                                         <ul>
                                                             <li>
@@ -4242,29 +4243,7 @@
                                                 <td>49.5.2</td>
                                                 <td>Tôn kính ngữ của Tính từ</td>
                                                 <td>
-                                                    <div class="summarize">
-                                                        Tôn kính ngữ của Tính từ
-                                                    </div>
-                                                    <div class="hide">
-                                                        <div class="link_popup" data="popup_ton_kinh_ngu_cua_tinh_tu">Bảng Tôn kính ngữ của Tính từ</div>
-                                                        <span class="bold">* Cách dùng:</span> Về ý nghĩa thì không khác gì mẫu câu trên nhưng trọng tâm<br>
-                                                        <span class="bold">* Ví dụ:</span><br>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="example">1) A：地図は どこですか</div>
-                                                                <div class="translate">Bản đồ ở đâu vậy?</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="example"></div>
-                                                                <div class="translate"></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="example"></div>
-                                                                <div class="translate"></div>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="bold">* Chú ý:</span> Cần phân biệt sự khác nhau giữa V てあります và V ています<br>
-                                                    </div>
+                                                    <div class="link_popup" data="popup_ton_kinh_ngu_cua_tinh_tu">Tôn kính ngữ của Tính từ</div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -4725,7 +4704,7 @@
                                                     <div class="btn_close"></div>
                                                 </div>
                                                 <div class="popup_content">
-                                                    <div class="bold box" style="border: 1px solid #84888E;">Động từ thể từ điển + な</div><br>
+                                                    <div class="bold jap_box" style="border: 1px solid #84888E;">Động từ thể từ điển + な</div><br>
                                                     <p style="text-align: center;">(động từ dạng –masu thì phải chuyển về dạng từ điển và thêm –na)</p>
                                                     <table class="inner_table" style="width: 560px;">
                                                         <tr>
@@ -5557,88 +5536,48 @@
                                                         <tr>
                                                             <td>わかい</td>
                                                             <td>ごかぞく</td>
-                                                            <td>きょうだい</td>
-                                                            <td>ごきょうだい</td>
+                                                            <td>わかく</td>
+                                                            <td>おわかく</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>ちち</td>
-                                                            <td>おとうさん（～さま）</td>
-                                                            <td>あに</td>
-                                                            <td>おにいさん（～さま）</td>
+                                                            <td>いそがしい</td>
+                                                            <td>おいそがしい</td>
+                                                            <td>いそがしく</td>
+                                                            <td>おいそがしく</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>はは</td>
-                                                            <td>おかあさん（～さま）</td>
-                                                            <td>あね</td>
-                                                            <td>おねえさん（～さま）</td>
+                                                            <td>じょうず（な）</td>
+                                                            <td>おじょうず（な）</td>
+                                                            <td>じょうずに</td>
+                                                            <td>おじょうずに</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>しゅじん</td>
-                                                            <td>ごしゅじん</td>
-                                                            <td>おとうと</td>
-                                                            <td>おとうとさん（～さま）</td>
+                                                            <td>げんき（な）</td>
+                                                            <td>おげんき（な）</td>
+                                                            <td>ていねいに</td>
+                                                            <td>ごていねいに</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>かない</td>
-                                                            <td>おくさん（～さま）</td>
-                                                            <td>いもうと</td>
-                                                            <td>いもうとさん（～さま）</td>
+                                                            <td>ひま（な）</td>
+                                                            <td>おひま（な）</td>
+                                                            <td>ぶじに</td>
+                                                            <td>ごぶじに（５０課）</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>こども</td>
-                                                            <td>おこさん（～さま）</td>
-                                                            <td>このひと</td>
-                                                            <td>このかた</td>
+                                                            <td>ていねい（な）</td>
+                                                            <td>ごていねい（な）</td>
+                                                            <td>ゆっくり</td>
+                                                            <td>ごゆっくり</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>むすこ</td>
+                                                            <td>しんせつ（な）</td>
                                                             <td>
-                                                                むすこさん／ぼっちゃん<br>
-                                                                （こどもの  ばあい）
+                                                                ごしんせつ（な）
                                                             </td>
-                                                            <td>みんな</td>
-                                                            <td>みなさん （～さま）</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>むすめ</td>
-                                                            <td>むすめさん / おじょうさん （～さま）</td>
-                                                            <td>かいしゃのもの</td>
-                                                            <td>かいしゃのかた</td>
+                                                            <td></td>
+                                                            <td></td>
                                                         </tr>
                                                     </table>
-                                                    <span class="bold">Giải thích</span><br>
-                                                    1. Một số danh từ chỉ chức danh như 部長、先生、社長…bản thân nó đã bao hàm ý tôn kính nên 
-                                                    không cần thêm「さん」  <span style="color:red;">(X) 先生さん</span> (khác với tiếng Hàn Quốc)<br>
-                                                    2. Với những danh từ chưa bao hàm ý kính trọng thì có thể thêm 「さん（さま）」để tăng thêm ý lịch sự<br>
-                                                    客 => お客さん（さま)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二人 => お二人さん（さま）<br>
-                                                    医者 => お医者さん（さま）&nbsp;&nbsp;&nbsp;&nbsp;花屋 => （お）花屋さん<br>
-                                                    3. Điều đặc biệt cần chú ý đó là các trường hợp nói chuyện về người trên thuộc quan hệ trong với 
-                                                    người thuộc quan hệ ngoài. Nếu chỉ suy xét về quan hệ trên dưới thì tương đối dễ vì chỉ việc
-                                                    dùng các từ kính ngữ đối với người trên nhưng trong đó nếu xem xét thêm về mối quan hệ
-                                                    trong/ngoài thì sẽ khó hơn. Ví dụ trường hợp người A nói chuyện với người B về người C là 
-                                                    người trên thuộc quan hệ trong của người A sẽ như sau:<br>
-                                                    （１）Trường hợp B (Giám đốc) là người ngoài:<br>
-                                                    <ul>
-                                                        <li>
-                                                            <div class="example">(O) A：（わたしの）父は  明日  大阪へ  行きます／参ります（５０課）</div>
-                                                            <div class="translate">Bố tôi ngày mai đi Osaka</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="example red">(X) A：（わたしの）お父さんは  明日  大阪へ  いらっしゃいます</div>
-                                                            <div class="translate">Sai, không dùng tôn kính ngữ khi nói về người nhà</div>
-                                                        </li>
-                                                    </ul>
-                                                    （２）Trường hợp B (anh trai của A) là người trong:<br>
-                                                    <ul>
-                                                        <li>
-                                                            <div class="example">(O) A：お父さんは  明日  大阪へ  いらっしゃる／行く。（行きます。）</div>
-                                                            <div class="translate">Ngày mai bố đi Osaka đấy</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="example red">(X) A：父は  明日  大阪へ  行きます／参ります</div>
-                                                            <div class="translate">Nói với người trong thì có thể dùng tôn kính ngữ</div>
-                                                        </li>
-                                                    </ul>
                                                     <div style="margin-bottom:80px;"></div>
                                                 </div>
                                             </div>
@@ -5660,7 +5599,7 @@
                                             <a href="#lesson_45">45.2 Phân biêt のに với が/ても</a><br>
                                             <div class="link_popup" data="popup_dong_tu_the_sai_khien">48.1 Động từ thể sai khiến</div>
                                         </div>
-                                        <div class="fb-comments" data-href="https://thiendang.tk" data-numposts="7" data-colorscheme="light"></div>
+                                        <div class="fb-comments" data-href="<?php the_permalink() ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
                                 <div style="clear:both"></div>

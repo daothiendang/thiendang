@@ -2689,6 +2689,17 @@ margin-bottom: 10px;  }
 
 }
 
-.post_info_wrap .embedded_music, .post_info_wrap .embedded_music object {
+.post_info_wrap .embedded_music a {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(23, 190, 184);
+}
+.post_info_wrap .embedded_music {
+    margin-bottom: 50px;
+    width: 300px;
+    height: 370px;
+}
+.post_info_wrap .embedded_music object {
+    width: 300px;
     height: 330px;
 }

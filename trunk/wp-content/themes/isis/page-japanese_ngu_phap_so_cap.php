@@ -20,6 +20,7 @@
                                     <div class="center" style="margin: 0 0 0 65px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 1 đến bài 25</h2>
+                                        <div style="text-align:center;">(Bấm vào tiêu đề để xem nội dung bài học)</div>
                                         <div class="paging">
                                             1&nbsp;&nbsp;-&nbsp;&nbsp;<a href="<?php echo esc_url( home_url( '/')); ?>giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt-3">2</a>
                                         </div>
@@ -5414,7 +5415,7 @@
                                             <div class="link_popup" data="popup_dem_gio">4.1 Cách đếm giờ, phút</div>
                                             <div class="link_popup" data="popup_dong_tu_the_te">14.2 Cách chia động từ thể て</div>
                                         </div>
-                                        <div class="fb-comments" data-href="https://thiendang.tk" data-numposts="7" data-colorscheme="light"></div>
+                                        <div class="fb-comments" data-href="<?php the_permalink() ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
                                 <div style="clear:both"></div>

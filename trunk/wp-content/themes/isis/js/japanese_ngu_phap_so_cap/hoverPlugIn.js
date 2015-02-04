@@ -12,8 +12,9 @@
                 popupLeft = $(this).closest('.toPopup').css('left');
                 left = e.pageX - popupLeft.substring(0, popupLeft.length - 2) + 40;
             } else {
+                var offset = $('.post_info_wrap').offset();
                 top = e.pageY - 120;
-                left = e.pageX - 115;
+                left = e.pageX - 100 - offset.left;
             }
             
             $(this).prev().css('top', top).css('left', left).html(title);
