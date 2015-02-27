@@ -5415,6 +5415,7 @@
                                             <div class="link_popup" data="popup_dem_gio">4.1 Cách đếm giờ, phút</div>
                                             <div class="link_popup" data="popup_dong_tu_the_te">14.2 Cách chia động từ thể て</div>
                                         </div>
+					<?php echo $_SERVER['REQUEST_URI'];?>
                                         <div class="fb-comments" data-href="<?php the_permalink() ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
