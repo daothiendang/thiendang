@@ -1,7 +1,15 @@
 <div class="row">
     <div class="lay1">
 	<div class="title">
-	    <h2 class="blue"><?php echo of_get_option('latest_blog'); ?></h2>
+	    <h2 class="blue">
+		<?php 
+		    if (single_cat_title('', false) == 'Movie') {
+			echo 'Các tập mới post';
+		    } else {
+			echo of_get_option('latest_blog');
+		    }
+		?>
+	    </h2>
 	</div>
 	<?php if (of_get_option('frontcat_checkbox') == "1") {
 	    if (is_front_page()) {
