@@ -10,7 +10,7 @@
  */
 
 // global variable
-$linkFbComment = 'https://thiendang.tk';
+$linkFbComment = 'http://thiendang.tk/';
 
 if (!isset($content_width))
     $content_width = 630;
