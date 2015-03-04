@@ -5599,7 +5599,8 @@
                                             <a href="#lesson_45">45.2 Phân biêt のに với が/ても</a><br>
                                             <div class="link_popup" data="popup_dong_tu_the_sai_khien">48.1 Động từ thể sai khiến</div>
                                         </div>
-                                        <div class="fb-comments" data-href="<?php echo $linkFbComment . $_SERVER['REQUEST_URI']; ?>" data-numposts="7" data-colorscheme="light"></div>
+                                        <?php $currentLink = $linkFbComment. substr(get_permalink(), strlen(get_option('home'))); ?>
+                                        <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
                                 <div style="clear:both"></div>
