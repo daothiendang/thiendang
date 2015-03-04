@@ -6,7 +6,7 @@
 <?php get_header(); ?>
 <div class="row">
     <div class="large-12">
-        <!--Content-->
+        <?php $page2 = home_url() . '/giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt-3'; ?>
         <div id="content">
             <div class="top-content2">
                 <?php if (have_posts()): ?>
@@ -20,9 +20,9 @@
                                     <div class="center" style="margin: 0 0 0 65px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 1 đến bài 25</h2>
-                                        <div style="text-align:center;">(Bấm vào tiêu đề để xem nội dung bài học)</div>
+                                        <div style="text-align:center;">(Click vào tiêu đề màu đỏ để hiện nội dung bài học)</div>
                                         <div class="paging">
-                                            1&nbsp;&nbsp;-&nbsp;&nbsp;<a href="<?php echo esc_url( home_url( '/')); ?>giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt-3">2</a>
+                                            1&nbsp;&nbsp;-&nbsp;&nbsp;<a href="<?php echo $page2; ?>">2</a>
                                         </div>
                                         <table border="0" cellpadding="0" cellspacing="0" class="table" style="width: 850px;">
                                             <tr>
@@ -5415,8 +5415,8 @@
                                             <div class="link_popup" data="popup_dem_gio">4.1 Cách đếm giờ, phút</div>
                                             <div class="link_popup" data="popup_dong_tu_the_te">14.2 Cách chia động từ thể て</div>
                                         </div>
-					<?php echo $_SERVER['REQUEST_URI'];?>
-                                        <div class="fb-comments" data-href="<?php the_permalink() ?>" data-numposts="7" data-colorscheme="light"></div>
+					<?php $currentLink = $linkFbComment. substr(get_permalink(), strlen(get_option('home'))); ?>
+                                        <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
                                 <div style="clear:both"></div>
@@ -5432,6 +5432,7 @@
 </div>
     
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/popup.js"></script>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/script.js"></script>
+    
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/popup.js"></script>
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/script.js"></script>

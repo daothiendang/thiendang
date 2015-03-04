@@ -1,0 +1,59 @@
+.list_movie .post_title {
+    padding: 15px;
+    text-align: center;
+}
+.list_movie .post_title a {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    color: #DE1FAE;
+}
+
+.list_movie.lay1 {
+    margin-top: 0;
+}
+.list_movie .hentry {
+    margin-top: 0;
+    margin-bottom: 25px;
+    height: 276px;
+}
+.list_movie .postitle {
+    height: 50px;
+    overflow: hidden;
+}
+.list_movie .postitle a {
+    line-height: 25px;
+    font-size: 18px;
+}
+
+.list_movie .xem_phim {
+    display: inline-block;
+    position: relative;
+    padding: 7px;
+    width: 100%;
+    background-color: #CCC;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: red !important;
+    opacity: 0.8;
+}
+.list_movie .ch-info a:first-child:hover {
+    text-decoration: none !important;
+}
+.list_movie .xem_phim:hover {
+    color: red !important;
+    font-size: 18px;
+}
+
+.list_movie .post_content2 {
+    height: 100px!important;
+}
+
+.list_movie .ch-item:hover {
+    box-shadow: 0px 0px 0px 110px rgba(217,26,26,0.4), inset 0 0 0 2px rgba(255,255,255,0.8), 0 1px 2px rgba(0,0,0,0.1);
+    behavior: url(PIE.htc);
+}
+.list_movie .ch-info h3 {
+    text-decoration: none;
+}
