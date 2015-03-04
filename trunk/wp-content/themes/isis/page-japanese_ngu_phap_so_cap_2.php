@@ -6,13 +6,13 @@
 <?php get_header(); ?>
 <div class="row">
     <div class="large-12">
-        <!--Content-->
+        <?php $page1 = home_url() . '/giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt'; ?>
         <div id="content">
             <div class="top-content2">
                 <?php if (have_posts()): ?>
                     <?php while (have_posts()): ?>
                         <?php the_post(); ?>
-                        <div <?php post_class(); ?> id="post-<?php the_ID(); ?>"> 
+                        <div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
                             <div class="post_content">
                                 <div class="metainfo"><?php edit_post_link(); ?></div>
                                 <div class="post_info_wrap">
@@ -20,9 +20,9 @@
                                     <div class="center" style="margin: 0 0 0 80px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 26 đến bài 50</h2>
-                                        <div style="text-align:center;">(Bấm vào tiêu đề để xem nội dung bài học)</div>
+                                        <div style="text-align:center;">(Click vào tiêu đề màu đỏ để hiện nội dung bài học)</div>
                                         <div class="paging">
-                                            <a href="<?php echo esc_url( home_url( '/')); ?>giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
+                                            <a href="<?php echo $page1; ?>">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
                                         </div>
                                         <table border="0" cellpadding="0" cellspacing="0" class="table" style="width: 850px;">
                                             <tr>
@@ -380,7 +380,7 @@
                                                 <td>
                                                     <div class="summarize">Động từ dạng tiếp diễn diễn tả 1 thói quen, 1 hành động thường lặp đi lặp lại nhiều lần</div>
                                                     <div class="hide">
-                                                        Mẫu câu này chúng ta đã làm quen ở <a href="index.html#lesson_14" target="_blank">bài 14</a>
+                                                        Mẫu câu này chúng ta đã làm quen ở <a href="<?php echo $page1; ?>#lesson_14" target="_blank">bài 14</a>
                                                         với ý nghĩa <span class="bold">hành động đang diễn ra tại thời điểm nói.</span> Ví dụ:<br>
                                                         <ul>
                                                             <li>
@@ -395,7 +395,7 @@
                                                                 <div class="translate">Tôi đang học tại đại học FPT</div>
                                                             </li>
                                                         </ul>
-                                                        Ở <a href="index.html#lesson_15" target="_blank">bài 15</a> với ý nghĩa <span class="bold">diễn tả trạng thái, kết quả của hành động</span><br>
+                                                        Ở <a href="<?php echo $page1; ?>#lesson_15" target="_blank">bài 15</a> với ý nghĩa <span class="bold">diễn tả trạng thái, kết quả của hành động</span><br>
                                                         <ul>
                                                             <li>
                                                                 <div class="example">結婚しています</div>
@@ -511,7 +511,7 @@
                                                         diễn ra ngay trước mắt và kết quả của nó hiện vẫn còn như thế. Các động từ dùng trong mẫu câu này
                                                         là <span class="bold">tự động từ</span>, tức là các động từ chỉ trạng thái và hầu hết là diễn tả các hành động tức thời<br>
                                                         Cũng với ý nghĩa này, chúng ta đã học 「結婚しています」「住んでいます」「知っています」
-                                                        「持っています」<a href="index.html#lesson_15" target="_blank">(bài 15)</a> nhưng những biểu hiện này
+                                                        「持っています」<a href="<?php echo $page1; ?>#lesson_15" target="_blank">(bài 15)</a> nhưng những biểu hiện này
                                                         có chủ thể là <span class="bold">con người</span>. Bài này, chúng ta học cách thể hiện với chủ thể
                                                         là những đồ vật mà chúng ta nhìn thấy
                                                     </div>
@@ -879,7 +879,7 @@
                                                     <div class="summarize">Cách sử dụng V ý chí:</div>
                                                     <div class="hide">
                                                         Về bản chất, “thể ý chí” chính là cách nói thông thường (cách nói thân thiết, suồng 
-                                                        sã được đề cập ở <a href="index.html#lesson_20" target="_blank">bài 20</a>) của động từ
+                                                        sã được đề cập ở <a href="<?php echo $page1; ?>#lesson_20" target="_blank">bài 20</a>) của động từ
                                                         dạng 「～ましょう」nên có thể dùng thay cho 「～ましょう」khi rủ ai đó cùng làm một việc gì hay đề nghị giúp ai đó làm gì<br>
                                                         <span class="bold">* Ví dụ:</span><br>
                                                         <ul>
@@ -1302,7 +1302,7 @@
                                                                 <div class="translate">Ở đằng kia có viết là “dừng lại”</div>
                                                             </li>
                                                         </ul>
-                                                        <span class="bold">* Chú ý:</span> ～と trong 2 ví dụ trên có nghĩa giống ～と trong mẫu ~といいます ở <a href="index.html#lesson_21" target="_blank">bài 21</a><br>
+                                                        <span class="bold">* Chú ý:</span> ～と trong 2 ví dụ trên có nghĩa giống ～と trong mẫu ~といいます ở <a href="<?php echo $page1; ?>#lesson_21" target="_blank">bài 21</a><br>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1882,7 +1882,7 @@
                                                         Câu tính từ với trợ từ は
                                                     </div>
                                                     <div class="hide">
-                                                        Đã học ở <a href="index.html#lesson_8" target="_blank">bài 8</a>
+                                                        Đã học ở <a href="<?php echo $page1; ?>#lesson_8" target="_blank">bài 8</a>
                                                         <ul>
                                                             <li>
                                                                 <div class="example">サッカーは おもしろいです</div>
@@ -2050,7 +2050,7 @@
                                                     <div class="summarize">Một số mẫu câu dùng こと nhưng ko được dùng の</div>
                                                     <div class="hide">
                                                         <span class="bold">* Cách dùng:</span> Giống như trợ từ の, trợ từ こと mà chúng ta đã học ở bài 
-                                                        <a href="index.html#lesson_18" target="_blank">18</a>, <a href="index.html#lesson_19" target="_blank">19</a> cũng được sử dụng như 
+                                                        <a href="<?php echo $page1; ?>#lesson_18" target="_blank">18</a>, <a href="<?php echo $page1; ?>#lesson_19" target="_blank">19</a> cũng được sử dụng như 
                                                         là một cách để danh từ hóa động từ. Chú ý nhiều mẫu câu trong đó こと được sử dụng nhưng の thì không<br>
                                                         <span class="bold">* Ví dụ:</span><br>
                                                         <ul>
@@ -2113,7 +2113,7 @@
                                                     <div class="hide">
                                                         <span class="bold">* Cách dùng:</span> Những thể văn ở trên được sử dụng để chỉ nguyên nhân, lý do. Trong mẫu câu này, mệnh đề
                                                         trước của câu chỉ nguyên nhân và mệnh đề sau chỉ kết quả xảy ra bởi nguyên nhân đó. Khác 
-                                                        với ~から mà chúng ta đã học ở <a href="index.html#lesson_9" target="_blank">bài 9</a>, mẫu câu này có nhiều hạn chế<br>
+                                                        với ~から mà chúng ta đã học ở <a href="<?php echo $page1; ?>#lesson_9" target="_blank">bài 9</a>, mẫu câu này có nhiều hạn chế<br>
                                                         <span class="bold underline">1.1</span> Mệnh đề sau thường là những từ không bao hàm ý chí:<br>
                                                         - Tính từ, động từ biểu hiện cảm xúc: びっくりする、安心する、困る、さびしい、残念だ...<br>
                                                         <ul>
@@ -2212,7 +2212,7 @@
                                                     <div class="summarize">Chỉ nguyên nhân, lý do</div>
                                                     <div class="hide">
                                                         <span class="bold">1. Ý nghĩa:</span><br>
-                                                        - Giống như ~ から mà chúng ta đã học ở bài số <a href="index.html#lesson_9" target="_blank">9</a>,
+                                                        - Giống như ~ から mà chúng ta đã học ở bài số <a href="<?php echo $page1; ?>#lesson_9" target="_blank">9</a>,
                                                         ～ので chỉ nguyên nhân, lý do. ～から nhấn mạnh nguyên nhân, lý do một cách chủ quan,
                                                         trong khi ～ので là cách biểu hiện trình 
                                                         bày một cách khách quan về liên hệ giữa nguyên nhân và kết quả theo diễn biến tự nhiên<br>
@@ -2451,7 +2451,7 @@
                                                 <td>
                                                     <div class="summarize">* Quan hệ Trong (ウチ) – Ngoài （ソト）</div>
                                                     <div class="hide">
-                                                        Ở <a href="index.html#lesson_7" target="_blank">bài 7</a> và <a href="index.html#lesson_24" target="_blank">bài 24</a>,
+                                                        Ở <a href="<?php echo $page1; ?>#lesson_7" target="_blank">bài 7</a> và <a href="<?php echo $page1; ?>#lesson_24" target="_blank">bài 24</a>,
                                                         chúng ta đã học về các biểu hiện cho và nhận đồ vật hay một hành động 
                                                         qua việc sử dụng 3 động từ「あげます、もらいます、くれます」. Bài này chúng ta sẽ học 
                                                         thêm về các biểu hiện cho – nhận phản ánh mối quan hệ Trên - Dưới (địa vị, tuổi tác) , 
@@ -2886,7 +2886,7 @@
                                                 <td>
                                                     <div class="summarize">(Sử dụng) vào việc gì /  (có lợi) cho việc gì / (cần thiết) cho cái gì</div>
                                                     <div class="hide">
-                                                        Có ý nghĩa na ná như các mẫu câu 「とき」(bài <a href="index.html#lesson_23" target="_blank">23</a>) hay 「場合」 
+                                                        Có ý nghĩa na ná như các mẫu câu 「とき」(bài <a href="<?php echo $page1; ?>#lesson_23" target="_blank">23</a>) hay 「場合」 
                                                         (bài <a href="#lesson_45">45</a>)<br>
                                                         <span class="bold">* Cách dùng:</span> trợ từ「に」có thêm  ý nghĩa thể hiện mục đích. Nếu kết hợp với danh từ thì 
                                                         dùng   「Ｎに」, nếu kết hợp với động từ thì dùng phương pháp “danh từ hóa động từ” (「曲
@@ -2947,7 +2947,7 @@
                                                         1. Chúng ta đã từng gặp trợ từ 「に」thể hiện mục đích trong những bài trước như:<br>
                                                         <ul>
                                                             <li>
-                                                                <div class="example">1) 本を買い<span class="underline">に</span>行きます (bài <a href="index.html#lesson_13" target="_blank">13</a>)</div>
+                                                                <div class="example">1) 本を買い<span class="underline">に</span>行きます (bài <a href="<?php echo $page1; ?>#lesson_13" target="_blank">13</a>)</div>
                                                                 <div class="translate">Đi <span class="underline">để</span> mua sách</div>
                                                             </li>
                                                             <li>
@@ -3250,7 +3250,7 @@
                                                 <td>
                                                     <div class="summarize">Làm cho ~ trở thành</div>
                                                     <div class="hide">
-                                                        <span class="bold">* Cách dùng:</span> trong bài <a href="index.html#lesson_19" target="_blank">19</a>,
+                                                        <span class="bold">* Cách dùng:</span> trong bài <a href="<?php echo $page1; ?>#lesson_19" target="_blank">19</a>,
                                                         chúng ta đã học cách tạo phó từ với động từ「～なります」với ý 
                                                         nghĩa “một cái gì đó chuyển sang trạng thái khác (trở nên, trở thành 1 cách tự nhiên)”, còn 
                                                         trong bài này, chúng ta học cách tạo phó từ với động từ「～します」với ý nghĩa “làm thay 
@@ -3406,11 +3406,11 @@
                                                     <div class="hide">
                                                         <ul>
                                                             <li>
-                                                                <div class="example">1) 私の部屋は 狭いです<span class="bold">が</span>、きれいです (bài <a href="index.html#lesson_8" target="_blank">8</a>)</div>
+                                                                <div class="example">1) 私の部屋は 狭いです<span class="bold">が</span>、きれいです (bài <a href="<?php echo $page1; ?>#lesson_8" target="_blank">8</a>)</div>
                                                                 <div class="translate">Phòng của tôi hẹp <span class="bold">nhưng mà</span> đẹp</div>
                                                             </li>
                                                             <li>
-                                                                <div class="example">2) 明日 雨が 降っ<span class="bold">ても</span>、出かけます (bài <a href="index.html#lesson_25" target="_blank">25</a></div>
+                                                                <div class="example">2) 明日 雨が 降っ<span class="bold">ても</span>、出かけます (bài <a href="<?php echo $page1; ?>#lesson_25" target="_blank">25</a></div>
                                                                 <div class="translate">Ngày mai, <span class="bold">dù</span> trời có mưa chăng nữa, tôi vẫn đi ra ngoài</div>
                                                             </li>
                                                             <li>
@@ -3878,7 +3878,7 @@
                                                         trên yêu cầu người dưới làm gì đó và người dưới phải làm theo. Vì thế, không sử dụng mẫu 
                                                         này đối với những quan hệ ngang bằng hay đối với người trên, thay vào đó sẽ dùng các 
                                                         mẫu đã học về quan hệ cho nhận như: 「Ｖていただく（<a href="#lesson_41">４１課</a>）」、
-                                                        「Ｖてもらう（<a href="index.html#lesson_24" target="_blank">２４課</a>）」(tuy nhiên những động từ mang ý
+                                                        「Ｖてもらう（<a href="<?php echo $page1; ?>#lesson_24" target="_blank">２４課</a>）」(tuy nhiên những động từ mang ý
                                                         diễn đạt tâm lý, tình cảm như 「しんぱいする、びっくりする、困る」thì vẫn có thể dùng với người trên với ý:
                                                         làm cho lo lắng, làm cho ngạc nhiên, làm cho khó khăn…)
                                                     </div>
@@ -4504,7 +4504,7 @@
                                                             <div class="translate">Bạn <span class="bold">có thể đi</span> một mình đến bệnh viện không?</div>
                                                         </li>
                                                     </ul><br>
-                                                    <span class="bold">3. Cách dùng:</span> Giống như cách dùng của「V ることができます」học ở bài <a href="index.html#lesson_18" target="_blank">18</a><br>
+                                                    <span class="bold">3. Cách dùng:</span> Giống như cách dùng của「V ることができます」học ở bài <a href="<?php echo $page1; ?>#lesson_18" target="_blank">18</a><br>
                                                     <p>a)  Dùng để chỉ khả năng của ai đó có thể làm được gì</p>
                                                     <p class="bold">* Ví dụ:</p>
                                                     <ul>
@@ -5053,12 +5053,12 @@
                                                             <td style="text-align: left;"><a href="index_2.html#lesson_33" class="btn_close">Bài 33:</a> Vないでくれ</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="text-align: left;"><a href="index.html#lesson_20" target="_blank">Bài 20:</a> Vて</td>
-                                                            <td style="text-align: left;"><a href="index.html#lesson_20" target="_blank">Bài 20:</a> Vないで</td>
+                                                            <td style="text-align: left;"><a href="<?php echo $page1; ?>#lesson_20" target="_blank">Bài 20:</a> Vて</td>
+                                                            <td style="text-align: left;"><a href="<?php echo $page1; ?>#lesson_20" target="_blank">Bài 20:</a> Vないで</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="text-align: left;"><a href="index.html#lesson_14" target="_blank">Bài 14:</a> Vてください</td>
-                                                            <td style="text-align: left;"><a href="index.html#lesson_14" target="_blank">Bài 14:</a> Vないでください</td>
+                                                            <td style="text-align: left;"><a href="<?php echo $page1; ?>#lesson_14" target="_blank">Bài 14:</a> Vてください</td>
+                                                            <td style="text-align: left;"><a href="<?php echo $page1; ?>#lesson_14" target="_blank">Bài 14:</a> Vないでください</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="text-align: left;"><a href="index_2.html#lesson_26" class="btn_close">Bài 26:</a> Vてくださいませんか</td>
@@ -5599,7 +5599,7 @@
                                             <a href="#lesson_45">45.2 Phân biêt のに với が/ても</a><br>
                                             <div class="link_popup" data="popup_dong_tu_the_sai_khien">48.1 Động từ thể sai khiến</div>
                                         </div>
-                                        <div class="fb-comments" data-href="<?php the_permalink() ?>" data-numposts="7" data-colorscheme="light"></div>
+                                        <div class="fb-comments" data-href="<?php echo $linkFbComment . $_SERVER['REQUEST_URI']; ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
                                 <div style="clear:both"></div>
@@ -5614,6 +5614,6 @@
     </div>
 </div>
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/popup.js"></script>
-<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/japanese_ngu_phap_so_cap/script.js"></script>
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/popup.js"></script>
+<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/script.js"></script>
