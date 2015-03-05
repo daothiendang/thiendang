@@ -1,24 +1,24 @@
-jQuery(document).ready(function() {
-    jQuery('.example').hoverText();
+//$(document).ready(function() {
+    $('.example').hoverText();
     
-    jQuery('.link_popup').click(function() {
+    $('.link_popup').click(function() {
         // set popup to very center of screen
-        screenWidth = jQuery(window).width();
-        popUpCalled = jQuery(this).attr('data');
-        popupWidth = jQuery('#' + popUpCalled).width();
+        screenWidth = $(window).width();
+        popUpCalled = $(this).attr('data');
+        popupWidth = $('#' + popUpCalled).width();
         leftDistance = (screenWidth - popupWidth) / 2;
-        jQuery('#' + popUpCalled).css('left', leftDistance);
+        $('#' + popUpCalled).css('left', leftDistance);
         
         // open popup
-        openPopup(jQuery(this));
+        openPopup($(this));
     });
     
-    jQuery('.popup_content a').click(function() {
+    $('.popup_content a').click(function() {
         disablePopup();
     });
     
-    jQuery('.summarize').click(function() {
-        jQuery(this).next().slideToggle();
-        jQuery(this).toggleClass('underline');
+    $('.summarize').click(function() {
+        $(this).next().slideToggle();
+        $(this).toggleClass('underline');
     });
-});
+//});

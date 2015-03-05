@@ -100,7 +100,7 @@
 			    <div style="width:100%;">
 				<div style="margin:0 auto; width:80%">
 				    <?php $currentPostId = get_the_ID();?>
-				    <select id="select_movie" data-placeholder="Click để xem các tập khác trong Season" class="chosen-select" tabindex="2">
+				    <select id="select_movie" data-placeholder="Search các tập khác trong Season" class="chosen-select" tabindex="2">
 					<option value=""></option>
 					<?php foreach ($posts as $post) { ?>
 					    <?php echo get_the_ID(); echo $post->ID;?>
