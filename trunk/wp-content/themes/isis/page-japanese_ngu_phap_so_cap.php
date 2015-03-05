@@ -5432,7 +5432,9 @@
 </div>
     
 <?php get_footer(); ?>
-    
+<script>
+    var $ = jQuery;
+</script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/popup.js"></script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/script.js"></script>

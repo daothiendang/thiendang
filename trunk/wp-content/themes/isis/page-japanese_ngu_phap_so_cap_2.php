@@ -1724,10 +1724,6 @@
                                                                 <div class="example" style="color:red;">X あの かばんは 大きなです</div>
                                                                 <div class="translate">Dùng như này là sai</div>
                                                             </li>
-                                                            <li>
-                                                                <div class="example"></div>
-                                                                <div class="translate"></div>
-                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </td>
@@ -3592,7 +3588,7 @@
                                                         </ul>
                                                         - Không sử dụng với các động từ chỉ trạng thái kết quả như  結婚している、知っている…<br>
                                                         <span class="bold">* Tổng kết:</span><br>
-                                                        <img src="img/46.1 Vru_tokoro.jpg" alt="46.1"/>
+                                                        <img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/46.1 Vru_tokoro.jpg" alt="46.1"/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -5615,6 +5611,9 @@
     </div>
 </div>
 <?php get_footer(); ?>
+<script>
+    var $ = jQuery;
+</script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/hoverPlugIn.js"></script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/popup.js"></script>
 <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/japanese_ngu_phap_so_cap/script.js"></script>
