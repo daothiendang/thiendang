@@ -6,7 +6,7 @@
 		    <?php the_tags('', '  '); ?>
 		</div>
 		<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
-		<?php query_posts($query_string .'&orderby=date&order=ASC&posts_per_page=25&paged=' . $paged); ?>
+		<?php query_posts($query_string .'&orderby=date&order=ASC&posts_per_page=24&paged=' . $paged); ?>
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 		    <div class="hentry">
 			<div class="post_image">

@@ -10,7 +10,9 @@
 }
 
 .list_movie.lay1 {
-    margin-top: 0;
+    margin: 0 2%;
+    width: 96%;
+    background: rgba(252, 59, 2, 0.81);
 }
 .list_movie .hentry {
     margin-top: 0;
@@ -18,12 +20,16 @@
     height: 276px;
 }
 .list_movie .postitle {
+    margin-bottom: 5px;
     height: 50px;
     overflow: hidden;
 }
 .list_movie .postitle a {
     line-height: 25px;
     font-size: 18px;
+}
+.list_movie .content2 p {
+    text-align: center;
 }
 
 .list_movie .xem_phim {
