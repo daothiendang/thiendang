@@ -20,7 +20,9 @@
                                     <div class="center" style="margin: 0 0 0 65px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 1 đến bài 25</h2>
-                                        <div style="text-align:center;">(Click vào tiêu đề màu đỏ để hiện nội dung bài học)</div>
+                                        <div style="text-align:center;" id="loading_message">
+					    Đang tải, xin đợi một chút... <img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
+					</div>
                                         <div class="paging">
                                             1&nbsp;&nbsp;-&nbsp;&nbsp;<a href="<?php echo $page2; ?>">2</a>
                                         </div>

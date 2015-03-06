@@ -24,8 +24,6 @@
 	                <div <?php post_class(); ?> id="post-<?php the_ID(); ?>">  </div>
 
 			<div id="content" class="content_blog blog_style_b1" role="main">
-
-			    
 			    <div class="post_info_1">
 				<?php if (current_user_can('manage_options')) {?>
 				    <div class="post_format"><span class="icon-pencil"><?php edit_post_link(); ?></span></div>
@@ -62,7 +60,7 @@
 			    </div>
 				
 			    <p><?php the_content(); ?></p>
-			    <?php $linkGoogleDrive = get_post_meta($post->ID, 'google_drive_link', true);?>
+			    <?php $linkGoogleDrive = get_post_meta($post->ID, 'google_drive_id', true);?>
 			    <div class="movie_container">
 				<iframe class="movie_iframe" src="https://docs.google.com/file/d/<?php echo $linkGoogleDrive;?>/preview" width="536" height="302" allowfullscreen></iframe>
 			    </div>
@@ -75,7 +73,6 @@
 				    <?php if (has_tag()) { ?><a class="tag_link"><?php the_tags('', '  '); ?></a>
 				</span><?php } ?><?php } ?>
 			    </div>
-			    
 			    
 			    <?php
 				if (is_single()) {
@@ -138,7 +135,7 @@
 	'.chosen-select'           : {},
 	'.chosen-select-deselect'  : {allow_single_deselect:true},
 	'.chosen-select-no-single' : {disable_search_threshold:10},
-	'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+	'.chosen-select-no-results': {no_results_text:'Không tìm thấy!'},
 	'.chosen-select-width'     : {width:"95%"}
     }
     for (var selector in config) {

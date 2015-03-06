@@ -22,3 +22,6 @@
         $(this).toggleClass('underline');
     });
 //});
+$(document).ready(function() {
+    $('#loading_message').html('Click vào tiêu đề màu đỏ để hiện nội dung bài học');
+});

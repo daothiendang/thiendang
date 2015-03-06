@@ -20,7 +20,9 @@
                                     <div class="center" style="margin: 0 0 0 80px;">
                                         <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
                                         <h2 style="margin-top: 10px;">Ngữ pháp từ bài 26 đến bài 50</h2>
-                                        <div style="text-align:center;">(Click vào tiêu đề màu đỏ để hiện nội dung bài học)</div>
+                                        <div style="text-align:center;" id="loading_message">
+					    Đang tải, xin đợi một chút... <img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
+					</div>
                                         <div class="paging">
                                             <a href="<?php echo $page1; ?>">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
                                         </div>
@@ -588,7 +590,7 @@
                                             </tr>
                                             <tr>
                                                 <td>29.2</td>
-                                                <td>そうです／そうではありません</td>
+                                                <td>Vてしまいます</td>
                                                 <td>
                                                     <div class="summarize">(1) (làm gì) hết / xong rồi; (2) (làm gì) mất rồi (nuối tiếc)</div>
                                                     <div class="hide">
