@@ -803,12 +803,12 @@ overflow: hidden;
 	
 }}
 @media only screen and (max-width:768px) {
-.icon{
+/*.icon{
 	margin-left: 40%;
 	margin-top: 10px;
 	margin-bottom: 5px;
 	
-}
+}*/
 }
 .midrow{
 	width: 100%;
@@ -937,14 +937,13 @@ padding: 4px 16px;}
 
 
 .postitle {
-	font-size: 20px !important;
-	text-align: center;
-	width:100px;
-	overflow:hidden;
-	-ms-word-wrap: break-word;
-word-wrap: break-word;
-height:
-
+    font-size: 20px !important;
+    text-align: center;
+    width:100px;
+    overflow:hidden;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    /*height:*/
 }
 
 
@@ -2676,7 +2675,7 @@ margin-left: -60px;
 }
 
 @media only screen and (max-width:768px) {
-#menu_wrap2  #navmenu ul.menu {top: 125px;width: 100%;}
+/*#menu_wrap2  #navmenu ul.menu {top: 125px;width: 100%;}
 
 .midrow_blocks{ width: 250px;
 padding: 0px;
@@ -2685,7 +2684,7 @@ position: relative;
 height: 250px;
 margin-left: 10%;
 margin-right: 6px;
-margin-bottom: 10px;  }
+margin-bottom: 10px;  }*/
 
 }
 

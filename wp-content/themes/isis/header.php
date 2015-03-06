@@ -15,7 +15,8 @@
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1">
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
+    
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/custom/custom.css" />
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/custom/select_search/prism.css">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/custom/select_search/chosen.css">
     
@@ -25,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/japanese_ngu_phap_so_cap/style.css" />
     <?php endif;?>
     <?php if (is_tag()) { ?>
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/custom.css" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/custom_tag.css" />
     <?php } ?>
     <?php //  ----------------------------------------------------------------------------  ?>
 	
