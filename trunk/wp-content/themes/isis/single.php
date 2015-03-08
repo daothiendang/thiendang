@@ -60,7 +60,10 @@
                  <div class="wp-pagenavi">
                     <?php previous_post_link( '<div class="alignleft">%link</div>', '&laquo; %title' ); ?>
                     <?php next_post_link( '<div class="alignright">%link</div>', '%title &raquo; ' ); ?>
-                </div> 
+                </div>
+                <div style="margin:0 auto; width:100%">
+                    <div class="fb-comments" style="margin: 30px auto; max-width:600px" data-width="100%" data-href="<?php echo $linkFbComment . $_SERVER['REQUEST_URI']; ?>" data-numposts="7" data-colorscheme="light"></div>
+                </div>
 <div class="share">Share this:</div><?php get_template_part('share_this');?>				
                     </div>
   <?php endwhile ?>

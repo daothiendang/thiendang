@@ -36,6 +36,8 @@
 
                 </div>   
                 <div class="comments_template"><?php comments_template('', true); ?></div>
+                <?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
+                <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
             <?php endif ?>
 
 

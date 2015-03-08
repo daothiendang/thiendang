@@ -5417,7 +5417,7 @@
                                             <div class="link_popup" data="popup_dem_gio">4.1 Cách đếm giờ, phút</div>
                                             <div class="link_popup" data="popup_dong_tu_the_te">14.2 Cách chia động từ thể て</div>
                                         </div>
-					<?php $currentLink = $linkFbComment. substr(get_permalink(), strlen(get_option('home'))); ?>
+					<?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
                                         <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
                                     </div>
                                 </div> 
