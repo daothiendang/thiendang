@@ -21,3 +21,26 @@
     padding: 6px 0;
     width: 100%;
 }
+
+.fb_iframe_widget,
+.fb_iframe_widget > span,
+.fb_iframe_widget iframe {
+    width: 100% !important;
+}
+
+.post_info {
+    font-size: 13px;
+    color: red;
+}
+.post_info a {
+    font-size: 13px;
+    color: blue;
+}
+
+#content .social-profiles {
+    background: rgb(20, 159, 219);
+}
+
+.chosen-container {
+    width: 100% !important;
+}

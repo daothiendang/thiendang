@@ -1230,10 +1230,11 @@ width: 218px;}
 }
 /*single post*/
 
-#content{ width:100%; float:left;  background-color:#FFF;
-
-border-bottom: 1px solid rgb(213, 213, 213);
-background-color: rgb(255, 255, 255);
+#content {
+    float:left;
+    width:100%;
+    background-color: #FFF;
+    border-bottom: 1px solid rgb(213, 213, 213);
 }
 
 #content .top-content {

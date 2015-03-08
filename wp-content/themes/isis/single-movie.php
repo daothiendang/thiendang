@@ -13,6 +13,13 @@
 	width: 100%;
 	height: 100%;
     }
+    #bigger_screen {
+        float: right;
+        font-size: 16px;
+        font-weight: bold;
+        color: orange;
+        cursor: pointer;
+    }
 </style>
 
 <div class="row">
@@ -66,12 +73,13 @@
 			    </div>
 			    <div class="post_wrap_n"><?php wp_link_pages('<p class="pages"><strong>' . __('Pages:') . '</strong> ', '</p>', 'number'); ?></div>	
 				
-			    <div class="post_info post_info_3 clearboth">
+			    <div class="post_info post_info_3 clearboth" style="margin-top:10px;">
 				<?php if (of_get_option('disscats_checkbox') == "0") { ?>
 				<span class="post_tags">
 				    <?php if (has_tag()) { ?><span class="tags_label">Tags:</span><?php } ?>
 				    <?php if (has_tag()) { ?><a class="tag_link"><?php the_tags('', '  '); ?></a>
 				</span><?php } ?><?php } ?>
+                                <span id="bigger_screen">Xem với kích thước lớn</span>
 			    </div>
 			    
 			    <?php
@@ -95,7 +103,7 @@
 				<?php next_post_link('<div class="alignright">%link</div>', '%title &raquo; '); ?>
 			    </div>
 			    <div style="width:100%;">
-				<div style="margin:0 auto; width:80%">
+				<div style="margin:0 auto; width:90%">
 				    <?php $currentPostId = get_the_ID();?>
 				    <select id="select_movie" data-placeholder="Search các tập khác trong Season" class="chosen-select" tabindex="2">
 					<option value=""></option>
@@ -107,8 +115,10 @@
 					<?php }?>
 				    </select>
 				</div>
+                                <div style="margin:30px auto; width:90%">
+                                    <div class="fb-comments" style="margin: 30px auto; max-width:600px" data-width="100%" data-href="<?php echo $linkFbComment . $_SERVER['REQUEST_URI']; ?>" data-numposts="7" data-colorscheme="light"></div>
+                                </div>
 			    </div>
-			    <div class="fb-comments" style="margin: 30px auto;" data-href="<?php echo $linkFbComment . $_SERVER['REQUEST_URI']; ?>" data-numposts="7" data-colorscheme="light"></div>
 			    <div class="share">Share this:</div><?php get_template_part('share_this'); ?>
 			</div>
 		    <?php endwhile ?>
@@ -147,4 +157,22 @@
 	$(this).parent().find('.chosen-container-single').remove();
 	window.location.href = "<?php echo home_url() . '/?p=';?>" + id;
     });
+    if ($(window).width() > 768) {
+        $('#bigger_screen').click(function() {
+            var text = $(this).text();
+            if (text === 'Xem với kích thước lớn') {
+                $('#sidebar').hide();
+                $('#content .top-content').animate({width:'100%'}, 500);
+                text = 'Xem với kích thước nhỏ';
+            } else {
+                $('#content .top-content').animate({width:'70%'}, 500);
+                $('#sidebar').show();
+                text = 'Xem với kích thước lớn';
+            }
+            $(this).text(text);
+        });
+    } else {
+        $('#bigger_screen').hide();
+    }
+    
 </script>
