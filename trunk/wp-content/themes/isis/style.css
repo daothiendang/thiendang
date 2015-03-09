@@ -803,12 +803,12 @@ overflow: hidden;
 	
 }}
 @media only screen and (max-width:768px) {
-/*.icon{
+.icon{
 	margin-left: 40%;
 	margin-top: 10px;
 	margin-bottom: 5px;
 	
-}*/
+}
 }
 .midrow{
 	width: 100%;
@@ -937,13 +937,14 @@ padding: 4px 16px;}
 
 
 .postitle {
-    font-size: 20px !important;
-    text-align: center;
-    width:100px;
-    overflow:hidden;
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    /*height:*/
+	font-size: 20px !important;
+	text-align: center;
+	width:100px;
+	overflow:hidden;
+	-ms-word-wrap: break-word;
+word-wrap: break-word;
+height:
+
 }
 
 
@@ -1230,11 +1231,10 @@ width: 218px;}
 }
 /*single post*/
 
-#content {
-    float:left;
-    width:100%;
-    background-color: #FFF;
-    border-bottom: 1px solid rgb(213, 213, 213);
+#content{ width:100%; float:left;  background-color:#FFF;
+
+border-bottom: 1px solid rgb(213, 213, 213);
+background-color: rgb(255, 255, 255);
 }
 
 #content .top-content {
@@ -2676,7 +2676,7 @@ margin-left: -60px;
 }
 
 @media only screen and (max-width:768px) {
-/*#menu_wrap2  #navmenu ul.menu {top: 125px;width: 100%;}
+#menu_wrap2  #navmenu ul.menu {top: 125px;width: 100%;}
 
 .midrow_blocks{ width: 250px;
 padding: 0px;
@@ -2685,21 +2685,7 @@ position: relative;
 height: 250px;
 margin-left: 10%;
 margin-right: 6px;
-margin-bottom: 10px;  }*/
+margin-bottom: 10px;  }
 
 }
 
-.post_info_wrap .embedded_music a {
-    display: block;
-    margin-bottom: 8px;
-    color: rgb(23, 190, 184);
-}
-.post_info_wrap .embedded_music {
-    margin-bottom: 50px;
-    width: 300px;
-    height: 370px;
-}
-.post_info_wrap .embedded_music object {
-    width: 300px;
-    height: 330px;
-}
