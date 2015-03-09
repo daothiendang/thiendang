@@ -1,6 +1,7 @@
 @media only screen and (max-width:768px) {
+    /*  -------------------------  override menu  --------------------------  */
     body #navmenu ul.menu li {
-	padding-left: 10px;
+	padding-left: 15px;
 	padding-right: 0;
 	text-align: left;
     }
@@ -9,25 +10,49 @@
     }
     .menu_hover_custom {
 	float: right;
-	width: 20px;
-	height: 20px;
+	margin-right: 6px;
+	width: 30px;
+	height: 30px;
 	background: url('../../images/menu_down_arrow.png') no-repeat;
-	background-size: 20px 20px;
+	background-size: 30px 30px;
     }
+    .icon{
+	margin-left: 40%;
+	margin-top: 10px;
+	margin-bottom: 5px;
+    }
+    /*  --------------------------------------------------------------------  */
 }
 
+@media only screen and (max-width: 480px) {
+    /*  -------------------------  override menu  --------------------------  */
+    body #menu_wrap2 #navmenu ul.menu {
+	margin-left: 0;
+	width: 100%;
+    }
+    /*  --------------------------------------------------------------------  */
+}
+
+/*  -------------------------  override menu  ------------------------------  */
+#menu_wrap2 #navmenu ul.menu {
+    top: 110px;
+}
 #menu-icon {
     margin: 0;
     padding: 6px 0;
     width: 100%;
 }
+/*  ------------------------------------------------------------------------  */
 
+/* --------------  responsive 100% for facebook comment box  ---------------  */
 .fb_iframe_widget,
 .fb_iframe_widget > span,
 .fb_iframe_widget iframe {
     width: 100% !important;
 }
+/*  ------------------------------------------------------------------------  */
 
+/*  ------------------------  override single post  ------------------------  */
 .post_info {
     font-size: 13px;
     color: red;
@@ -36,11 +61,33 @@
     font-size: 13px;
     color: blue;
 }
+/*  ------------------------------------------------------------------------  */
 
+/* -----------------  background for social share icons  -------------------  */
 #content .social-profiles {
     background: rgb(20, 159, 219);
 }
+/*  ------------------------------------------------------------------------  */
 
+/* -----------------------  jQuery selecbox chosen  ------------------------  */
 .chosen-container {
     width: 100% !important;
 }
+/*  ------------------------------------------------------------------------  */
+
+/* ----------------------  embedded nhaccuatui.com  ------------------------  */
+.post_info_wrap .embedded_music a {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(23, 190, 184);
+}
+.post_info_wrap .embedded_music {
+    margin-bottom: 50px;
+    width: 300px;
+    height: 370px;
+}
+.post_info_wrap .embedded_music object {
+    width: 300px;
+    height: 330px;
+}
+/*  ------------------------------------------------------------------------  */

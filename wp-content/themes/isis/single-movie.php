@@ -26,7 +26,6 @@
     <div class="columns">
 	<div id="content" >
 	    <div class="top-content">
-		<!--Content-->
 		<?php if (have_posts()): ?><?php while (have_posts()): ?><?php the_post(); ?>
 	                <div <?php post_class(); ?> id="post-<?php the_ID(); ?>">  </div>
 
@@ -40,7 +39,8 @@
 					<span class="day"><?php echo date('j'); ?></span>
 					<span class="month" style="margin: 4px;"><?php echo date('M'); ?></span>
 					<span class="month"><?php echo date('Y'); ?></span>
-				    </a></div>
+				    </a>
+				</div>
 			    </div>
 
 			    <div class="title_area" style="padding-left: 50px;">
@@ -122,11 +122,10 @@
 			    <div class="share">Share this:</div><?php get_template_part('share_this'); ?>
 			</div>
 		    <?php endwhile ?>
-    		<!--POST END--> 
 		
     		<a class="comments_template"><?php comments_template('', true); ?></a>
-		<?php endif ?></div>
-
+		<?php endif ?>
+	    </div>
 
 	    <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
 	</div>
@@ -174,5 +173,4 @@
     } else {
         $('#bigger_screen').hide();
     }
-    
 </script>
