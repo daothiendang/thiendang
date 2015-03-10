@@ -439,4 +439,7 @@ function add_custom_types_to_tax($query) {
 }
 add_filter('pre_get_posts', 'add_custom_types_to_tax');
 
+
+// remove <p> and <br> tag
+remove_filter( 'the_content', 'wpautop' );
 ?>

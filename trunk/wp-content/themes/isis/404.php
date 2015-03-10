@@ -11,9 +11,9 @@ get_header();
     <div class="large-11">
 	<div>
 	    <h1><?php _e('404', 'isis'); ?></h1>
-            <h2><?php _e('Page not found!', 'isis'); ?></h2>
+            <h2><?php _e('Khống có trang này!', 'isis'); ?></h2>
 	    <p>
-		<a href="<?php echo esc_url(home_url('/')); ?>"><?php _e('Return home?', 'isis'); ?></a>
+		<a href="<?php echo esc_url(home_url('/')); ?>"><?php _e('Quay lại trang chủ?', 'isis'); ?></a>
 	    </p>
 	</div>	
     </div>

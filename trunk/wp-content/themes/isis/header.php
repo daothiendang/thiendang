@@ -24,8 +24,18 @@
     <?php if ($posts[0]->ID == '121') { ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/hover_link_effect/demo.css" />
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/hover_link_effect/component.css" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/hover_link_effect/hover_image.css" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,800,500,600' rel='stylesheet' type='text/css' />
 	<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/hover_link_effect/modernizr.custom.js"></script>
-    
+	<script>
+	    // For Demo purposes only (show hover effect on mobile devices)
+	    [].slice.call(document.querySelectorAll('a[href="#"')).forEach(function (el) {
+		el.addEventListener('click', function (ev) {
+		    ev.preventDefault();
+		});
+	    });
+	</script>
+	
     <?php // ------------  css for japanese ngu phap so cap  -----------------------------  ?>
     <?php } else if (is_page_template('page-japanese_ngu_phap_so_cap.php') || is_page_template('page-japanese_ngu_phap_so_cap_2.php')){ ?>
         <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/japanese_ngu_phap_so_cap/popup.css" />
