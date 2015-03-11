@@ -78,7 +78,6 @@ section {
 }
 
 .grid figure figcaption, .grid figure figcaption h2 {
-    padding: 20px 0;
     text-transform: uppercase!important;
     text-align: center;
     color: #fff;
@@ -88,6 +87,9 @@ section {
 }
 .grid figure figcaption h2 span {
     margin-left: 8px;
+}
+.grid figure .effect-julia h2 {
+    padding: 20px 0;
 }
 
 .grid figure figcaption::before,
