@@ -34,7 +34,7 @@
     line-height: 52px;
 }
 .popup_header .btn_close {
-    background: url("../img/closebox.png") no-repeat scroll center center transparent;
+    background: url("../../img/closebox.png") no-repeat scroll center center transparent;
     border-left: 1px solid #e5e5e5;
     cursor: pointer;
     float: right;
