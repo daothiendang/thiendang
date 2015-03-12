@@ -4338,7 +4338,7 @@
                                                 <td>
                                                     <div class="summarize">ごNします</div>
                                                     <div class="hide">
-                                                        <span class="bold">* Cách ghép:</span> Cách danh động từ (động từ nhóm 3 có dạng「Nします」thường là những từ
+                                                        <span class="bold">* Cách ghép:</span> Các danh động từ (động từ nhóm 3 có dạng「Nします」thường là những từ
                                                         gốc Hán nên sẽ ghép 「ご」và tạo thành 「ごNします」. (nhưng không áp dụng với các động từ như 「勉強します、実習します、結婚します」)<br>
                                                         Chú ý: một số trường hợp đặc biệt<br>
                                                         電話します => お電話します; 約束します => お約束します<br>
