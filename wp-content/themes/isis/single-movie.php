@@ -92,7 +92,7 @@
 					$sql = 'SELECT wp_posts.ID, wp_posts.post_title, wp_posts.guid FROM wp_posts 
 					    INNER JOIN wp_term_relationships ON wp_term_relationships.object_id = wp_posts.ID
 					    INNER JOIN wp_terms ON wp_term_relationships.term_taxonomy_id = wp_terms.term_id
-					    WHERE post_status="publish" AND wp_terms.`term_id`=' . $first_tag;
+					    WHERE post_status="publish" AND wp_terms.`term_id`=' . $first_tag . ' ORDER BY wp_posts.post_date';
 
 					$posts = $wpdb->get_results($sql);
 				    }

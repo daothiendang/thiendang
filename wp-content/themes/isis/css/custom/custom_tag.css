@@ -17,6 +17,7 @@
 .list_movie .hentry {
     margin-top: 0;
     margin-bottom: 25px;
+    padding: 0;
     height: 276px;
 }
 .list_movie .postitle {
@@ -53,6 +54,7 @@
 }
 
 .list_movie .post_content2 {
+    width: 220px;
     height: 100px!important;
 }
 

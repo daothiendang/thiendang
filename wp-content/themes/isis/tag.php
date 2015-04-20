@@ -27,8 +27,8 @@
 			</div>
 			<div class="post_content2">
 			    <?php $movieTitle = get_the_title(); ?>
-			    <?php if ( strlen($movieTitle) > 60) {
-				$movieTitle = substr($movieTitle, 0, 57) . '...';
+			    <?php if ( strlen($movieTitle) > 50) {
+				$movieTitle = substr($movieTitle, 0, 47) . '...';
 			    } ?>
 			    <h2 class="postitle"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php echo $movieTitle;?></a></h2>
 			    <div class="content2"><?php isis_excerpt('isis_excerptlength_teaser', 'isis_excerptmore'); ?> </div>
