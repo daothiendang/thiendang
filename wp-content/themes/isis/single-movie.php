@@ -22,6 +22,8 @@
     }
 </style>
 
+<?php global $wpdb; ?>
+
 <div class="row">
     <div class="columns">
 	<div id="content" >
@@ -82,27 +84,34 @@
                                 <span id="bigger_screen">Xem với kích thước lớn</span>
 			    </div>
 			    
-			    <?php
-				if (is_single()) {
-				    $tags = wp_get_post_tags($post->ID);
-				    if ($tags) {
-					$first_tag = $tags[0]->term_id;
-					global $wpdb; 
-
-					$sql = 'SELECT wp_posts.ID, wp_posts.post_title, wp_posts.guid FROM wp_posts 
-					    INNER JOIN wp_term_relationships ON wp_term_relationships.object_id = wp_posts.ID
-					    INNER JOIN wp_terms ON wp_term_relationships.term_taxonomy_id = wp_terms.term_id
-					    WHERE post_status="publish" AND wp_terms.`term_id`=' . $first_tag . ' ORDER BY wp_posts.post_date';
-
-					$posts = $wpdb->get_results($sql);
-				    }
-				}
-			    ?>
 			    <div class="wp-pagenavi">
 				<?php previous_post_link('<div class="alignleft">%link</div>', '&laquo; %title'); ?>
 				<?php next_post_link('<div class="alignright">%link</div>', '%title &raquo; '); ?>
 			    </div>
 			    <div style="width:100%;">
+                                <div class="download_button">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            Download Phim <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="https://docs.google.com/uc?export=download&confirm=PSCl&id=<?php echo $linkGoogleDrive;?>">Link 1</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <?php
+                                    if (is_single()) {
+                                        $tags = wp_get_post_tags($post->ID);
+                                        if ($tags) {
+                                            $first_tag = $tags[0]->term_id;
+                                            $sql = 'SELECT wp_posts.ID, wp_posts.post_title, wp_posts.guid FROM wp_posts 
+                                                INNER JOIN wp_term_relationships ON wp_term_relationships.object_id = wp_posts.ID
+                                                INNER JOIN wp_terms ON wp_term_relationships.term_taxonomy_id = wp_terms.term_id
+                                                WHERE post_status="publish" AND wp_terms.`term_id`=' . $first_tag . ' ORDER BY wp_posts.post_date';
+                                            $posts = $wpdb->get_results($sql);
+                                        }
+                                    }
+                                ?>
 				<div style="margin:0 auto; width:90%">
 				    <?php $currentPostId = get_the_ID();?>
 				    <select id="select_movie" data-placeholder="Search các tập khác trong Season" class="chosen-select" tabindex="2">

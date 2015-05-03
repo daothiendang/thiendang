@@ -11,7 +11,7 @@
 <head profile="http://gmpg.org/xfn/11">
     <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title('-',true,'left'); ?></title>
+    <title><?php echo get_the_title() . '-'; echo get_bloginfo();?></title>
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1">
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -44,12 +44,17 @@
     <?php // ----------------------  css for tag page  -----------------------------------  ?>
     <?php } else if (is_tag()) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/custom_tag.css" />
-    <?php } ?>
     <?php //  ----------------------------------------------------------------------------  ?>
 	
-    
+    <?php // ----------------------  css for movie page  -----------------------------------  ?>
+    <?php } else if ( is_singular( 'movie' ) ) { ?>
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory');?>/css/custom/bootstrap.min.css" />
+    <?php } ?>
+    <?php //  ----------------------------------------------------------------------------  ?>
+        
     <?php wp_head(); ?>
-
+        
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/custom/bootstrap.min.js"></script>
 </head>
 
 

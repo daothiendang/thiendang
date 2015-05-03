@@ -64,6 +64,14 @@
     font-size: 13px;
     color: blue;
 }
+.wp-pagenavi {
+    margin: 10px 0 0 0;
+}
+.download_button {
+    margin-bottom: 20px;
+    text-align: center;
+    color: blue;
+}
 /*  ------------------------------------------------------------------------  */
 
 /* -----------------  background for social share icons  -------------------  */
