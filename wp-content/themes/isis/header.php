@@ -11,7 +11,13 @@
 <head profile="http://gmpg.org/xfn/11">
     <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo get_the_title() . '-'; echo get_bloginfo();?></title>
+    <?php if (is_single() || is_page()) { ?>
+        <title><?php echo get_the_title() . '-'; echo get_bloginfo(); ?></title>
+    <?php } else if (is_tag()) { ?>
+        <title><?php echo single_tag_title('', false) . ' - ' . get_bloginfo(); ?></title>
+    <?php } else { ?>
+        <title><?php echo get_bloginfo(); ?></title>
+    <?php } ?>
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1">
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
