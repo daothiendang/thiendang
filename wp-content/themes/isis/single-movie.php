@@ -95,7 +95,7 @@
                                 Download Phim <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="https://docs.google.com/uc?export=download&id=<?php echo $linkGoogleDrive;?>">Link 1</a></li>
+                                <li><a target="_blank" href="https://docs.google.com/uc?export=download&id=<?php echo $linkGoogleDrive;?>">Link 1</a></li>
                             </ul>
                         </div>
                     </div>
