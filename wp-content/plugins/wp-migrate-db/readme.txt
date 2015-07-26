@@ -3,13 +3,15 @@ Contributors: bradt
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5VPMGLLK94XJC
 Tags: database, migrate, backup, mysql
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 0.6.1
+Tested up to: 4.2.2
+Stable tag: 0.7.1
 License: GPLv2
 
 Exports your database, does a find and replace on URLs and file paths, then allows you to save it to your computer.
 
 == Description ==
+
+https://www.youtube.com/watch?v=m8oScnEK5y0
 
 WP Migrate DB exports your database as a MySQL data dump (much like phpMyAdmin), does a find and replace on URLs and file paths, then allows you to save it to your computer. It is perfect for developers who need to update their local install with fresh data from the production site, or copy their locally developed site to a staging or production server.
 
@@ -19,19 +21,24 @@ Example: <code>s:5:"hello"</code> becomes <code>s:11:"hello world"</code>
 
 **PRO Version with Email Support and More Features**
 
-* Select the tables you want to migrate
-* Pull production db down and replace local db
-* Push local db up and replace production/staging db
-* Multisite support
-* Video walkthroughs and howtos
-* Media files migration
-* Fire migrations from the command line or via a function call
-* More frequent bug fixes and improvements
-* And more features on the way!
+* Push and pull your databases
+* Find & replace that handles serialized data
+* Backups
+* Export your database
+* Select which tables to migrate
+* Filter out post types
+* Exclude useless data
+* Save migration profiles
+* Phenomenal email support
+* Stress tested on massive databases
+* Solid security
+* [Media Files addon](https://deliciousbrains.com/wp-migrate-db-pro/doc/media-files-addon/?utm_source=wordpress.org&utm_medium=web&utm_content=desc&utm_campaign=freeplugin)
+* [CLI addon](https://deliciousbrains.com/wp-migrate-db-pro/doc/cli-addon/?utm_source=wordpress.org&utm_medium=web&utm_content=desc&utm_campaign=freeplugin)
+* [Multisite Tools addon](https://deliciousbrains.com/wp-migrate-db-pro/doc/multisite-tools-addon/?utm_source=wordpress.org&utm_medium=web&utm_content=desc&utm_campaign=freeplugin)
 
-See the video below or [visit the web site](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpressorg&utm_medium=web&utm_content=faq&utm_campaign=freeplugin) to learn more about the pro version.
+See the video below or [visit the web site](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpress.org&utm_medium=web&utm_content=desc&utm_campaign=freeplugin) to learn more about the pro version.
 
-http://www.youtube.com/watch?v=IFdHIpf6jjc
+https://www.youtube.com/watch?v=fHFcH4bCzmU
 
 == Installation ==
 
@@ -42,11 +49,11 @@ http://www.youtube.com/watch?v=IFdHIpf6jjc
 
 = Does this plugin support multisite? =
 
-Yes, in a limited capacity. The Developer license of the [pro version](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpressorg&utm_medium=web&utm_content=faq&utm_campaign=freeplugin) fully supports multisite.
+Yes, in a limited capacity. The Developer license of the [pro version](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpress.org&utm_medium=web&utm_content=faq&utm_campaign=freeplugin) fully supports multisite.
 
 = Does the plugin migrate files as well? =
 
-No, it only operates on the database.
+No, it only operates on the database. The pro version's [Media Files addon](https://deliciousbrains.com/wp-migrate-db-pro/doc/media-files-addon/?utm_source=wordpress.org&utm_medium=web&utm_content=faq&utm_campaign=freeplugin) allows you to migrate media files.
 
 = Why do I end up with a wp-login.php download instead of the exported SQL file? =
 
@@ -59,6 +66,41 @@ It is likely you have a download manager plugin or extension installed in your w
 3. Saving the exported database
 
 == Changelog ==
+
+= 0.7.1 - 2015-07-09 =
+
+* Improvement: Added more diagnostic info to facilitate debugging
+* Improvement: Global JS variables moved to single global object to avoid conflicts
+* Bug Fix: WP Migrate DB and Pro can be activated at the same time when activating plugins in bulk or via WP-CLI
+* Bug Fix: `BINARY` data not exported properly
+* Bug Fix: `BIT` data not exported properly
+* Bug Fix: When `post_max_size` is set to 0 (unlimited), `wpmdb_bottleneck` is broken
+* Bug Fix: Saved Profiles link is broken in certain situations
+
+= 0.7 - 2015-06-12 =
+
+* New: [WP-CLI export subcommand](https://deliciousbrains.com/wp-migrate-db-pro/doc/cli-export-subcommand/)
+* New: Quick copy find textbox value to replace textbox by clicking arrow icon in between (hat tip Jonathan Perlman)
+* New: Added filters to hook into find & replace routine and deal with encoded data ([example](https://github.com/deliciousbrains/wp-migrate-db-pro-tweaks/blob/master/wp-migrate-db-pro-tweaks.php#L316-L413))
+* Improvement: Greatly reduced data passed through each HTTP request for better security and reliability
+* Improvement: Massive overhaul of input sanitization for better security
+* Improvement: Add `_mig_` prefix to wpmdb_alter_statements table
+* Improvement: Cleanup wpmdb_alter_statements tables from failed migrations
+* Improvement: Show dimmed remove icons in find & replace rows to indicate they can be removed
+* Improvement: Dim remove icons next to saved profiles
+* Improvement: Better error message when empty response received from remote server
+* Improvement: Added diagnostic info to facilitate debugging and decrease time to resolution for support requests
+* Improvement: Warning notice when `WP_HTTP_BLOCK_EXTERNAL` constant is set to true
+* Improvement: Leave it to WordPress core to convert tables to utf8mb4
+* Improvement: Workaround to fix issues with Siteground's staging environments
+* Bug fix: Connection URL with space(s) in beginning failing
+* Bug fix: Cancelling a gzipped Export does not remove file
+* Bug fix: Unusual table names causing regular expressions to fail
+* Bug fix: Preserving options not working when default subsite is not 1
+* Bug fix: NAN% shown at beginning of a migration
+* Bug fix: Migration progress bar is overflowing the scale, passing 100%
+* Bug fix: Custom post type links broken after migration with Compatibility Mode enabled
+* Bug fix: Saving a new profile does not change the URL to that saved profile URL
 
 = 0.6.1 - 2014-10-29 =
 * New: breadcrumb-style UI for saved profiles
@@ -112,7 +154,7 @@ It is likely you have a download manager plugin or extension installed in your w
 * Bug fix: [Find & replace is case-sensitive but shouldn't](https://github.com/bradt/wp-migrate-db/issues/13)
 
 = 0.4.4 - 2013-05-19 =
-* [Pro version has arrived!](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpressorg&utm_medium=web&utm_content=changelog&utm_campaign=freeplugin) Added some info to the sidebar.
+* [Pro version has arrived!](http://deliciousbrains.com/wp-migrate-db-pro/?utm_source=wordpress.org&utm_medium=web&utm_content=changelog&utm_campaign=freeplugin) Added some info to the sidebar.
 * Updated required version to WordPress 3.0+
 * Bug fix: [Does not handle serialized objects](https://github.com/bradt/wp-migrate-db/issues/11)
 * Bug fix: [Admin menu disappears when DISALLOW_FILE_MODS is true](https://github.com/bradt/wp-migrate-db/issues/8)
