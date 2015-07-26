@@ -58,7 +58,7 @@ class SlideshowPluginSlideshowStylesheet
 			{
 				wp_enqueue_style(
 					'slideshow-jquery-image-gallery-ajax-stylesheet_' . $stylesheetKey,
-					admin_url('admin-ajax.php?action=slideshow_jquery_image_gallery_load_stylesheet&style=' . $stylesheetKey),
+					admin_url('admin-ajax.php?action=slideshow_jquery_image_gallery_load_stylesheet&style=' . $stylesheetKey, 'admin'),
 					array(),
 					$stylesheetValue['version']
 				);
@@ -80,41 +80,35 @@ class SlideshowPluginSlideshowStylesheet
 	 */
 	public static function enqueueStylesheet($name = null)
 	{
-		if (isset($name))
+		if (self::isCustomStylesheet($name))
 		{
-			// Try to get the custom style's version
-			$customStyle        = get_option($name, false);
-			$customStyleVersion = false;
+			$version = get_option($name . '_version', SlideshowPluginMain::$version);
 
-			if ($customStyle)
+			if (!self::$allStylesheetsRegistered)
 			{
-				$customStyleVersion = get_option($name . '_version', false);
-			}
-
-			// Style name and version
-			if ($customStyle && $customStyleVersion)
-			{
-				$version = $customStyleVersion;
-			}
-			else
-			{
-				$name    = str_replace('.css', '', $name);
-				$version = SlideshowPluginMain::$version;
+				wp_enqueue_style(
+					'slideshow-jquery-image-gallery-ajax-stylesheet_' . $name,
+					admin_url('admin-ajax.php?action=slideshow_jquery_image_gallery_load_stylesheet&style=' . $name, 'admin'),
+					array(),
+					$version
+				);
 			}
 		}
 		else
 		{
-			$name    = 'style-light';
+			$name    = str_replace('.css', '', $name);
 			$version = SlideshowPluginMain::$version;
-		}
 
-		// Enqueue stylesheet
-		wp_enqueue_style(
-			'slideshow-jquery-image-gallery-ajax-stylesheet_' . $name,
-			admin_url('admin-ajax.php?action=slideshow_jquery_image_gallery_load_stylesheet&style=' . $name),
-			array(),
-			$version
-		);
+			if (!self::$allStylesheetsRegistered)
+			{
+				wp_enqueue_style(
+					'slideshow-jquery-image-gallery-stylesheet_' . $name,
+					SlideshowPluginMain::getPluginUrl() . '/css/' . $name . '.css',
+					array(),
+					$version
+				);
+			}
+		}
 
 		return array($name, $version);
 	}
@@ -172,10 +166,13 @@ class SlideshowPluginSlideshowStylesheet
 	 */
 	public static function getStylesheet($styleName)
 	{
-		// Get custom stylesheet, of the default stylesheet if the custom stylesheet does not exist
-		$stylesheet = get_option($styleName, '');
-
-		if (strlen($stylesheet) <= 0)
+		// Check if $styleName is a custom stylesheet
+		if (self::isCustomStylesheet($styleName))
+		{
+			// Get custom stylesheet
+			$stylesheet = get_option($styleName, '');
+		}
+		else
 		{
 			$stylesheetFile = SlideshowPluginMain::getPluginPath() . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'SlideshowPlugin' . DIRECTORY_SEPARATOR . $styleName . '.css';
 
@@ -187,7 +184,7 @@ class SlideshowPluginSlideshowStylesheet
 			// Get contents of stylesheet
 			ob_start();
 			include($stylesheetFile);
-			$stylesheet .= ob_get_clean();
+			$stylesheet = ob_get_clean();
 		}
 
 		// Replace the URL placeholders with actual URLs and add a unique identifier to separate stylesheets
@@ -198,5 +195,18 @@ class SlideshowPluginSlideshowStylesheet
 		$stylesheet = str_replace('.slideshow_container', '.slideshow_container_' . $styleName, $stylesheet);
 
 		return $stylesheet;
+	}
+
+	/**
+	 * Checks if the passed $styleName is a custom stylesheet or not.
+	 *
+	 * @since 2.2.23
+	 * @param string $styleName
+	 * @return boolean $isCustomStyle
+	 */
+	public static function isCustomStylesheet($styleName)
+	{
+		// Get array of custom style keys and check if $styleName is in this array
+		return in_array($styleName, array_keys(get_option(SlideshowPluginGeneralSettings::$customStyles, array())));
 	}
 }
