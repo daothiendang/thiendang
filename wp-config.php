@@ -51,6 +51,11 @@ define('SECURE_AUTH_SALT', '-!#y!AzW[@fOYP{j=/}Y7`4Xzp8DY/LN)i(J7,Eq3H~!*2*CO(<F
 define('LOGGED_IN_SALT', 'M4aKB4m>cR9NYY_PcxVXqUqj`r@3.`lSHfwyRua&nCM_>|7PSh~s~+ jhgmVD,Up');
 define('NONCE_SALT', 'i.vA1$Y|k7pwGA`%>sAzGZr=$o#O_/?c;~Lv&nO{8{9C:G1 ?OV/}ObvgTi$V7`W');
 
+
+// dangdt custom disable revisions
+define('AUTOSAVE_INTERVAL', 300 ); // seconds
+define('WP_POST_REVISIONS', false );
+
 /* * #@- */
 
 /**

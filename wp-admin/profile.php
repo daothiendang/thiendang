@@ -1,11 +1,11 @@
 <?php
-
 /**
  * User Profile Administration Screen.
  *
  * @package WordPress
  * @subpackage Administration
  */
+
 /**
  * This is a profile page.
  *
@@ -15,4 +15,4 @@
 define('IS_PROFILE_PAGE', true);
 
 /** Load User Editing Page */
-require_once( dirname(__FILE__) . '/user-edit.php' );
+require_once( dirname( __FILE__ ) . '/user-edit.php' );
