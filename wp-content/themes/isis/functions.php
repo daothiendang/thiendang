@@ -454,3 +454,5 @@ function get_movies_by_tag($tagId, $limit = '') {
     $posts = $wpdb->get_results($sql);
     return $posts;
 }
+
+remove_filter( 'the_excerpt', 'wpautop' );
