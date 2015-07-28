@@ -11,6 +11,7 @@
 
 // global variable
 $linkFbComment = 'http://thiendang.tk/';
+$themeUrl = get_template_directory_uri();
 
 if (!isset($content_width))
     $content_width = 630;

@@ -23,7 +23,7 @@
     <?php
         global $post;
         $postSlug = $post->post_name;
-        $themeUrl = get_template_directory_uri();
+        $themeUrl = get_template_directory_uri();v
     ?>
     
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1" />
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/custom.css" />
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/select_search/prism.css" />
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/select_search/chosen.css" />
+    <?php wp_head(); ?>
     
     <?php //  ------------------  css for list movies P&F  -------------------------------  ?>
     <?php if ($posts[0]->ID == '121') { ?>
@@ -50,7 +51,7 @@
 	    });
 	</script>
     <?php // ------------  css for japanese ngu phap so cap  -----------------------------  ?>
-    <?php } else if ($postSlug == 'giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt' || is_page_template('page-japanese_ngu_phap_so_cap_2.php')){ ?>
+    <?php } else if ($postSlug == 'giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt' || $postSlug == 'giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt-3'){ ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/japanese_ngu_phap_so_cap/popup.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/japanese_ngu_phap_so_cap/style.css" />
     
@@ -63,15 +64,11 @@
     <?php } else if ( is_singular( 'movie' ) ) { ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/bootstrap.min.css" />
     <?php } else if ($postSlug == 'bboy-or-die') { ?>
-        <script src="<?php echo $themeUrl;?>/sliderengine/jquery.js"></script>
-        <script src="<?php echo $themeUrl;?>/sliderengine/amazingslider.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/sliderengine/amazingslider-1.css" />
-        <script src="sliderengine/initslider-1.js"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/sliderengine/amazingslider-1.css" />
+        
     <?php } ?>
     <?php //  ----------------------------------------------------------------------------  ?>
-        
-    <?php wp_head(); ?>
-        
+            
     <script type="text/javascript" src="<?php echo $themeUrl; ?>/js/custom/bootstrap.min.js"></script>
 </head>
 
