@@ -14,12 +14,12 @@
                             <a class="postimg"><?php the_post_thumbnail('medium'); ?></a>
                             <div class="metadate"> <?php edit_post_link(); ?></div> 
                         </div>
-                        <div style="clear:both"></div>	
+                        <div style="clear:both"></div>
                         <div class="post_info_wrap">
                             <section class="color-1">
                                 <div class="grid">
                                     <nav class="cl-effect-20">
-                                        <a href="http://localhost/thien_dang/tag/pf-season-1/">
+                                        <a href="<?php echo $siteUrl; ?>/tag/pf-season-1/">
                                             <span data-hover="Season 1">Season 1</span>
                                         </a>
                                         <figure class="effect-julia">
@@ -27,10 +27,10 @@
                                             <figcaption>
                                                 <h2>Season 1 completed</h2>
                                                 <div>47/47 tập</div>
-                                                <a href="http://localhost/thien_dang/tag/pf-season-1/">Xem phim</a>
+                                                <a href="<?php echo $siteUrl; ?>/tag/pf-season-1/">Xem phim</a>
                                             </figcaption>
                                         </figure>
-                                        <a href="http://localhost/thien_dang/tag/pf-season-2/">
+                                        <a href="<?php echo $siteUrl; ?>/tag/pf-season-2/">
                                             <span data-hover="Season 2">Season 2</span>
                                         </a>
                                         <figure class="effect-julia">
@@ -38,27 +38,27 @@
                                             <figcaption>
                                                 <h2>Season 2 on-going</h2>
                                                 <div>60/65 tập</div>
-                                                <a href="http://localhost/thien_dang/tag/pf-season-2/">Xem phim</a>
+                                                <a href="<?php echo $siteUrl; ?>/tag/pf-season-2/">Xem phim</a>
                                             </figcaption>
                                         </figure>
                                     </nav>
                                     <nav class="cl-effect-14">
-                                        <a href="http://localhost/thien_dang/tag/pf-season-3/">Season 3</a>
+                                        <a href="<?php echo $siteUrl; ?>/tag/pf-season-3/">Season 3</a>
                                         <figure class="effect-goliath">
                                             <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS3.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 3 on-going</h2>
                                                 <div>8/63 tập</div>
-                                                <a href="http://localhost/thien_dang/tag/pf-season-3/">Xem phim</a>
+                                                <a href="<?php echo $siteUrl; ?>/tag/pf-season-3/">Xem phim</a>
                                             </figcaption>
                                         </figure>
-                                        <a href="http://localhost/thien_dang/tag/pf-season-4/">Season 4</a>
+                                        <a href="<?php echo $siteUrl; ?>/tag/pf-season-4/">Season 4</a>
                                         <figure class="effect-goliath">
                                             <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS4.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 4 on-going</h2>
                                                 <div>7/? tập</div>
-                                                <a href="http://localhost/thien_dang/tag/pf-season-4/">Xem phim</a>
+                                                <a href="<?php echo $siteUrl; ?>/tag/pf-season-4/">Xem phim</a>
                                             </figcaption>
                                         </figure>
                                     </nav>
