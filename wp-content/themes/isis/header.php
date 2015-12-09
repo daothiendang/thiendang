@@ -27,7 +27,7 @@
     ?>
     <meta property="og:title" content="<?php echo $title;?>" />
     <meta property="og:site_name" content="thiendang.tk"/>
-    <meta property="og:url" content="http://thiendang.tk" />
+    
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
     <meta name="description" content="Website dùng để test code. Khi nào có gì hay ho mình sẽ post lên đây" />
@@ -40,6 +40,12 @@
         <meta property="og:description" content="Vì cuộc sống tươi đẹp" />
     <?php } ?>
     
+    <?php if ($post->ID != '') { ?>
+        <meta property="og:url" content="<?php get_permalink( $post->ID ); ?>" />
+    <?php } else { ?>
+        <meta property="og:url" content="http://thiendang/tk" />
+    <?php } ?>
+        
     <title><?php echo $title; ?></title>
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1" />
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
@@ -86,8 +92,6 @@
     <?php wp_head(); ?>
     <script type="text/javascript" src="<?php echo $themeUrl; ?>/js/custom/bootstrap.min.js"></script>
 </head>
-
-
 <body <?php body_class(); ?>>
     
     <div id="fb-root"></div>
@@ -99,15 +103,9 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-<!--HEADER START-->
-
-
- 
- <?php 
+<?php 
     if( get_option( 'isis' )){
         get_template_part(''.$head = of_get_option('head_select', 'header').'');
     } else {
         get_template_part('dummy/dummy','head1');
     }
-?>
-<!--HEADER END-->

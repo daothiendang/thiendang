@@ -10,8 +10,7 @@
 }
 
 .list_movie.lay1 {
-    margin: 0 2%;
-    width: 96%;
+    margin: 0;
     background: rgba(252, 59, 2, 0.81);
 }
 .list_movie .hentry {

@@ -36,8 +36,8 @@
                                         <figure class="effect-julia">
                                             <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS2.jpg" alt="img01" />
                                             <figcaption>
-                                                <h2>Season 2 on-going</h2>
-                                                <div>60/65 tập</div>
+                                                <h2>Season 2 completed</h2>
+                                                <div>65/65 tập</div>
                                                 <a href="<?php echo $siteUrl; ?>/tag/pf-season-2/">Xem phim</a>
                                             </figcaption>
                                         </figure>
@@ -57,7 +57,7 @@
                                             <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS4.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 4 on-going</h2>
-                                                <div>7/? tập</div>
+                                                <div>7/48 tập</div>
                                                 <a href="<?php echo $siteUrl; ?>/tag/pf-season-4/">Xem phim</a>
                                             </figcaption>
                                         </figure>

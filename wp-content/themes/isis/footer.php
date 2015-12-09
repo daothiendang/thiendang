@@ -5,7 +5,6 @@
  * Contains footer content and the closing of the #main and #page div elements.
  */
 ?>
-<!--FOOTER SIDEBAR-->
 <?php if (is_active_sidebar('foot_sidebar')) { ?>
     <div id="footer">
         <div class="row">
@@ -17,9 +16,6 @@
     </div>	
 <?php } ?> 
 
-
-
-<!--COPYRIGHT TEXT-->
 <div id="copyright">
     <div class="row">
 	<div class="large-12">
@@ -27,7 +23,6 @@
 		<?php echo of_get_option('footer_textarea'); ?>
 		<span style="color:#1C12BA">Developed by</span> <a target="_blank" href="http://www.facebook.com/daothiendang">Đào Thiện Đăng</a>
             </div>
-	    <!--FOOTER MENU-->    
             <div class="social-profiles clearfix">
                 <ul>
 		    <?php if (of_get_option('fbsoc_text')) { ?>
