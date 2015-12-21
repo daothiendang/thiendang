@@ -222,8 +222,10 @@ p {
     color: white; /* Old browsers */
     background-color: #0099CC ;
 }
-#navmenu ul li ul li a 
-{  width:100%; margin:0px; display:block; 
+#navmenu ul li ul li a {
+    width: 100%;
+    margin: 0px;
+    display:block; 
 }
 #navmenu ul li ul li ul {
     left: 100%;
@@ -235,106 +237,7 @@ p {
 
 }
 
-@media only screen and (max-width: 768px) {
-    /*MENU*/
-    body #menu_wrap {
-        width: 100%;
-    }
-    body #navmenu {
-        width: 100%;
-        text-align: center
-    }
 
-    #navmenu ul li {
-        list-style-type: none;
-        display: inline-block;
-        position: relative;
-        margin-top: 0px;
-        padding-top: 15px;
-        height: auto;
-        padding-left:10px;
-        padding-right:10px;
-
-
-
-    }
-
-
-    /* nav-wrap */
-    #menu_wrap {
-        position: relative;
-    }
-    /* menu icon */
-    #menu-icon {
-        padding: 10px 0px;
-        cursor: pointer;
-        font-size: 20px;
-        display: block!important; /* show menu icon */
-    }
-    #menu-icon:hover {
-    }
-    /* main nav */
-    body #navmenu ul.menu {
-        clear: both;
-        position: absolute;
-        top: 50px;
-        width: 100%;
-        z-index: 10000;
-        border: solid 1px #999;
-        display: none;
-        margin-top: 5px;
-        background-color: rgb(51,51,51);	
-    }
-    body #navmenu ul.menu li {
-        width: 100%;
-        clear: both;
-        float: none;
-        text-align: center;
-        padding-top: 6px;
-        padding-right: 30px;
-        padding-bottom: 6px;
-        padding-left: 0px;
-        border-top-width: 2px;
-        border-right-width: 2px;
-        border-bottom-width: 2px;
-        border-left-width: 2px;
-        border-top-style: solid;
-        border-right-style: solid;
-        border-bottom-style: solid;
-        border-left-style: solid;
-    }
-    body #navmenu ul > li:hover {
-        background: none!important;
-    }
-    body #navmenu ul.menu li ul li {
-        background: none!important;
-        width: 100%;
-        border: none;
-    }
-    body #navmenu ul.menu li ul li:hover {
-        background: none!important;
-    }
-    body #navmenu ul.menu a, body #topmenu ul.menu ul a {
-        background: none;
-        display: inline;
-        padding: 0;
-        border: none;
-    }
-    body #navmenu ul.menu a:hover, body #topmenu ul.menu ul a:hover {
-        background: none;
-    }
-    /* dropdown */
-    body #navmenu ul.menu ul {
-        width: auto;
-        position: static;
-        display: block;
-        border: none;
-        background: inherit;
-        margin-top: 0px;
-    }
-    body #navmenu ul.menu ul li {
-    }
-}
 /*SLIDER*/
 #slider {
     width: 100%;
@@ -460,17 +363,6 @@ a.nivo-prevNav {
     width: 120px;
     height: auto;
 }
-
-@media only screen and (max-width:768px) {
-
-    .nivo-caption p { display:none;}
-
-    .nivo-caption h3 { font-size:20px;}
-    #slider { height:auto;}
-    .nivoSlider{ height:auto;}
-}
-
-
 
 /* welcome */
 #callout {
@@ -779,37 +671,6 @@ a.nivo-prevNav {
 }
 
 
-
-@media only screen and (max-width:768px) {
-    .our_work .work {
-        float: left;
-        width: 301px;
-        margin-left: 100px;
-        margin-top: 25px;
-        margin-right: 0px;
-        margin-bottom: 0;
-    }
-
-    .work-carousel li { margin-right:80px !important;}
-
-}
-/*Midrow Blocks*/
-/*MIDROW*/
-@media only screen and (min-width:768px) {
-    .icon{
-        margin-left: 38%;
-        margin-top: 10px;
-        margin-bottom: 5px;
-
-    }}
-@media only screen and (max-width:768px) {
-    .icon{
-        margin-left: 40%;
-        margin-top: 10px;
-        margin-bottom: 5px;
-
-    }
-}
 .midrow{
     width: 100%;
     float: left;
@@ -819,37 +680,36 @@ a.nivo-prevNav {
 }
 .midrow_wrap{ }
 
-@media only screen and (min-width:768px) {
+.midbutton {
+    color: #ffffff;
+    border-color: #AF4040;
+    border-bottom-color: #9A2020;
+    background: -moz-linear-gradient(center top,#E85252 20%, #CF2E2E 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(.2, #E85252),color-stop(1, #CF2E2E));
+    background: -webkit-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E85252', endColorstr='#CF2E2E',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* W3C */
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+    border-color: #AF4040;
+    border-bottom-color: #9A2020;
+    margin-left:27.5%;
+    border-width: 1px;
+    border-style: solid;border-image: none;
+    border-radius: 3px;
+    font-size: 13px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
 
-    .midrow_blocks{ width:23.5%; padding: 0px;  float:left;  position:relative;height: 250px; margin-left:6px; margin-right:6px;  }
+    line-height: normal;
+    padding: 4px 16px;
 }
 
-.midbutton { color: #ffffff;
-             border-color: #AF4040;
-             border-bottom-color: #9A2020;
-             background: -moz-linear-gradient(center top,#E85252 20%, #CF2E2E 100%);
-             background: -webkit-gradient(linear,left top,left bottom,color-stop(.2, #E85252),color-stop(1, #CF2E2E));
-             background: -webkit-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* Chrome10+,Safari5.1+ */
-             background: -o-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* Opera11.10+ */
-             background: -ms-linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* IE10+ */
-             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E85252', endColorstr='#CF2E2E',GradientType=0 ); /* IE6-9 */
-             background: linear-gradient(top, #E85252 20%, #CF2E2E 100%); /* W3C */
-             text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-             border-color: #AF4040;
-             border-bottom-color: #9A2020;
-             margin-left:27.5%;
-             border-width: 1px;
-             border-style: solid;border-image: none;
-             border-radius: 3px;
-             font-size: 13px;
-             display: inline-block;
-             text-decoration: none;
-             cursor: pointer;
-
-             line-height: normal;
-             padding: 4px 16px;}
-
-.midbutton:hover{ color:#FFF;}
+.midbutton:hover {
+    color:#FFF;
+}
 
 
 
@@ -1105,61 +965,6 @@ a.nivo-prevNav {
     opacity: 1;
 }
 
-@media only screen and (max-width: 768px) {
-    .lay1 {
-        width: 100%;
-        float: left;
-        margin-top: 30px;
-        padding-left: 60px;
-        background-color: #FFF;
-    }
-    .lay1 .hentry {
-        width: 100%;
-        background: #fff;
-        margin-right: 2px;
-        float: none;
-        margin-bottom: 40px;
-        border-right-width: 2px;
-        border-right-style: hidden;
-        border-right-color: #CCC;
-        padding-left: 1px;
-    }
-    .postcontent {
-        width: 100%;
-        float: left;
-        text-align: center;
-        padding-left: 20px;
-    }
-    .post_image {
-        width: 100%;
-        float: left;
-    }
-
-    .lay1 .hentry {
-        width: 220px;
-        background: #fff;
-        height: 350px;
-        margin-right: 22px;
-        float: left;
-        margin-bottom: 40px;
-    }
-    .postitle {
-        font-size: 30px;
-        text-align: center;
-    }
-    .post_content p {
-        font-size: 14px;
-        text-align: left;
-    }
-    .imgpost {
-        position: absolute;
-        width: 220px;
-        height: 150px;
-        overflow: hidden;
-        ;
-    }
-
-}
 .ch-info {
     position: absolute;
     width: 100%;
@@ -1245,24 +1050,12 @@ a.nivo-prevNav {
 
 }
 
-@media only screen and (max-width: 768px) {
-    #content .top-content {
-        width:100%;
-        position: relative;
-        float: left;
-        background-color: #FFF;
-        padding: 20px 20px;
-
-    }}
-
-
 #content .top-content2 {
     width:100%;
     position: relative;
     float: left;
     background-color: #FFF;
     padding: 20px 20px;
-
 }
 
 #content .top-content3 {
@@ -1683,13 +1476,11 @@ body #sidebar .widgets .thn_feat_widget ul, body #sidebar .widgets .thn_rand_wid
 /*SIDEBAR*/
 #sidebar {
     float: right;
-    width: 285px;
+    width: 30%;
     margin-top: 30px;
     border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-#sidebar .widgets {
-}
 #sidebar .widgets ul {
     margin: 0;
     padding: 0;
@@ -2581,6 +2372,8 @@ a img.aligncenter {
     }
 }
 
+
+
 /*mobile css */
 
 /*iphone 320*480 */
@@ -2670,20 +2463,239 @@ a img.aligncenter {
     .nivo-caption h3 { font-size:20px !important;}
     .nivo-controlNav{ display:none !important;}
     #navmenu ul > li::before { display:none !important;}
-
 }
 
-@media only screen and (max-width:768px) {
-    #menu_wrap2  #navmenu ul.menu {top: 125px;width: 100%;}
+@media only screen and (max-width:767px) {
+    #menu_wrap2  #navmenu ul.menu {
+        top: 125px;
+        width: 100%;
+    }
+    .midrow_blocks {
+        width: 250px;
+        padding: 0px;
+        float: left;
+        position: relative;
+        height: 250px;
+        margin-left: 10%;
+        margin-right: 6px;
+        margin-bottom: 10px;
+    }
+    .nivo-caption p {
+        display:none;
+    }
 
-    .midrow_blocks{ width: 250px;
-                    padding: 0px;
-                    float: left;
-                    position: relative;
-                    height: 250px;
-                    margin-left: 10%;
-                    margin-right: 6px;
-                    margin-bottom: 10px;  }
+    .nivo-caption h3 {
+        font-size:20px;
+    }
+    #slider {
+        height:auto;
+    }
+    .nivoSlider {
+        height:auto;
+    }
+    
+    /*MENU*/
+    body #menu_wrap {
+        width: 100%;
+    }
+    body #navmenu {
+        width: 100%;
+        text-align: center
+    }
 
+    #navmenu ul li {
+        list-style-type: none;
+        display: inline-block;
+        position: relative;
+        margin-top: 0px;
+        padding-top: 15px;
+        height: auto;
+        padding-left:10px;
+        padding-right:10px;
+    }
+    
+    /* nav-wrap */
+    #menu_wrap {
+        position: relative;
+    }
+    /* menu icon */
+    #menu-icon {
+        padding: 10px 0px;
+        cursor: pointer;
+        font-size: 20px;
+        display: block!important; /* show menu icon */
+    }
+    #menu-icon:hover {
+    }
+    /* main nav */
+    body #navmenu ul.menu {
+        clear: both;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        z-index: 10000;
+        border: solid 1px #999;
+        display: none;
+        margin-top: 5px;
+        background-color: rgb(51,51,51);
+    }
+    body #navmenu ul.menu li {
+        width: 100%;
+        clear: both;
+        float: none;
+        text-align: center;
+        padding-top: 6px;
+        padding-right: 30px;
+        padding-bottom: 6px;
+        padding-left: 0px;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        border-top-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+    }
+    body #navmenu ul > li:hover {
+        background: none!important;
+    }
+    body #navmenu ul.menu li ul li {
+        background: none!important;
+        width: 100%;
+        border: none;
+    }
+    body #navmenu ul.menu li ul li:hover {
+        background: none!important;
+    }
+    body #navmenu ul.menu a, body #topmenu ul.menu ul a {
+        background: none;
+        display: inline;
+        padding: 0;
+        border: none;
+    }
+    body #navmenu ul.menu a:hover, body #topmenu ul.menu ul a:hover {
+        background: none;
+    }
+    /* dropdown */
+    body #navmenu ul.menu ul {
+        width: auto;
+        position: static;
+        display: block;
+        border: none;
+        background: inherit;
+        margin-top: 0px;
+    }
+    
+    #content .top-content, #sidebar {
+        width: 100%;
+    }
+    
+    .our_work .work {
+        float: left;
+        width: 301px;
+        margin-left: 100px;
+        margin-top: 25px;
+        margin-right: 0px;
+        margin-bottom: 0;
+    }
+    .work-carousel li {
+        margin-right:80px !important;
+    }
+    
+    .icon {
+        margin-left: 40%;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    
+    .lay1 {
+        width: 100%;
+        float: left;
+        margin-top: 30px;
+        padding-left: 60px;
+        background-color: #FFF;
+    }
+    .lay1 .hentry {
+        width: 100%;
+        background: #fff;
+        margin-right: 2px;
+        float: none;
+        margin-bottom: 40px;
+        border-right-width: 2px;
+        border-right-style: hidden;
+        border-right-color: #CCC;
+        padding-left: 1px;
+    }
+    .postcontent {
+        width: 100%;
+        float: left;
+        text-align: center;
+        padding-left: 20px;
+    }
+    .post_image {
+        width: 100%;
+        float: left;
+    }
+
+    .lay1 .hentry {
+        width: 220px;
+        background: #fff;
+        height: 350px;
+        margin-right: 22px;
+        float: left;
+        margin-bottom: 40px;
+    }
+    .postitle {
+        font-size: 30px;
+        text-align: center;
+    }
+    .post_content p {
+        font-size: 14px;
+        text-align: left;
+    }
+    .imgpost {
+        position: absolute;
+        width: 220px;
+        height: 150px;
+        overflow: hidden;
+        ;
+    }
+    
+    #content .top-content {
+        width: 100%;
+        position: relative;
+        float: left;
+        background-color: #FFF;
+        padding: 20px 20px;
+    }
+    
+    #sidebar {
+        width: 100%;
+    }
+}
+@media only screen and (min-width:768px) {
+    .icon {
+        margin-left: 38%;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .midrow_blocks {
+        width: 23.5%;
+        padding: 0px;
+        float:left;
+        position: relative;
+        height: 250px;
+        margin-left: 6px;
+        margin-right:6px;
+    }
 }
 
+@media only screen and (min-width:768px) and (max-width: 992px) {
+    #content .top-content {
+        width: 60%;
+    }
+    #sidebar {
+        width: 40%;
+    }
+}

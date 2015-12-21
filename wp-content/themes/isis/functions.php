@@ -14,9 +14,9 @@ $linkFbComment = 'http://thiendang.tk/';
 $siteUrl = get_site_url();
 $themeUrl = get_template_directory_uri();
 
-if (!isset($content_width))
+if (!isset($content_width)) {
     $content_width = 630;
-
+}
 //Load Other CSS files
 
 function isis_other_css() {
@@ -26,7 +26,6 @@ function isis_other_css() {
         wp_enqueue_style('isis_other', get_template_directory_uri() . '/fonts/awesome/css/font-awesome.min.css');
     }
 }
-
 add_action('wp_enqueue_scripts', 'isis_other_css');
 
 function isis_other1_css() {
@@ -35,55 +34,45 @@ function isis_other1_css() {
         wp_enqueue_style('isis_other1', get_template_directory_uri() . '/fonts/awesome/css/font-awesome.min.css');
     }
 }
-
 add_action('wp_enqueue_scripts', 'isis_other1_css');
 
 function isis_other2_css() {
     if (!is_admin()) {
-    wp_enqueue_style('isis_other2', get_template_directory_uri() . '/fonts/awesome/css/font-awesome.min.css');
+        wp_enqueue_style('isis_other2', get_template_directory_uri() . '/fonts/awesome/css/font-awesome.min.css');
     }
 }
-
 add_action('wp_enqueue_scripts', 'isis_other2_css');
 
 function isis_fonts_css() {
-    if (!is_admin(
-        )) { {
-        ?>
-        <?php
+    if (!is_admin()) {
         wp_enqueue_style('customfont', get_template_directory_uri() . '/fonts/' . $os_fonts = of_get_option('font_select', 'raleway') . '.css');
     }
-    }
 }
-
 add_action('wp_enqueue_scripts', 'isis_fonts_css');
 
 //Load Custom CSS
 function isis_customstyle() {
     ?>
     <?php if (of_get_option('sldrtxt_checkbox') == "0") { ?>
-    <style type="text/css">
-        body .nivo-caption {
-        display: none!important;
-        }
-    </style>
+        <style type="text/css">
+            body .nivo-caption {
+                display: none!important;
+            }
+        </style>
     <?php } ?>
-
-
     <?php if (of_get_option('sldrtitle_checkbox') == "0") { ?>
-    <style type="text/css">
-        .nivo-caption h3 {
-        display: none!important;
-        }
-    </style>
+        <style type="text/css">
+            .nivo-caption h3 {
+                display: none!important;
+            }
+        </style>
     <?php } ?>
-
     <?php if (of_get_option('sldrdes_checkbox') == "0") { ?>
-    <style type="text/css">
-        .nivo-caption p {
-        display: none!important;
-        }
-    </style>
+        <style type="text/css">
+            .nivo-caption p {
+                display: none!important;
+            }
+        </style>
     <?php } ?>
 
 
@@ -113,7 +102,6 @@ function isis_customstyle() {
     </style>
 <?php
 }
-
 add_action('wp_head', 'isis_customstyle');
 
 //Load Java Scripts to header
@@ -122,9 +110,7 @@ function isis_head_js() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('isis_js', get_template_directory_uri() . '/other2.js');
     wp_enqueue_script('isis_other', get_template_directory_uri() . '/js/other.js');
-
-
-
+    
     if (of_get_option('slider_select') == "nivo") {
         wp_enqueue_script('isis_nivo', get_template_directory_uri() . '/js/jquery.nivo.js');
     }
@@ -133,12 +119,9 @@ function isis_head_js() {
         wp_enqueue_script('comment-reply');
     }
 }
-
 add_action('wp_enqueue_scripts', 'isis_head_js');
 
 //Load Java Scripts to Footer
-add_action('wp_footer', 'isis_load_js');
-
 function isis_load_js() {
     ?>
     <?php if (of_get_option('slider_select') == "nivo") { ?>
@@ -256,9 +239,9 @@ function isis_load_js() {
     </script> 
 <?php
 }
+add_action('wp_footer', 'isis_load_js');
 
 /* isis welcome text */
-
 //isis get the first image of the post Function
 function isis_get_images($overrides = '', $exclude_thumbnail = false) {
     return get_posts(wp_parse_args($overrides, array(
@@ -273,13 +256,12 @@ function isis_get_images($overrides = '', $exclude_thumbnail = false) {
 }
 
 //ADD FULL WIDTH BODY CLASS
-add_filter('body_class', 'isis_fullwdth_body_class');
-
 function isis_fullwdth_body_class($classes) {
     if (of_get_option('nosidebar_checkbox') == "1")
     $classes[] = 'isis_fullwdth_body';
     return $classes;
 }
+add_filter('body_class', 'isis_fullwdth_body_class');
 
 //Custom Excerpt Length
 function isis_excerptlength_teaser($length) {
@@ -297,10 +279,10 @@ function isis_excerptmore($more) {
 function isis_excerpt($length_callback = '', $more_callback = '') {
     global $post;
     if (function_exists($length_callback)) {
-    add_filter('excerpt_length', $length_callback);
+        add_filter('excerpt_length', $length_callback);
     }
     if (function_exists($more_callback)) {
-    add_filter('excerpt_more', $more_callback);
+        add_filter('excerpt_more', $more_callback);
     }
     $output = get_the_excerpt();
     $output = apply_filters('wptexturize', $output);
@@ -315,37 +297,33 @@ function isis_excerpt($length_callback = '', $more_callback = '') {
 
 // filter function for wp_title
 function isis_filter_wp_title($old_title, $sep, $sep_location) {
-
     // add padding to the sep
     $ssep = ' ' . $sep . ' ';
 
     // find the type of index page this is
-    if (is_category())
-    $insert = $ssep . __('Category', 'isis');
-    elseif (is_tag())
-    $insert = $ssep . __('Tag', 'isis');
-    elseif (is_author())
-    $insert = $ssep . __('Author', 'isis');
-    elseif (is_year() || is_month() || is_day())
-    $insert = $ssep . __('Archives', 'isis');
-    elseif (is_home())
-    $insert = $ssep . get_bloginfo('description');
-    else
-    $insert = NULL;
+    if (is_category()) {
+        $insert = $ssep . __('Category', 'isis');
+    } elseif (is_tag()) {
+        $insert = $ssep . __('Tag', 'isis');
+    } elseif (is_author()) {
+        $insert = $ssep . __('Author', 'isis');
+    } elseif (is_year() || is_month() || is_day()) {
+        $insert = $ssep . __('Archives', 'isis');
+    } elseif (is_home()) {
+        $insert = $ssep . get_bloginfo('description');
+    } else {
+        $insert = NULL;
+    }
 
     // get the page number we're on (index)
-    if (get_query_var('paged'))
-    $num = $ssep . __('Page ', 'isis') . get_query_var('paged');
-
-    // get the page number we're on (multipage post)
-    elseif (get_query_var('page'))
-    $num = $ssep . __('Page ', 'isis') . get_query_var('page');
-
-    // else
-    else
-    $num = NULL;
-
-
+    if (get_query_var('paged')) {
+        $num = $ssep . __('Page ', 'isis') . get_query_var('paged');
+    } elseif (get_query_var('page')) {
+        // get the page number we're on (multipage post)
+        $num = $ssep . __('Page ', 'isis') . get_query_var('page');
+    } else {
+        $num = NULL;
+    }
     // concoct and return new title
     return get_bloginfo('name') . $insert . $old_title . $num;
 }
@@ -361,85 +339,77 @@ add_filter('get_wp_title_rss', 'isis_rss_title', 10, 1);
 //SIDEBAR
 function isis_widgets_init() {
     register_sidebar(array(
-    'name' => __('Right Sidebar', 'isis'),
-    'id' => 'sidebar',
-    'description' => __('Right Sidebar', 'isis'),
-    'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget_wrap">',
-    'after_widget' => '</div></div>',
-    'before_title' => '<h3 class="widgettitle">',
-    'after_title' => '</h3>'
+        'name' => 'Right Sidebar',
+        'id' => 'sidebar',
+        'description' => 'Right Sidebar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget_wrap">',
+        'after_widget' => '</div></div>',
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
     ));
 
     register_sidebar(array(
-    'name' => __('Footer Widgets', 'isis'),
+    'name' => 'Footer Widgets',
     'id' => 'foot_sidebar',
-    'description' => __('Widget Area for the Footer', 'isis'),
+    'description' => 'Widget Area for the Footer',
     'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget_wrap">',
     'after_widget' => '</div></div>',
     'before_title' => '<h3 class="widgettitle">',
     'after_title' => '</h3>'
     ));
 }
-
 add_action('widgets_init', 'isis_widgets_init');
 
 //**************isis SETUP******************//
 function isis_setup() {
     //Custom Background
     add_theme_support('custom-background', array(
-    'default-color' => '',
-    'default-image' => get_template_directory_uri() . ''
+        'default-color' => '',
+        'default-image' => get_template_directory_uri() . ''
     ));
-
     add_theme_support('automatic-feed-links');
 
     //Post Thumbnail    
     add_theme_support('post-thumbnails');
-
-
+    
     //Register Menus
     register_nav_menus(array(
     'primary' => __('Primary Navigation(Header)', 'isis'),
     ));
-
+    
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
-
-
-// Localisation Support
+    
+    // Localisation Support
     load_theme_textdomain('isis', get_template_directory() . '/languages');
-
-
-
-
+    
     /*
      * Loads the Options Panel
      *
      * If you're loading from a child theme use stylesheet_directory
      * instead of template_directory
      */
-
     define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
     require_once dirname(__FILE__) . '/admin/options-framework.php';
 
     include(get_template_directory() . '/lib/widgets.php');
 }
-
 add_action('after_setup_theme', 'isis_setup');
 
 function add_custom_types_to_tax($query) {
     if (is_category() || is_tag() && empty($query->query_vars['suppress_filters'])) {
-    // Get all your post types
-    $post_types = get_post_types();
+        // Get all your post types
+        $post_types = get_post_types();
 
-    $query->set('post_type', $post_types);
-    return $query;
+        $query->set('post_type', $post_types);
+        return $query;
     }
 }
 add_filter('pre_get_posts', 'add_custom_types_to_tax');
 
 // remove <p> and <br> tag
 remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
 
 function get_movies_by_tag($tagId, $limit = '') {
     global $wpdb;
@@ -457,4 +427,9 @@ function get_movies_by_tag($tagId, $limit = '') {
     return $posts;
 }
 
-remove_filter( 'the_excerpt', 'wpautop' );
+function search_bo_thu() {
+    echo $_GET['so_thu_tu'];
+    die;
+}
+add_action('wp_ajax_search_bo_thu', 'search_bo_thu');
+add_action('wp_ajax_nopriv_search_bo_thu', 'search_bo_thu');

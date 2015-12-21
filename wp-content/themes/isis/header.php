@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/custom.css" />
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/select_search/prism.css" />
     <link rel="stylesheet" href="<?php echo $themeUrl;?>/css/custom/select_search/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/bootstrap.min.css" />
     
     <?php //  ------------------  css for list movies P&F  -------------------------------  ?>
     <?php if ($postSlug == 'phineas-and-ferb') { ?>
@@ -79,10 +80,6 @@
     <?php } else if (is_tag()) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/custom_tag.css" />
     <?php //  ----------------------------------------------------------------------------  ?>
-	
-    <?php // ----------------------  css for movie page  -----------------------------------  ?>
-    <?php } else if (is_singular('movie')) { ?>
-        <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/bootstrap.min.css" />
     <?php } else if ($postSlug == 'bboy-or-die') { ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $themeUrl;?>/css/custom/sliderengine/amazingslider-1.css" />
         
@@ -91,6 +88,7 @@
     
     <?php wp_head(); ?>
     <script type="text/javascript" src="<?php echo $themeUrl; ?>/js/custom/bootstrap.min.js"></script>
+    <script type="text/javascript">var siteUrl = '<?php echo get_site_url(); ?>/';</script>
 </head>
 <body <?php body_class(); ?>>
     
