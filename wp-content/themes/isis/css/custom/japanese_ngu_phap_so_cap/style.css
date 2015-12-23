@@ -10,107 +10,111 @@
     font-family: UVNLaXanh;
     src: url(../../fonts/UVNLaXanh.TTF);
 }
-.post_content .center {
+#content.row {
+    float: none;
     margin: 0 auto;
+}
+.center {
+    margin-left: 260px;
     width: 850px;
 }
-.post_content .center h1, .post_content .center h2 {
+.center h1, .center h2 {
     margin-top: 20px;
     text-align: center;
     text-align: center;
 }
-.post_content .center ul li, .post_content .center p {
+.center ul li, .center p {
     line-height: 25px;
 }
-.post_content .center a {
+.center a {
     color: #EB7120;
     cursor: pointer;
 }
-.post_content .center .bold {
+.center .bold {
     font-family: arial;
     font-weight: bold;
     font-size: 16px;
 }
-.post_content .center .underline {
+.center .underline {
     text-decoration: underline;
 }
-.post_content .center .italic {
+.center .italic {
     font-style: italic;
 }
-.post_content .center .strike {
+.center .strike {
     text-decoration: line-through;
 }
-.post_content .center .red {
+.center .red {
     color: red!important;
 }
-.post_content .center .hightlight {
+.center .hightlight {
     color: #4788F9;
 }
-.post_content .center .link_popup {
+.link_popup {
     color: #02DB28;
     cursor: pointer;
 }
-.post_content .center .text_left, .post_content .center .inner_table td.text_left {
+.center .text_left, .center .inner_table td.text_left {
     text-align: left;
 }
-.post_content .center .vertical_top {
+.center .vertical_top {
     vertical-align: top;
 }
 
-.post_content .center .jap_box {
+.center .jap_box {
     border: 1px solid #000;
     padding: 15px;
     text-align: center;
 }
 
 
-.post_content .center .table > tbody > tr > td {
+.center .table > tbody > tr > td {
     vertical-align: top;
 }
-.post_content .center .table {
+.center .table {
     margin: 20px 0 20px 0;
     width: 100%;
     font-size: 14px!important;
 }
-.post_content .center .table * {
+.center .table * {
     line-height: 22px!important;
     font-size: 16px!important;
 }
-.post_content .center .table > tbody > tr > th {
+.center .table > tbody > tr > th {
     height: 25px;
     border: 1px dashed #000;
     background-color: #A7C942;
     color: #FFF;
     font-weight: bold;
 }
-.post_content .center .table > tbody > tr:last-child td {
+.center .table > tbody > tr:last-child td {
     border-bottom: 1px solid #84888E;
 }
-.post_content .center .table > tbody > tr > td {
+.center .table > tbody > tr > td {
     padding: 3px 7px;
     border-left: 1px solid #84888E;
 }
-.post_content .center .table > tbody > tr > td:last-child {
+.center .table > tbody > tr > td:last-child {
     border-right: 1px solid #84888E;
 }
-.post_content .center .table > tbody > tr:nth-child(even) {
+.center .table > tbody > tr:nth-child(even) {
     background: aliceblue;
 }
-.post_content .center .table > tbody > tr:nth-child(even) td {
+.center .table > tbody > tr:nth-child(even) td {
     background: #DAE5F4;
 }
-.post_content .center .table > tbody > tr:nth-child(odd) {
+.center .table > tbody > tr:nth-child(odd) {
     background: #FFF;
 }
-.post_content .center .new_lesson > td {
+.center .new_lesson > td {
     border-top: 1px solid red;
 }
 
-.post_content .center .inner_table {
+.center .inner_table {
     margin: 10px auto;
     border-collapse: collapse;
 }
-.post_content .center .inner_table td, .inner_table th {
+.center .inner_table td, .inner_table th {
     height: 31px;
     padding: 0 5px;
     border: 1px solid chocolate;
@@ -118,21 +122,21 @@
     text-align: center;
     color: darkslateblue;
 }
-.post_content .center .inner_table th {
+.center .inner_table th {
     background: #CCC;
     color: #6f2d2d;
     font-size: 16px;
 }
-.post_content .center .inner_table_left td {
+.center .inner_table_left td {
     vertical-align: top;
     text-align: left;
 }
 
-.post_content .center .summarize {
+.center .summarize {
     color: #CE403B;
     cursor: pointer;
 }
-.post_content .center .hide {
+.center .explain {
     display: none;
     padding: 0 5px;
     color: rgb(58, 173, 104);
@@ -140,23 +144,23 @@
     font-family: UVNBachTuyet;
     font-size: 15px;
 }
-.post_content .center .summarize {
+.center .summarize {
     display: inline-block;
 }
 
-.post_content .center ul {
+.center ul {
     margin-left: 25px;
     margin-bottom: 0 !important;
 }
-.post_content .center ul li {
+.center ul li {
     color: brown;
 }
-.post_content .center .example, .hover_text {
+.center .example, .hover_text {
     margin-bottom: 0;
     display: inline;
     color: brown;
 }
-.post_content .center .hover_text {
+.center .hover_text {
     display: none;
     position: absolute;
     padding: 6px;
@@ -164,46 +168,49 @@
     border: 1px solid  #404040;
     font-family: Arial;
 }
-.post_content .center .translate, .post_content .center .popup_title a {
+.center .translate, .center .popup_title a {
     display: none;
 }
-.post_content .center .popup_content .translate {
+.center .popup_content .translate {
 /*    display: block;
     color: #01A2DD;*/
 }
 
-.post_content .center .paging {
+.center .paging {
     margin-top: 30px;
     text-align: center;
     color: green;
     font-size: 19px;
 }
-.post_content .center .paging a {
+.center .paging a {
     color: blue;
     font-size: 19px;
 }
-.post_content .center .paging_bottom {
+.center .paging_bottom {
     margin-bottom: 15px;
 }
 
 /*  -------------------------  fix item  -----------------------------------  */
-.post_content .center .fix_item {
+.fix_item {
     position: fixed;
     bottom: 60px;
-    left: 10px;
+    left: 15px;
     padding: 5px;
     border: 2px solid activecaption;
     font-family: UVNLaXanh;
 }
-.post_content .center .fix_item div {
+.fix_item div {
     margin-bottom: 5px;
     text-decoration: underline;
     font-size: 15px;
     color: #A617E0;
 }
 
-@media screen and (max-width: 1290px) {
-    .post_content .center .fix_item {
+@media screen and (max-width: 1100px) {
+    .center {
+        margin-left: 50px;
+    }
+    .fix_item {
         display: none;
     }
 }
