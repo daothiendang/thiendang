@@ -428,7 +428,32 @@ function get_movies_by_tag($tagId, $limit = '') {
 }
 
 function search_bo_thu() {
-    echo $_GET['so_thu_tu'];
+    $type  = $_GET['type'];
+    $value = $_GET['value'];
+    
+    global $wpdb;
+    
+    switch ($type) {
+        case 'so_thu_tu':
+            if ($value == 'all') {
+                $sql = 'SELECT * FROM kanji_bo_thu';
+            } else {
+                $ranges = explode(' - ', $value);
+                $limit  = $ranges[1] - $ranges[0] + 1;
+                $start  = $ranges[0] - 1;
+                $sql = 'SELECT * FROM kanji_bo_thu LIMIT ' . $start . ', ' . $limit;
+            }
+            break;
+        case 'so_net':
+            $sql = 'SELECT * FROM kanji_bo_thu WHERE so_net = ' . $value;
+            break;
+        case 'search':
+            $sql = 'SELECT * FROM kanji_bo_thu WHERE han_viet LIKE "%' . $value . '%" OR bo_thu LIKE "%' . $value . '%"';
+            break;
+    }
+    $results = $wpdb->get_results($sql, ARRAY_A);
+    
+    print json_encode($results);
     die;
 }
 add_action('wp_ajax_search_bo_thu', 'search_bo_thu');
