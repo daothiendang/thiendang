@@ -59,9 +59,7 @@
                     global $wpdb;
                     $sql = 'SELECT * FROM kanji_bo_thu';
                     $results = $wpdb->get_results($sql, ARRAY_A);
-                    // echo '<pre>';print_r($result);die;
                     foreach ($results as $item) {
-                        //echo $item['so_net'] . ', ' . $item['bo_thu'] . ', ' . $item['han_viet'] . ', ' . $item['y_nghia'] . '<br/>';
                         echo '<div class="item">';
                         echo '<span>' . $item['id'] . '</span>';
                         echo '<div class="bo_thu">';
@@ -84,19 +82,29 @@
 </div>
 
 <div id="popup">
-    <?php $count = 1; ?>
-    <?php foreach ($results as $item) { ?>
-        <div id="word_<?php echo $count; ?>" class="words">
-            <?php
-                echo $item['id'] . ', ' . $item['bo_thu'] . ', ' . $item['han_viet'] . ', ' . $item['y_nghia'];
-                $count++;
-            ?>
+    <div id="popup_header">
+        <div class="popup_title">
+            Chi Tiết
         </div>
-    <?php } ?>
-    <a href="javascript:void(null)" class="prev glyphicon glyphicon-arrow-left"></a>
-    <a href="javascript:void(null)" class="next glyphicon glyphicon-arrow-right"></a>
+        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
+    </div>
+    <div id="popup_content">
+        <?php $count = 1; ?>
+        <?php foreach ($results as $item) { ?>
+            <div id="word_<?php echo $count; ?>" class="words">
+                <?php
+                    echo '<div class="position">' . $item['id'] . '. ' . $item['han_viet'] . '</div>';
+                    echo '<div class="bo_thu">' . $item['bo_thu'] . '</div>';
+                    echo '<div class="meaning">' . $item['y_nghia'] . '</div>';
+                    $count++;
+                ?>
+            </div>
+        <?php } ?>
+        <a href="javascript:void(null)" class="prev glyphicon glyphicon-arrow-left"></a>
+        <a href="javascript:void(null)" class="next glyphicon glyphicon-arrow-right"></a>
+    </div>
 </div>
-<div id="black_overlay" onclick="stop_gallery();"></div>
+<div id="black_overlay"></div>
 
 <?php get_footer(); ?>
 <style type="text/css">
@@ -185,24 +193,71 @@
         position: fixed;
         z-index: 1001;
         top: 5%;
-        left: 10%;
-        width: 80%;
-        min-width: 300px;
+        left: 30%;
+        width: 40%;
         height: 90%;
         min-height: 300px;
+        max-height: 600px;
         border-radius: 10px;
         margin: 0;
         background: #FFFFFF;
-        overflow-y: scroll;
+        font-size: 20px;
     }
-    .words {
+    #popup_header {
+        clear: both;
+        height: 35px;
+        border-bottom: 1px solid #B39C9C;
+        width: 100%;
+    }
+    .popup_title {
+        float: left;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        color: #05BAD2;
+    }
+    .btn_close {
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        width: 36px;
+        border-left: 1px solid #B39C9C;
+        border-top-right-radius: 10px;
+        background: #E6E6E6;
+        text-align: right;
+        cursor: pointer;
+    }
+    #popup_content {
+        clear: both;
+        overflow-y: auto;
+        padding-top: 15px;
+        height: 85%;
+    }
+    #popup .words {
         display: none;
         position: relative;
+        top: 50%;
+        transform: translateY(-50%);
         margin: 0 auto;
-        height: 600px;
-        width: 700px;
         max-width: 100%;
+        text-align: center;
+        color: #841D1D;
     }
+    #popup .words .position {
+        
+    }
+    #popup .words .bo_thu {
+        margin: 15px auto;
+        width: 140px;
+        height: 140px;
+        padding-top: 10px;
+        font-size: 120px;
+        cursor: default;
+    }
+    #popup .words .meaning {
+        
+    }
+    
     #black_overlay {
         position: fixed;
         top:0%;
@@ -230,9 +285,13 @@
         right: 5px;
     }
     
-    @media screen and (max-width: 770px) {
+    @media screen and (max-width: 767px) {
         .item {
             margin: 0;
+        }
+        #popup {
+            left: 10%;
+            width: 80%;
         }
     }
 </style>
@@ -316,13 +375,15 @@
                         '</div>';
                     popupContent += 
                         '<div id="word_' + count + '" class="words">' +
-                            data[i]['id'] + ', ' + data[i]['bo_thu'] + ', ' + data[i]['han_viet'] + ', ' + data[i]['y_nghia'] +
+                            '<div class="position">' + data[i]['id'] + '. ' + data[i]['han_viet'] + '</div>' +
+                            '<div class="bo_thu">'   + data[i]['bo_thu'] + '</div>' +
+                            '<div class="meaning">'  + data[i]['y_nghia'] + '</div>' +
                         '</div>';
                     count++;
                 }
                 $('#list_bo_thu').html(content);
                 $('#popup .words').remove();
-                $('#popup').append(popupContent);
+                $('#popup_content').append(popupContent);
                 total = count - 1;
             },
             error: function (errorThrown) {
@@ -351,9 +412,10 @@
         $('.words').hide();
         $('#word_' + index).show();
     }
-    function stop_gallery() {
+    <?php // stop gallery ?>
+    $('.btn_close, #black_overlay').click(function() {
         $('#popup, #black_overlay').hide();
-    }
+    });
     
     $('.prev').click(function() {
         if (index === 1) {
