@@ -10,11 +10,10 @@
             if ($(this).closest('ul').closest('div').hasClass('popup_content')) {
                 top  = $(this).position().top + 20;
                 popupLeft = $(this).closest('.toPopup').css('left');
-                left = e.pageX - popupLeft.substring(0, popupLeft.length - 2) + 40;
+                left = e.pageX - popupLeft.substring(0, popupLeft.length - 2) + 30;
             } else {
-                var offset = $('.post_info_wrap').offset();
-                top = e.pageY - 120;
-                left = e.pageX - 100 - offset.left;
+                top = e.pageY + 10;
+                left = e.pageX + 10;
             }
             
             $(this).prev().css('top', top).css('left', left).html(title);
@@ -25,7 +24,7 @@
                     $(this).prev().show();
                 }
             }
-        }).mouseout(function(e) {
+        }).mouseout(function() {
             $('.hover_text').hide();
         });
     };

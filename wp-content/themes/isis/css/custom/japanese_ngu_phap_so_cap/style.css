@@ -26,7 +26,7 @@
 .center ul li, .center p {
     line-height: 25px;
 }
-.center a {
+.center a, .fix_item a {
     color: #EB7120;
     cursor: pointer;
 }
@@ -159,6 +159,7 @@
     margin-bottom: 0;
     display: inline;
     color: brown;
+    white-space: nowrap;
 }
 .center .hover_text {
     display: none;
