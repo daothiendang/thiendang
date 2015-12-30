@@ -71,7 +71,6 @@
                         echo '</div>';
                     }
                 ?>
-                
             </div>
             <div class="comments_template"><?php comments_template('', true); ?></div>
             <?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
@@ -95,7 +94,10 @@
                 <?php
                     echo '<div class="position">' . $item['id'] . '. ' . $item['han_viet'] . '</div>';
                     echo '<div class="bo_thu">' . $item['bo_thu'] . '</div>';
-                    echo '<div class="meaning">' . $item['y_nghia'] . '</div>';
+                    echo '<div>' . $item['y_nghia'] . '</div>';
+                    if ($item['bien_the'] != '') {
+                        echo '<div>Biến thể:<br/><div class="bien_the">' . $item['bien_the'] . '</div></div>';
+                    }
                     $count++;
                 ?>
             </div>
@@ -243,19 +245,20 @@
         text-align: center;
         color: #841D1D;
     }
-    #popup .words .position {
-        
+    #popup .words > div {
+        margin: 15px auto;
     }
     #popup .words .bo_thu {
-        margin: 15px auto;
         width: 140px;
         height: 140px;
         padding-top: 10px;
         font-size: 120px;
         cursor: default;
     }
-    #popup .words .meaning {
-        
+    #popup .words .bien_the {
+        margin-top: 5px;
+        font-size: 50px;
+        color: #75BF75;
     }
     
     #black_overlay {
@@ -290,13 +293,19 @@
             margin: 0;
         }
         #popup {
-            left: 10%;
-            width: 80%;
+            left: 5%;
+            width: 90%;
         }
     }
 </style>
 <script>
     var $ = jQuery;
+    $(document).bind("mobileinit", function() {
+        $.mobile.page.prototype.options.keepNative = "select,input";
+    });
+</script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
     var buttonDistance = $('#toggle_button').offset().top;
     $(window).on('scroll', function() {
         var windowDistance = window.pageYOffset - 80;
@@ -373,11 +382,17 @@
                                 '<span>' + data[i]['han_viet'] + '</span>' +
                             '</div>' +
                         '</div>';
+                    
+                    if (data[i]['bien_the'] !== null) {
+                        bienThe = '<div>Biến thể:<br/><div class="bien_the">' + data[i]['bien_the'] + '</div></div>';
+                    } else {
+                        bienThe = '';
+                    }
                     popupContent += 
                         '<div id="word_' + count + '" class="words">' +
                             '<div class="position">' + data[i]['id'] + '. ' + data[i]['han_viet'] + '</div>' +
                             '<div class="bo_thu">'   + data[i]['bo_thu'] + '</div>' +
-                            '<div class="meaning">'  + data[i]['y_nghia'] + '</div>' +
+                            '<div>'  + data[i]['y_nghia'] + '</div>' + bienThe +
                         '</div>';
                     count++;
                 }
@@ -403,8 +418,8 @@
     index = 1;
     total = <?php echo $count - 1; ?>;
     
-    $(document).on('click', '.item', function() {
-        index = $('#list_bo_thu .item').index(this) + 1;
+    $(document).on('click', '.bo_thu', function() {
+        index = $('#list_bo_thu .item').index($(this).parent()) + 1;
         show_gallery();
     });
     function show_gallery() {
@@ -417,6 +432,7 @@
         $('#popup, #black_overlay').hide();
     });
     
+    <?php // prev, next ?>
     $('.prev').click(function() {
         if (index === 1) {
             index = total;
@@ -434,5 +450,26 @@
         }
         $('.words').hide();
         $('#word_' + index).show();
+    });
+    $(document).keydown(function(e) {
+        if ($('#popup').is(':visible')) {
+            switch (e.keyCode) {
+                case 37:
+                    $('.next').blur();
+                    $('.prev').click().focus();
+                    break;
+                case 39:
+                    $('.prev').blur();
+                    $('.next').click().focus();
+                    break;
+            }
+        }
+    });
+    $('#popup').on('swipeleft', function(){
+        $('.prev').blur();
+        $('.next').click().focus();
+    }).on('swiperight', function(){
+        $('.next').blur();
+        $('.prev').click().focus();
     });
 </script>

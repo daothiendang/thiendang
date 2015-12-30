@@ -448,7 +448,10 @@ function search_bo_thu() {
             $sql = 'SELECT * FROM kanji_bo_thu WHERE so_net = ' . $value;
             break;
         case 'search':
-            $sql = 'SELECT * FROM kanji_bo_thu WHERE han_viet LIKE "%' . $value . '%" OR bo_thu LIKE "%' . $value . '%"';
+            $sql = 'SELECT * FROM kanji_bo_thu WHERE
+                han_viet    LIKE "%' . $value . '%"
+                OR bo_thu   LIKE "%' . $value . '%"
+                OR bien_the LIKE "%' . $value . '%"';
             break;
     }
     $results = $wpdb->get_results($sql, ARRAY_A);
