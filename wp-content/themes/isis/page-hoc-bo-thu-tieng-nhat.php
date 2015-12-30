@@ -300,8 +300,9 @@
 </style>
 <script>
     var $ = jQuery;
-    $(document).bind("mobileinit", function() {
-        $.mobile.page.prototype.options.keepNative = "select,input";
+    $(document).bind('mobileinit', function() {
+        $.mobile.page.prototype.options.keepNative = "*";
+        $.mobile.hidePageLoadingMsg();
     });
 </script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -328,7 +329,7 @@
             $('#so_net').show();
         }
     });
-    var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php'
+    
     $('#so_thu_tu, #so_net').change(function() {
         update_search($(this).attr('id'), $(this).val());
     });
@@ -358,6 +359,8 @@
         }
         update_search(type, value);
     }
+    
+    var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
     function update_search(type, value) {
         $.ajax({
             url: ajaxUrl,
@@ -465,11 +468,15 @@
             }
         }
     });
-    $('#popup').on('swipeleft', function(){
-        $('.prev').blur();
-        $('.next').click().focus();
-    }).on('swiperight', function(){
-        $('.next').blur();
-        $('.prev').click().focus();
+    $('#popup').on('swipeleft', function() {
+        if ($(window).width() < 768) {
+            $('.prev').blur();
+            $('.next').click().focus();
+        }
+    }).on('swiperight', function() {
+        if ($(window).width() < 768) {
+            $('.next').blur();
+            $('.prev').click().focus();
+        }
     });
 </script>
