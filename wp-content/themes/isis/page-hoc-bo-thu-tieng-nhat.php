@@ -41,6 +41,7 @@
                     <option value="16">16 nét</option>
                     <option value="17">17 nét</option>
                 </select>
+                <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
                 <br/>
                 <div>
                     <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
@@ -80,14 +81,14 @@
     </div>
 </div>
 
-<div id="popup">
+<div class="popup" id="popup1">
     <div id="popup_header">
         <div class="popup_title">
             Chi Tiết
         </div>
         <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
     </div>
-    <div id="popup_content">
+    <div class="popup_content">
         <?php $count = 1; ?>
         <?php foreach ($results as $item) { ?>
             <div id="word_<?php echo $count; ?>" class="words">
@@ -104,6 +105,33 @@
         <?php } ?>
         <a href="javascript:void(null)" class="prev glyphicon glyphicon-arrow-left"></a>
         <a href="javascript:void(null)" class="next glyphicon glyphicon-arrow-right"></a>
+    </div>
+</div>
+<div class="popup" id="popup2">
+    <div id="popup_header">
+        <div class="popup_title">
+            Kiểm tra
+        </div>
+        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
+    </div>
+    <div class="popup_content">
+        <form action="#" id="test_type">
+            <h3>Kiểm tra theo</h3>
+            <div class="test_type_option">
+                <input type="radio" name="test_type" value="chu_han" id="test_chu_han" />
+                <label for="test_chu_han">Chữ Hán</label><br/>
+            </div>
+            <div class="test_type_option">
+                <input type="radio" name="test_type" value="han_viet" id="test_han_viet" />
+                <label for="test_han_viet">Âm Hán Việt</label>
+            </div>
+            <h3>Số lượng câu hỏi</h3>
+            <div><input type="number" min="1" max="214" id="total_question" /></div>
+            <div>(Số câu tối đa <span id="max_question"></span>)</div>
+            <div>
+                <input type="submit" class="btn-success btn-sm" value="Bắt Đầu" id="btn_start_test" style="margin: 10px auto 0 auto;" />
+            </div>
+        </form>
     </div>
 </div>
 <div id="black_overlay"></div>
@@ -190,7 +218,7 @@
         line-height: 20px;
     }
     
-    #popup {
+    .popup {
         display :none;
         position: fixed;
         z-index: 1001;
@@ -229,13 +257,13 @@
         text-align: right;
         cursor: pointer;
     }
-    #popup_content {
+    .popup_content {
         clear: both;
         overflow-y: auto;
         padding-top: 15px;
         height: 85%;
     }
-    #popup .words {
+    #popup1 .words {
         display: none;
         position: relative;
         top: 50%;
@@ -245,17 +273,17 @@
         text-align: center;
         color: #841D1D;
     }
-    #popup .words > div {
+    #popup1 .words > div {
         margin: 15px auto;
     }
-    #popup .words .bo_thu {
+    #popup1 .words .bo_thu {
         width: 140px;
         height: 140px;
         padding-top: 10px;
         font-size: 120px;
         cursor: default;
     }
-    #popup .words .bien_the {
+    #popup1 .words .bien_the {
         margin-top: 5px;
         font-size: 50px;
         color: #75BF75;
@@ -275,7 +303,6 @@
         filter: alpha(opacity=90);
     }
     .prev, .next {
-        display: block;
         position: absolute;
         z-index: 1004;
         top: 45%;
@@ -288,13 +315,44 @@
         right: 5px;
     }
     
+    #popup2 .popup_content {
+        margin: 0 auto;
+        padding: 15px;
+        width: 300px;
+    }
+    #test_type h3 {
+        margin-top: 0;
+        color: #6309DC;
+    }
+    #test_type div {
+        float: left;
+        width: 100%;
+    }
+    .test_type_option input {
+        float: left;
+        margin-top: 3px;
+    }
+    .test_type_option label {
+        float: left;
+        margin-left: 8px;
+    }
+    #total_question {
+        width: 100px;
+    }
+    #max_question {
+        color: #F50FEE;
+    }
+    #test_type div:last-child {
+        text-align: center;
+    }
+    
     @media screen and (max-width: 767px) {
         .item {
             margin: 0;
         }
-        #popup {
-            left: 5%;
-            width: 90%;
+        .popup {
+            left: 0;
+            width: 100%;
         }
     }
 </style>
@@ -400,8 +458,8 @@
                     count++;
                 }
                 $('#list_bo_thu').html(content);
-                $('#popup .words').remove();
-                $('#popup_content').append(popupContent);
+                $('#popup1 .words').remove();
+                $('#popup1 .popup_content').append(popupContent);
                 total = count - 1;
             },
             error: function (errorThrown) {
@@ -423,16 +481,13 @@
     
     $(document).on('click', '.bo_thu', function() {
         index = $('#list_bo_thu .item').index($(this).parent()) + 1;
-        show_gallery();
-    });
-    function show_gallery() {
-        $('#popup, #black_overlay').show();
-        $('.words').hide();
+        $('#popup1, #black_overlay').show();
         $('#word_' + index).show();
-    }
+    });
+    
     <?php // stop gallery ?>
     $('.btn_close, #black_overlay').click(function() {
-        $('#popup, #black_overlay').hide();
+        $('.popup, #black_overlay').hide();
     });
     
     <?php // prev, next ?>
@@ -455,7 +510,7 @@
         $('#word_' + index).show();
     });
     $(document).keydown(function(e) {
-        if ($('#popup').is(':visible')) {
+        if ($('#popup1').is(':visible')) {
             switch (e.keyCode) {
                 case 37:
                     $('.next').blur();
@@ -468,7 +523,7 @@
             }
         }
     });
-    $('#popup').on('swipeleft', function() {
+    $('#popup1').on('swipeleft', function() {
         if ($(window).width() < 768) {
             $('.prev').blur();
             $('.next').click().focus();
@@ -478,5 +533,44 @@
             $('.next').blur();
             $('.prev').click().focus();
         }
+    });
+    
+    var maxQuest = 0;
+    $('#btn_test').click(function(e) {
+        $('#popup2, #black_overlay').show();
+        maxQuest = $('#list_bo_thu .item').length;
+        $('#max_question').text(maxQuest);
+        $('#total_question').attr('max', maxQuest);
+    });
+    $('#total_question').on('input', function() {
+        if ($(this).val().length > 3) {
+            $(this).val($(this).val().slice(0, 3));
+        } else if ($(this).val() > maxQuest) {
+            $(this).val(maxQuest);
+        } else if ($(this).val() < 1) {
+            $(this).val(1);
+        }
+    });
+    $('#btn_start_test').click(function(e) {
+        e.preventDefault();
+        totalQuest = $('#total_question').val();
+        if (totalQuest > maxQuest) {
+            return(alert('Số lượng câu hỏi phải nhỏ hơn ' + maxQuest));
+        }
+        $.ajax({
+            url: ajaxUrl,
+            dataType: 'json',
+            data: {
+                'action': 'search_bo_thu',
+                'type': type,
+                'value': value
+            },
+            success: function (data) {
+                alert('1111');
+            },
+            error: function (errorThrown) {
+                alert(errorThrown);
+            }
+        });
     });
 </script>
