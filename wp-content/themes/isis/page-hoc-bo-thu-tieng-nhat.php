@@ -7,6 +7,7 @@
     </div>
     <div id="content">
         <div class="top-content">
+            <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
             <div id="search_section">
                 <label>Tìm kiếm theo</label>
                 <select id="search_option">
@@ -41,8 +42,6 @@
                     <option value="16">16 nét</option>
                     <option value="17">17 nét</option>
                 </select>
-                <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
-                <br/>
                 <div>
                     <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
                     <button id="search_button" class="btn-sm">Tìm kiếm</button>
@@ -116,9 +115,9 @@
     </div>
     <div class="popup_content">
         <form action="#" id="test_type">
-            <h3>Kiểm tra theo</h3>
+            <h3>Chọn loại câu hỏi</h3>
             <div class="test_type_option">
-                <input type="radio" name="test_type" value="chu_han" id="test_chu_han" />
+                <input type="radio" name="test_type" value="chu_han" id="test_chu_han" checked />
                 <label for="test_chu_han">Chữ Hán</label><br/>
             </div>
             <div class="test_type_option">
@@ -126,12 +125,15 @@
                 <label for="test_han_viet">Âm Hán Việt</label>
             </div>
             <h3>Số lượng câu hỏi</h3>
-            <div><input type="number" min="1" max="214" id="total_question" /></div>
+            <div><input type="number" min="1" max="214" id="total_question" value="1" /></div>
             <div>(Số câu tối đa <span id="max_question"></span>)</div>
             <div>
                 <input type="submit" class="btn-success btn-sm" value="Bắt Đầu" id="btn_start_test" style="margin: 10px auto 0 auto;" />
             </div>
         </form>
+        <div style="display: none; text-align:center;" id="loading_message">
+            Đang tạo câu hỏi, xin đợi một chút...<br/><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
+        </div>
     </div>
 </div>
 <div id="black_overlay"></div>
@@ -147,6 +149,9 @@
         src: url(<?php echo $themeUrl; ?>/fonts/UVNLaXanh.TTF);
     }
     
+    #btn_test {
+        margin-left: 10px;
+    }
     #search_section {
         margin: 0 10px;
     }
@@ -268,6 +273,7 @@
         position: relative;
         top: 50%;
         transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
         margin: 0 auto;
         max-width: 100%;
         text-align: center;
@@ -318,7 +324,8 @@
     #popup2 .popup_content {
         margin: 0 auto;
         padding: 15px;
-        width: 300px;
+        width: 400px;
+        max-width: 100%;
     }
     #test_type h3 {
         margin-top: 0;
@@ -344,6 +351,29 @@
     }
     #test_type div:last-child {
         text-align: center;
+    }
+    
+    .question .bo_thu {
+        margin: 10px;
+        width: 40px;
+        height: auto;
+        border: 0;
+        font-size: 25px;
+        font-weight: bold;
+        color: red;
+        cursor: default;
+    }
+    .question .answer {
+        float: left;
+        width: 100%;
+    }
+    .question .answer input {
+        float: left;
+        margin-top: 3px;
+    }
+    .question .answer label {
+        float: left;
+        margin-left: 8px;
     }
     
     @media screen and (max-width: 767px) {
@@ -482,12 +512,22 @@
     $(document).on('click', '.bo_thu', function() {
         index = $('#list_bo_thu .item').index($(this).parent()) + 1;
         $('#popup1, #black_overlay').show();
+        $('.words').hide();
         $('#word_' + index).show();
     });
     
     <?php // stop gallery ?>
     $('.btn_close, #black_overlay').click(function() {
-        $('.popup, #black_overlay').hide();
+        if ($('#popup2').is(':visible')) {
+            var stop = confirm('Bạn muốn dừng bài kiểm tra?\n(Dữ liệu bài kiểm tra sẽ mất)');
+            if (stop) {
+                $('#test_type').show();
+                $('#popup2 .question').remove();
+                $('.popup, #black_overlay').hide();
+            }
+        } else {
+            $('.popup, #black_overlay').hide();
+        }
     });
     
     <?php // prev, next ?>
@@ -536,8 +576,8 @@
     });
     
     var maxQuest = 0;
-    $('#btn_test').click(function(e) {
-        $('#popup2, #black_overlay').show();
+    $('#btn_test').click(function() {
+        $('#test_type, #popup2, #black_overlay').show();
         maxQuest = $('#list_bo_thu .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);
@@ -547,26 +587,58 @@
             $(this).val($(this).val().slice(0, 3));
         } else if ($(this).val() > maxQuest) {
             $(this).val(maxQuest);
-        } else if ($(this).val() < 1) {
-            $(this).val(1);
         }
     });
     $('#btn_start_test').click(function(e) {
         e.preventDefault();
-        totalQuest = $('#total_question').val();
-        if (totalQuest > maxQuest) {
+        testType   = $('input[name="test_type"]:checked').val();
+        totalQuest = $.trim($('#total_question').val());
+        if (totalQuest === '') {
+            alert('Hãy nhập số lượng câu hỏi');
+            $('#total_question').focus();
+            return false;
+        } else if (totalQuest > maxQuest) {
             return(alert('Số lượng câu hỏi phải nhỏ hơn ' + maxQuest));
+        } else if (totalQuest < 1) {
+            return(alert('Số lượng câu hỏi phải lớn hơn 1'));
         }
+        
+        $('#test_type').hide();
+        $('#loading_message').show();
+        listWords = '';
+        $('#list_bo_thu .item').each(function() {
+            id         = $(this).find('>span').text();
+            boThu      = $(this).find('.bo_thu span').text();
+            hanViet    = $(this).find('.han_viet span').text();
+            listWords += id + '.' + boThu + '.' + hanViet + ';';
+        });
+        
+        
         $.ajax({
             url: ajaxUrl,
             dataType: 'json',
             data: {
-                'action': 'search_bo_thu',
-                'type': type,
-                'value': value
+                'action'    : 'create_questions',
+                'type'      : testType,
+                'total'     : totalQuest,
+                'list_words': listWords
             },
             success: function (data) {
-                alert('1111');
+                popupContent = '';
+                for (i = 0; i < data.length; i++) {
+                    popupContent += '<div class="question">' +
+                            'Câu ' + (i + 1) + '/' + data.length +
+                            '<div class="bo_thu">' + data[i]['quest'] + '</div>';
+                    for (j = 0; j < 4; j++) {
+                        answerName = 'answer_' + i;
+                        answerId   = 'answer_' + i + '.' + j;
+                        popupContent += '<div class="answer"><input type="radio" id="' + answerId + '" name="' + answerName + '" />' +
+                            '<label for="' + answerId +'">' + data[i]['answer'][j] + '</label></div>';
+                    }
+                    popupContent +='</div>';
+                }
+                $('#loading_message').hide();
+                $('#popup2 .popup_content').append(popupContent);
             },
             error: function (errorThrown) {
                 alert(errorThrown);

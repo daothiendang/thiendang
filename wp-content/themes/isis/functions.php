@@ -461,3 +461,39 @@ function search_bo_thu() {
 }
 add_action('wp_ajax_search_bo_thu', 'search_bo_thu');
 add_action('wp_ajax_nopriv_search_bo_thu', 'search_bo_thu');
+
+function create_questions() {
+    $testType  = $_GET['type'];
+    $total     = $_GET['total'];
+    $listWords = explode(';', $_GET['list_words']);
+    $questions = array_rand($listWords, $total);
+    
+    if (is_numeric($questions)) {
+        $questions = array($questions);
+    }
+    shuffle($questions);
+    global $wpdb;
+    
+    if ($testType == 'chu_han') {
+        $i = 0;
+        foreach ($questions as $questionId) {
+            $word = explode('.', $listWords[$questionId]);
+            $sql = 'SELECT han_viet FROM kanji_bo_thu
+                            WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
+            $answer  = $wpdb->get_col($sql);
+            $right  = rand(0, 3);
+            array_splice($answer, $right, 0, $word[2]);
+            $data[$i]['quest']  = $word[1];
+            $data[$i]['answer'] = $answer;
+            $data[$i]['right']  = $right;
+            $i++;
+        }
+    } else if ($testType == 'han_viet') {
+        $data = 'result ' . $testType . ' ' . $total;
+    }
+    
+    print json_encode($data);
+    die;
+}
+add_action('wp_ajax_create_questions', 'create_questions');
+add_action('wp_ajax_nopriv_create_questions', 'create_questions');
