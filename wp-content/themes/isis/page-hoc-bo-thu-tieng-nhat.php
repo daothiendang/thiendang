@@ -60,14 +60,16 @@
                     $sql = 'SELECT * FROM kanji_bo_thu';
                     $results = $wpdb->get_results($sql, ARRAY_A);
                     foreach ($results as $item) {
-                        echo '<div class="item">';
-                        echo '<span>' . $item['id'] . '</span>';
+                        echo '<div class="item" id="item_' . $item['id'] . '">';
                         echo '<div class="bo_thu">';
                         echo '<span>' . $item['bo_thu'] . '</span>';
                         echo '</div>';
                         echo '<div class="han_viet">';
                         echo '<span>' . $item['han_viet'] . '</span>';
                         echo '</div>';
+                        if ($item['bien_the'] != '') {
+                            echo '<div class="bien_the">' . $item['bien_the'] . '</div>';
+                        }
                         echo '</div>';
                     }
                 ?>
@@ -90,11 +92,11 @@
     <div class="popup_content">
         <?php $count = 1; ?>
         <?php foreach ($results as $item) { ?>
-            <div id="word_<?php echo $count; ?>" class="words">
+            <div id="word_<?php echo $count; ?>" class="words number_<?php echo $item['id']; ?>">
                 <?php
                     echo '<div class="position">' . $item['id'] . '. ' . $item['han_viet'] . '</div>';
                     echo '<div class="bo_thu">' . $item['bo_thu'] . '</div>';
-                    echo '<div>' . $item['y_nghia'] . '</div>';
+                    echo '<div class="y_nghia">' . $item['y_nghia'] . '</div>';
                     if ($item['bien_the'] != '') {
                         echo '<div>Biến thể:<br/><div class="bien_the">' . $item['bien_the'] . '</div></div>';
                     }
@@ -134,6 +136,8 @@
         <div style="display: none; text-align:center;" id="loading_message">
             Đang tạo câu hỏi, xin đợi một chút...<br/><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
         </div>
+        <div><button id="btn_confirm" class="btn-sm btn-success" style="display: none;">Chọn</button></div>
+        <div id="result"></div>
     </div>
 </div>
 <div id="black_overlay"></div>
@@ -221,6 +225,9 @@
         margin-top: 6px;
         height: 24px;
         line-height: 20px;
+    }
+    #list_bo_thu .bien_the {
+        display: none;
     }
     
     .popup {
@@ -353,13 +360,17 @@
         text-align: center;
     }
     
+    .question {
+        display: none;
+        float: left;
+        width: 100%;
+    }
     .question .bo_thu {
+        display: inline-block;
         margin: 10px;
-        width: 40px;
         height: auto;
         border: 0;
-        font-size: 25px;
-        font-weight: bold;
+        font-size: 45px;
         color: red;
         cursor: default;
     }
@@ -374,6 +385,10 @@
     .question .answer label {
         float: left;
         margin-left: 8px;
+    }
+    
+    #result div {
+        margin-bottom: 10px;
     }
     
     @media screen and (max-width: 767px) {
@@ -463,27 +478,28 @@
                 content      = '';
                 popupContent = '';
                 for (i = 0; i < data.length; i++) {
+                    if (data[i]['bien_the'] !== null) {
+                        bienTheContent = '<div class="bien_the">' + data[i]['bien_the'] + '</div>';
+                        bienThePopup   = '<div>Biến thể:<br/><div class="bien_the">' + data[i]['bien_the'] + '</div></div>';
+                    } else {
+                        bienTheContent = '';
+                        bienThePopup   = '';
+                    }
+                    
                     content += 
-                        '<div class="item">' +
-                            '<span>' + data[i]['id'] + '</span>' +
+                        '<div class="item" id="item_' + data[i]['id'] + '">' +
                             '<div class="bo_thu">' +
                                 '<span>' + data[i]['bo_thu'] + '</span>' +
                             '</div>' +
                             '<div class="han_viet">' +
                                 '<span>' + data[i]['han_viet'] + '</span>' +
-                            '</div>' +
+                            '</div>' + bienTheContent +
                         '</div>';
-                    
-                    if (data[i]['bien_the'] !== null) {
-                        bienThe = '<div>Biến thể:<br/><div class="bien_the">' + data[i]['bien_the'] + '</div></div>';
-                    } else {
-                        bienThe = '';
-                    }
                     popupContent += 
-                        '<div id="word_' + count + '" class="words">' +
+                        '<div id="word_' + count + '" class="words number_' + data[i]['id'] + '">' +
                             '<div class="position">' + data[i]['id'] + '. ' + data[i]['han_viet'] + '</div>' +
                             '<div class="bo_thu">'   + data[i]['bo_thu'] + '</div>' +
-                            '<div>'  + data[i]['y_nghia'] + '</div>' + bienThe +
+                            '<div class="y_nghia">'  + data[i]['y_nghia'] + '</div>' + bienThePopup +
                         '</div>';
                     count++;
                 }
@@ -523,7 +539,11 @@
             if (stop) {
                 $('#test_type').show();
                 $('#popup2 .question').remove();
-                $('.popup, #black_overlay').hide();
+                $('#btn_confirm').text('Chọn');
+                $('#result').html('');
+                totalRight = 0;
+                $('#popup2 .popup_title').text('Kiểm tra');
+                $('.popup, #black_overlay, #btn_confirm, #result').hide();
             }
         } else {
             $('.popup, #black_overlay').hide();
@@ -607,10 +627,13 @@
         $('#loading_message').show();
         listWords = '';
         $('#list_bo_thu .item').each(function() {
-            id         = $(this).find('>span').text();
+            itemId     = parseInt($(this).attr('id').replace('item_', ''));
             boThu      = $(this).find('.bo_thu span').text();
             hanViet    = $(this).find('.han_viet span').text();
-            listWords += id + '.' + boThu + '.' + hanViet + ';';
+            if ($(this).find('.bien_the').length > 0) {
+                boThu += ', ' + $(this).find('.bien_the').text();
+            }
+            listWords += itemId + '.' + boThu + '.' + hanViet + ';';
         });
         
         
@@ -626,23 +649,69 @@
             success: function (data) {
                 popupContent = '';
                 for (i = 0; i < data.length; i++) {
-                    popupContent += '<div class="question">' +
+                    popupContent += '<div class="question" id="question_' + (i + 1) + '">' +
                             'Câu ' + (i + 1) + '/' + data.length +
-                            '<div class="bo_thu">' + data[i]['quest'] + '</div>';
+                            '<input type="hidden" value="' + data[i]['id'] +'" class="word_id" />' +
+                            '<br/><div class="bo_thu">' + data[i]['quest'] + '</div>';
                     for (j = 0; j < 4; j++) {
                         answerName = 'answer_' + i;
                         answerId   = 'answer_' + i + '.' + j;
-                        popupContent += '<div class="answer"><input type="radio" id="' + answerId + '" name="' + answerName + '" />' +
-                            '<label for="' + answerId +'">' + data[i]['answer'][j] + '</label></div>';
+                        popupContent += '<div class="answer">';
+                        if (j == data[i]['right']) {
+                            popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" value="right" />';
+                        } else {
+                            popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" />';
+                        }
+                        popupContent += '<label for="' + answerId +'">' + data[i]['answer'][j] + '</label></div>';
                     }
                     popupContent +='</div>';
                 }
                 $('#loading_message').hide();
-                $('#popup2 .popup_content').append(popupContent);
+                $('#popup2 .popup_content form').after(popupContent);
+                $('#popup2 .popup_content .question:first, #btn_confirm, #result').show();
             },
             error: function (errorThrown) {
                 alert(errorThrown);
             }
         });
+    });
+    
+    var totalRight = 0;
+    $('#btn_confirm').on('click', function() {
+        curQuest  = $('.popup_content .question:visible');
+        if (curQuest.find('input[type=radio]').is(':checked')) {
+            questId   = parseInt(curQuest.attr('id').replace('question_', ''));
+            nextQuest = curQuest.next('.question');
+            curQuest.find('input[type=radio]').attr('disabled', 'disabled');
+            
+            if ($(this).text() === 'Chọn') {
+                chosen  = $('input:checked', curQuest).val();
+                boThu   = curQuest.find('.bo_thu').text();
+                hanViet = curQuest.find('input[value=right]').next().text();
+                wordId  = curQuest.find('.word_id').val();
+                yNghia  = $('.number_' + wordId).find('.y_nghia').text();
+                result  = boThu + ' (' + hanViet + '): ' + yNghia;
+
+                if (chosen === 'right') {
+                    $('#result').html('<div style="color: green;">Đúng</div>' + result);
+                    totalRight++;
+                } else {
+                    $('#result').html('<div style="color: red;">Sai</div>' + result);
+                }
+                $('#popup2 .popup_title').text('Số câu đúng: ' + totalRight);
+
+                $(this).text('Câu tiếp theo');
+            } else if ($(this).text() === 'Câu tiếp theo') {
+                curQuest.hide();
+                if (nextQuest.size() > 0) {
+                    $(this).text('Chọn');
+                    $('#result').html('');
+                    nextQuest.show();
+                } else {
+                    $('#btn_confirm').hide();
+                    $('#result').html('Bạn trả lời đúng ' + totalRight + '/' + questId + ' câu');
+                }
+            }
+        }
     });
 </script>

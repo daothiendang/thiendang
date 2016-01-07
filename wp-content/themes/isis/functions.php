@@ -479,10 +479,11 @@ function create_questions() {
         foreach ($questions as $questionId) {
             $word = explode('.', $listWords[$questionId]);
             $sql = 'SELECT han_viet FROM kanji_bo_thu
-                            WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
-            $answer  = $wpdb->get_col($sql);
+                        WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
+            $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
             array_splice($answer, $right, 0, $word[2]);
+            $data[$i]['id']     = $word[0];
             $data[$i]['quest']  = $word[1];
             $data[$i]['answer'] = $answer;
             $data[$i]['right']  = $right;
