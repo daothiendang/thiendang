@@ -534,7 +534,7 @@
     
     <?php // stop gallery ?>
     $('.btn_close, #black_overlay').click(function() {
-        if ($('#popup2').is(':visible')) {
+        if ($('#popup2').is(':visible') && $('#popup2 .question').is(':visible')) {
             var stop = confirm('Bạn muốn dừng bài kiểm tra?\n(Dữ liệu bài kiểm tra sẽ mất)');
             if (stop) {
                 $('#test_type').show();
@@ -601,6 +601,9 @@
         maxQuest = $('#list_bo_thu .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);
+        if ($('#total_question').val() > maxQuest) {
+            $('#total_question').val(maxQuest);
+        }
     });
     $('#total_question').on('input', function() {
         if ($(this).val().length > 3) {
@@ -635,13 +638,13 @@
             }
             listWords += itemId + '.' + boThu + '.' + hanViet + ';';
         });
-        
+        listWords = listWords.slice(0, -1);
         
         $.ajax({
             url: ajaxUrl,
             dataType: 'json',
             data: {
-                'action'    : 'create_questions',
+                'action'    : 'create_questions_bo_thu',
                 'type'      : testType,
                 'total'     : totalQuest,
                 'list_words': listWords
