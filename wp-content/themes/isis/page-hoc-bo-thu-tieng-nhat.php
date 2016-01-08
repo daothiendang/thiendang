@@ -214,6 +214,7 @@
         text-align: center;
     }
     .bo_thu {
+        padding-top: 3px;
         height: 80px;
         border: 1px solid #CCC;
         text-align: center;
