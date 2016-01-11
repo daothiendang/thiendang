@@ -7,9 +7,35 @@
     </div>
     <div id="content">
         <div class="top-content">
-            <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
+            <div id="top_button">
+                <a class="btn btn-primary" id="btn_intro">
+                    Giới thiệu
+                </a>
+                <a class="btn btn-primary" id="btn_how_to_use">
+                    Hướng dẫn sử dụng
+                </a>
+                <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
+            </div>
+            <div class="toggle_info" id="intro">
+                <h2>Giới thiệu</h2>
+                <?php echo $post->post_content; ?>
+            </div>
+            <div class="toggle_info" id="how_to_use">
+                <h2>Hướng dẫn sử dụng</h2>
+                <p>- Chọn hiển thị theo số thứ tự hoặc số nét (mình học 40 từ một lần :D).</p>
+                <p>- Bấm Ẩn/Hiện bộ thủ hoặc Ẩn/Hiện Hán Việt để đoán từ và học thuộc.</p>
+                <p>- Nhập bộ thủ hoặc âm Hán Việt vào ô tìm kiếm</p>
+                <p>- Click vào bộ thủ để hiện thông tin chi tiết.
+                    Click 2 mũi tên trên màn hình hoặc bấm nút mũi tên trái phải trên bàn phím để xem từ tiếp theo hoặc quay lại
+                    (Trên mobile và tablet có thể vuốt sang trái sang phải).
+                </p>
+                <p>- Kiểm tra: Những từ được kiểm tra là những từ đang hiện trên màn hình.
+                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu
+                </p>
+            </div>
+            
             <div id="search_section">
-                <label>Tìm kiếm theo</label>
+                <label>Hiển thị theo</label>
                 <select id="search_option">
                     <option value="stt">Số thứ tự</option>
                     <option value="số nét">Số nét</option>
@@ -153,8 +179,21 @@
         src: url(<?php echo $themeUrl; ?>/fonts/UVNLaXanh.TTF);
     }
     
-    #btn_test {
-        margin-left: 10px;
+    #top_button {
+        float: left;
+        width: 100%;
+    }
+    #top_button a, #top_button button {
+        float: left;
+        margin: 5px 0 20px 5px;
+    }
+    .toggle_info {
+        display: none;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+    .toggle_info p {
+        color: #044F7D;
     }
     #search_section {
         margin: 0 10px;
@@ -206,6 +245,9 @@
         left: 195px;
     }
     
+    #list_bo_thu {
+        margin-top: 15px;
+    }
     .item {
         float: left;
         margin: 5px;
@@ -411,9 +453,22 @@
 </script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
+    $('#btn_intro').click(function() {
+        $('#how_to_use').hide();
+        $('#intro').slideToggle('slow', 'swing', function(){
+            buttonDistance = $('#toggle_button').offset().top;
+        });
+    });
+    $('#btn_how_to_use').click(function() {
+        $('#intro').hide();
+        $('#how_to_use').slideToggle('slow', 'swing', function() {
+            buttonDistance = $('#toggle_button').offset().top;
+        });
+    });
+    
     var buttonDistance = $('#toggle_button').offset().top;
     $(window).on('scroll', function() {
-        var windowDistance = window.pageYOffset - 80;
+        var windowDistance = window.pageYOffset - 50;
         if(windowDistance > buttonDistance) {
             $('#toggle_button').addClass('fixed_button');
             $('#fixed_wrap').addClass('fixed_wrap');
@@ -478,6 +533,12 @@
                 count        = 1;
                 content      = '';
                 popupContent = '';
+                
+                if (data.length === 0) {
+                    $('#list_bo_thu').html('<p>Không tìm thấy. Xin hãy thử lại!</p>');
+                    return false;
+                }
+                
                 for (i = 0; i < data.length; i++) {
                     if (data[i]['bien_the'] !== null) {
                         bienTheContent = '<div class="bien_the">' + data[i]['bien_the'] + '</div>';
@@ -661,7 +722,7 @@
                         answerName = 'answer_' + i;
                         answerId   = 'answer_' + i + '.' + j;
                         popupContent += '<div class="answer">';
-                        if (j == data[i]['right']) {
+                        if (j === data[i]['right']) {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" value="right" />';
                         } else {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" />';
