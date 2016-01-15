@@ -1,4 +1,4 @@
-<?php include(locate_template('header.php'));; ?>
+<?php include(locate_template('header.php')); ?>
 <div class="row">
     <div id="sub_banner">
         <h1>
@@ -8,12 +8,8 @@
     <div id="content">
         <div class="top-content">
             <div id="top_button">
-                <a class="btn btn-primary" id="btn_intro">
-                    Giới thiệu
-                </a>
-                <a class="btn btn-primary" id="btn_how_to_use">
-                    Hướng dẫn sử dụng
-                </a>
+                <a class="btn btn-primary" id="btn_intro">Giới thiệu</a>
+                <a class="btn btn-primary" id="btn_how_to_use">Hướng dẫn</a>
                 <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
             </div>
             <div class="toggle_info" id="intro">
@@ -21,16 +17,16 @@
                 <?php echo $post->post_content; ?>
             </div>
             <div class="toggle_info" id="how_to_use">
-                <h2>Hướng dẫn sử dụng</h2>
-                <p>- Chọn hiển thị theo số thứ tự hoặc số nét (mình học 40 từ một lần :D).</p>
-                <p>- Bấm Ẩn/Hiện bộ thủ hoặc Ẩn/Hiện Hán Việt để đoán từ và học thuộc.</p>
-                <p>- Nhập bộ thủ hoặc âm Hán Việt vào ô tìm kiếm</p>
-                <p>- Click vào bộ thủ để hiện thông tin chi tiết.
-                    Click 2 mũi tên trên màn hình hoặc bấm nút mũi tên trái phải trên bàn phím để xem từ tiếp theo hoặc quay lại
+                <h2>Chức năng chính</h2>
+                <p>- Hiển thị theo số thứ tự hoặc số nét.</p>
+                <p>- Tìm theo bộ thủ hoặc âm Hán Việt.</p>
+                <p>- Ẩn/Hiện bộ thủ hoặc Ẩn/Hiện Hán Việt.</p>
+                <p>- Click vào bộ thủ hiện popup thông tin chi tiết.
+                    Click 2 mũi tên trên màn hình hoặc bấm nút mũi tên trên bàn phím để xem từ tiếp theo hoặc quay lại
                     (Trên mobile và tablet có thể vuốt sang trái sang phải).
                 </p>
                 <p>- Kiểm tra: Những từ được kiểm tra là những từ đang hiện trên màn hình.
-                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu
+                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu.
                 </p>
             </div>
             
@@ -87,6 +83,7 @@
                     $results = $wpdb->get_results($sql, ARRAY_A);
                     foreach ($results as $item) {
                         echo '<div class="item" id="item_' . $item['id'] . '">';
+                        echo '<span>' . $item['id'] . '</span>';
                         echo '<div class="bo_thu">';
                         echo '<span>' . $item['bo_thu'] . '</span>';
                         echo '</div>';
@@ -110,9 +107,7 @@
 
 <div class="popup" id="popup1">
     <div id="popup_header">
-        <div class="popup_title">
-            Chi Tiết
-        </div>
+        <div class="popup_title">Chi Tiết</div>
         <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
     </div>
     <div class="popup_content">
@@ -136,9 +131,7 @@
 </div>
 <div class="popup" id="popup2">
     <div id="popup_header">
-        <div class="popup_title">
-            Kiểm tra
-        </div>
+        <div class="popup_title">Kiểm tra</div>
         <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
     </div>
     <div class="popup_content">
@@ -455,7 +448,7 @@
 <script>
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
-        $('#intro').slideToggle('slow', 'swing', function(){
+        $('#intro').slideToggle('slow', 'swing', function() {
             buttonDistance = $('#toggle_button').offset().top;
         });
     });
@@ -521,6 +514,7 @@
     
     var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
     function update_search(type, value) {
+        $('#list_bo_thu').html('<div style="width: 100%; text-align: center;"><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" /></div>');
         $.ajax({
             url: ajaxUrl,
             dataType: 'json',
@@ -550,6 +544,7 @@
                     
                     content += 
                         '<div class="item" id="item_' + data[i]['id'] + '">' +
+                            '<span>' + data[i]['id'] + '</span>' +
                             '<div class="bo_thu">' +
                                 '<span>' + data[i]['bo_thu'] + '</span>' +
                             '</div>' +
@@ -607,7 +602,12 @@
                 $('#popup2 .popup_title').text('Kiểm tra');
                 $('.popup, #black_overlay, #btn_confirm, #result').hide();
             }
-        } else {
+        } else if ($('#popup2').is(':visible')) {
+            $('#result').html('');
+            $('#popup2 .question').remove();
+            $('#popup2 .popup_title').text('Kiểm tra');
+            $('.popup, #black_overlay, #result').hide();
+        } else if ($('#popup1').is(':visible')) {
             $('.popup, #black_overlay').hide();
         }
     });
@@ -768,13 +768,14 @@
                 $(this).text('Câu tiếp theo');
             } else if ($(this).text() === 'Câu tiếp theo') {
                 curQuest.hide();
+                $(this).text('Chọn');
                 if (nextQuest.size() > 0) {
-                    $(this).text('Chọn');
                     $('#result').html('');
                     nextQuest.show();
                 } else {
-                    $('#btn_confirm').hide();
+                    $(this).hide();
                     $('#result').html('Bạn trả lời đúng ' + totalRight + '/' + questId + ' câu');
+                    totalRight = 0;
                 }
             }
         }
