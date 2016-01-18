@@ -14,7 +14,9 @@
             </div>
             <div class="toggle_info" id="intro">
                 <h2>Giới thiệu</h2>
-                <?php echo $post->post_content; ?>
+                <?php
+                    echo apply_filters('the_content', $post->post_content);
+                ?>
             </div>
             <div class="toggle_info" id="how_to_use">
                 <h2>Chức năng chính</h2>

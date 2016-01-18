@@ -407,9 +407,6 @@ function add_custom_types_to_tax($query) {
 }
 add_filter('pre_get_posts', 'add_custom_types_to_tax');
 
-// remove <p> and <br> tag
-remove_filter( 'the_content', 'wpautop' );
-remove_filter( 'the_excerpt', 'wpautop' );
 
 function get_movies_by_tag($tagId, $limit = '') {
     global $wpdb;
