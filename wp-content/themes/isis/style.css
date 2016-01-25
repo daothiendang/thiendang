@@ -1995,11 +1995,12 @@ a img.aligncenter {
 
 /* --------------------- Blog section ------------------------ */
 
-.share{text-align:right;
-       width:85px;
-       float:left;
-       margin-left:65%;
-       margin-top:6px;}
+.share {
+    float: left;
+    margin-top: 6px;
+    margin-left: 5%;
+    text-align: right;
+}
 .content_blog article {
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -2136,7 +2137,8 @@ a img.aligncenter {
 
 /* Social Profiles */
 .social-profiles {
-    float: right;
+    float: left;
+    margin-left: 20px;
 }
 .social-profiles ul {
     margin: -10px 0 0;

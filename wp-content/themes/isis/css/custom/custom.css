@@ -48,10 +48,23 @@
 /*  ------------------------------------------------------------------------  */
 
 /* --------------  responsive 100% for facebook comment box  ---------------  */
-.fb_iframe_widget,
-.fb_iframe_widget > span,
-.fb_iframe_widget iframe {
+.fb-comments,
+.fb-comments > span,
+.fb-comments iframe {
     width: 100% !important;
+}
+#share_buttons {
+    margin: 20px auto 0;
+    width: 90%;
+}
+.fb-share-button {
+    margin-right: 10px;
+}
+.fb-like {
+    /*width: 240px !important;*/
+}
+.fb-like > span {
+    height: 20px !important;
 }
 /*  ------------------------------------------------------------------------  */
 

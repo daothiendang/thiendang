@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 <div class="row">
-    <!--Content-->
     <div id="sub_banner">
         <h1>
             <?php the_title(); ?>
@@ -70,7 +69,10 @@
                     <?php endwhile ?> 
                 </div>
                 <div class="comments_template"><?php comments_template('', true); ?></div>
-                <?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
+                <?php
+                    $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
+                    include(locate_template('share_this.php'));
+                ?>
                 <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
             <?php endif ?>
         </div>
@@ -78,5 +80,4 @@
     </div>
 </div>
 </div>
-
-<?php get_footer(); ?>
+<?php get_footer();

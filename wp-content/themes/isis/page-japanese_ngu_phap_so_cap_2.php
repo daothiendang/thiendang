@@ -5572,8 +5572,11 @@
     <div class="paging paging_bottom">
         <a href="<?php echo esc_url( home_url( '/')); ?>giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
     </div>
-    <?php $currentLink = $linkFbComment. substr(get_permalink(), strlen(get_option('home'))); ?>
-    <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light" style="background: #FFF;"></div>
+    <?php
+        $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
+        include(locate_template('share_this.php'));
+    ?>
+    <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
 </div>
 <div class="fix_item">
     <div class="link_popup" data="popup_dong_tu_the_kha_nang">27.1 Động từ thể khả năng</div>

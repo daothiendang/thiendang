@@ -8,9 +8,13 @@
     <div id="content">
         <div class="top-content">
             <div id="top_button">
-                <a class="btn btn-primary" id="btn_intro">Giới thiệu</a>
-                <a class="btn btn-primary" id="btn_how_to_use">Hướng dẫn</a>
-                <button id="btn_test" class="btn-sm btn-danger">Kiểm tra</button>
+                <button class="btn btn-primary" id="btn_intro">
+                    Giới thiệu <span class="caret"></span>
+                </button>
+                <button class="btn btn-primary" id="btn_how_to_use">
+                    Hướng dẫn <span class="caret"></span>
+                </button>
+                <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
             </div>
             <div class="toggle_info" id="intro">
                 <h2>Giới thiệu</h2>
@@ -98,10 +102,14 @@
                         echo '</div>';
                     }
                 ?>
+                <div class="clear"></div>
             </div>
-            <div class="comments_template"><?php comments_template('', true); ?></div>
-            <?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
+            <?php
+                $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
+                include(locate_template('share_this.php'));
+            ?>
             <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
+            <div class="comments_template"><?php comments_template('', true); ?></div>
         </div>
         <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
     </div>
@@ -178,9 +186,13 @@
         float: left;
         width: 100%;
     }
-    #top_button a, #top_button button {
+    #top_button button {
         float: left;
         margin: 5px 0 20px 5px;
+        padding-right: 10px;
+    }
+    #top_button button .caret {
+        margin-left: 5px;
     }
     .toggle_info {
         display: none;
@@ -188,7 +200,10 @@
         padding: 0 10px;
     }
     .toggle_info p {
-        color: #044F7D;
+        color: #097FC7;
+    }
+    .toggle_info a {
+        color: #ed008e;
     }
     #search_section {
         margin: 0 10px;
@@ -207,11 +222,12 @@
     }
     
     .fixed_wrap {
-        height: 32px;
         position: fixed;
+        z-index: 1;
         top: 0;
         left: 0;
         width: 100%;
+        height: 32px;
         border-bottom: 1px solid #CCC;
         background: #1F0B0B;
     }
@@ -241,6 +257,7 @@
     }
     
     #list_bo_thu {
+        float: left;
         margin-top: 15px;
     }
     .item {

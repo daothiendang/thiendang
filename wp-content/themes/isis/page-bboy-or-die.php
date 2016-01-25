@@ -72,13 +72,14 @@ get_header(); ?>
                     </div>
                     <div style="clear:both"></div>
                     <div style="position: relative; margin:0px 15px; top: 30px;">
-                        <?php $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home'))); ?>
+                        <?php
+                            $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
+                            include(locate_template('share_this.php'));
+                        ?>
                         <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
                     </div>
                 </div>
                 <div class="space35"></div>
-            </div>
-                <!--PAGE END-->
             </div>
         </div>
     </div>
@@ -87,4 +88,4 @@ get_header(); ?>
 <script src="<?php echo $themeUrl;?>/js/custom/sliderengine/amazingslider.js"></script>
 <script src="<?php echo $themeUrl;?>/js/custom/sliderengine/initslider-1.js"></script>
 
-<?php get_footer(); ?>
+<?php get_footer();

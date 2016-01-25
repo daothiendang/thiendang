@@ -34,10 +34,13 @@
     <meta name="keywords" content="thiendang" />
         
     <?php if (is_singular('movie')) { ?>
-        <meta property="og:description" content="<?php echo ($post->post_title) . ' - ' . get_post_field('post_content', $post->ID);?>" />
-        <meta property="og:image" content="<?php echo get_post_meta($post->ID, 'movie_image_url', true) ?>" />
+        <meta property="og:description" content="<?php echo ($post->post_title) . ' - ' . htmlentities(get_post_field('post_content', $post->ID)); ?>" />
+        <meta property="og:image" content="<?php echo get_post_meta($post->ID, 'movie_image_url', true); ?>" />
+    <?php } else if (is_page() || is_single()) { ?>
+        <meta property="og:description" content="<?php echo ($post->post_title) . ' - ' . htmlentities(get_post_field('post_content', $post->ID)); ?>" />
+        <meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>" />
     <?php } else { ?>
-        <meta property="og:description" content="Vì cuộc sống tươi đẹp" />
+        <meta property="og:description" content="<?php echo ($title); ?>" />
     <?php } ?>
     
     <?php if ($post->ID != '') { ?>
@@ -97,7 +100,7 @@
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      js.src = "//connect.facebook.net/vn_VN/sdk.js#xfbml=1&version=v2.0";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
