@@ -1,6 +1,6 @@
 <div id="share_buttons">
     <div class="fb-share-button" data-href="<?php echo $currentLink; ?>" data-layout="button_count"></div>
-    <div class="fb-like" data-href="<?php echo $currentLink; ?>" data-layout="standard" data-action="like" data-show-faces="false"></div>
+    <div class="fb-like" data-href="<?php echo $currentLink; ?>" data-layout="standard" data-action="like" data-show-faces="true"></div>
 </div>
 
 <?php /*

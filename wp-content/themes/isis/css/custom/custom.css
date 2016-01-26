@@ -54,17 +54,20 @@
     width: 100% !important;
 }
 #share_buttons {
-    margin: 20px auto 0;
-    width: 90%;
+    clear: both;
+    margin: 0 auto;
+    padding-left: 8px;
+    width: 100%;
+}
+#share_buttons > div {
+    float: left;
+    margin-top: 20px;
 }
 .fb-share-button {
     margin-right: 10px;
 }
-.fb-like {
-    /*width: 240px !important;*/
-}
-.fb-like > span {
-    height: 20px !important;
+.fb-like, .fb-like * {
+    max-width: 100% !important;
 }
 /*  ------------------------------------------------------------------------  */
 

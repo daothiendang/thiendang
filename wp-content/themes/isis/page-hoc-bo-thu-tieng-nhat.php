@@ -102,7 +102,6 @@
                         echo '</div>';
                     }
                 ?>
-                <div class="clear"></div>
             </div>
             <?php
                 $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));

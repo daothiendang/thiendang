@@ -20,6 +20,15 @@
         color: orange;
         cursor: pointer;
     }
+    #share_buttons {
+        padding: 0;
+        width: 90%;
+    }
+    @media screen and (max-width: 766px) {
+        #bigger_screen {
+            display: none;
+        }
+    }
 </style>
 
 <?php global $wpdb; ?>
@@ -48,38 +57,9 @@
                             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                         </h1>
                     </div>
-
-                    <?php /*
-                    <div class="post_info post_info_2">
-                        <?php if (of_get_option('dissauth_checkbox') == "0") { ?>
-                            <span class="post_author">
-                                Posted by: <a class="post_author"><?php the_author(); ?></a>
-                            </span>
-                        <?php } ?>
-                        <span class="post_info_delimiter"></span>
-                        <?php if (of_get_option('disscats_checkbox') == "0") { ?>
-                            <?php if (has_category()) { ?>
-                                <span class="post_categories">
-                                    <span class="cats_label">Categories:</span>
-                                    <a class="cat_link"><?php the_category(' '); ?></a>
-                                </span>
-                            <?php } ?>
-                        <?php } ?>
-                        <div class="post_comments">
-                            <a>
-                                <span class="comments_number">
-                                    <?php comments_popup_link('No comments', '1 Comment', '% Comments'); ?>
-                                </span>
-                                <span class="icon-comment"></span>
-                            </a>
-                        </div>
-                    </div>
-                    */ ?>
-
                     <div class="pic_wrapper image_wrapper">
                         <?php the_post_thumbnail('medium'); ?>
                     </div>
-
                     <div style="margin: 50px 0 20px 0;">
                         <?php echo apply_filters('the_content', $post->post_content); ?>
                     </div>
@@ -181,21 +161,18 @@
         $(this).parent().find('.chosen-container-single').remove();
         window.location.href = "<?php echo home_url() . '/?p=';?>" + id;
     });
-    if ($(window).width() > 768) {
-        $('#bigger_screen').click(function() {
-            var text = $(this).text();
-            if (text === 'Xem với kích thước lớn') {
-                $('#sidebar').hide();
-                $('#content .top-content').animate({width:'100%'}, 500);
-                text = 'Xem với kích thước nhỏ';
-            } else {
-                $('#content .top-content').animate({width:'70%'}, 500);
-                $('#sidebar').show();
-                text = 'Xem với kích thước lớn';
-            }
-            $(this).text(text);
-        });
-    } else {
-        $('#bigger_screen').hide();
-    }
+        
+    $('#bigger_screen').click(function() {
+        var text = $(this).text();
+        if (text === 'Xem với kích thước lớn') {
+            $('#sidebar').hide();
+            $('#content .top-content').animate({width:'100%'}, 500);
+            text = 'Xem với kích thước nhỏ';
+        } else {
+            $('#content .top-content').animate({width:'70%'}, 500);
+            $('#sidebar').show();
+            text = 'Xem với kích thước lớn';
+        }
+        $(this).text(text);
+    });
 </script>
