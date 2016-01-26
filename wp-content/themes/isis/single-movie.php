@@ -51,8 +51,7 @@
                             </a>
                         </div>
                     </div>
-
-                    <div class="title_area" style="padding-left: 50px;">
+                    <div class="title_area" style="padding-left: 55px;">
                         <h1 class="post_title">
                             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                         </h1>
@@ -60,7 +59,7 @@
                     <div class="pic_wrapper image_wrapper">
                         <?php the_post_thumbnail('medium'); ?>
                     </div>
-                    <div style="margin: 50px 0 20px 0;">
+                    <div style="margin: 0 5px 20px 55px;">
                         <?php echo apply_filters('the_content', $post->post_content); ?>
                     </div>
                     <?php $linkGoogleDrive = get_post_meta($post->ID, 'google_drive_id', true);?>

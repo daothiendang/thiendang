@@ -1,10 +1,7 @@
 <?php
-/*
-  Template Name: Ngữ pháp sơ cấp tiếng Nhật bài 26-50
- */
+    get_header();
+    $page1 = home_url() . '/giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt';
 ?>
-<?php get_header(); ?>
-<?php $page1 = home_url() . '/giao-trinh-50-bai-shin-no-nihongo-dai-hoc-fpt'; ?>
 <div class="center">
     <h2>Giáo trình 50 bài Shin no nihongo Đại học FPT</h2>
     <h2 style="margin-top: 10px;">Ngữ pháp từ bài 26 đến bài 50</h2>
