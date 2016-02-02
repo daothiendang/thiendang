@@ -1,9 +1,7 @@
 <?php include(locate_template('header.php')); ?>
 <div class="row">
     <div id="sub_banner">
-        <h1>
-            <?php the_title(); ?>
-        </h1>
+        <h1><?php the_title(); ?></h1>
     </div>
     <div id="content">
         <div class="top-content">
@@ -18,9 +16,7 @@
             </div>
             <div class="toggle_info" id="intro">
                 <h2>Giới thiệu</h2>
-                <?php
-                    echo apply_filters('the_content', $post->post_content);
-                ?>
+                <?php echo apply_filters('the_content', $post->post_content); ?>
             </div>
             <div class="toggle_info" id="how_to_use">
                 <h2>Chức năng chính</h2>
@@ -35,7 +31,6 @@
                     Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu.
                 </p>
             </div>
-            
             <div id="search_section">
                 <label>Hiển thị theo</label>
                 <select id="search_option">
@@ -169,8 +164,8 @@
     </div>
 </div>
 <div id="black_overlay"></div>
-
 <?php get_footer(); ?>
+
 <style type="text/css">
     @font-face {
         font-family: UVNBachTuyet;
@@ -258,6 +253,7 @@
     #list_bo_thu {
         float: left;
         margin-top: 15px;
+        width: 100%;
     }
     .item {
         float: left;
@@ -505,10 +501,10 @@
     });
     
     $('#search_text').on('keypress', function (event) {
-         if(event.which === 13){
+        if (event.which === 13) {
             hit_search();
-         }
-   });
+        }
+    });
     $('#search_button').click(function() {
         hit_search();
     });
@@ -600,7 +596,7 @@
     index = 1;
     total = <?php echo $count - 1; ?>;
     
-    $(document).on('click', '.bo_thu', function() {
+    $(document).on('click', '.item .bo_thu', function() {
         index = $('#list_bo_thu .item').index($(this).parent()) + 1;
         $('#popup1, #black_overlay').show();
         $('.words').hide();
