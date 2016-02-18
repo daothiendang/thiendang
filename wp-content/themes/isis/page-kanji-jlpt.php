@@ -7,6 +7,11 @@ include(locate_template('header.php'));
 $title = get_the_title();
 $level = strtolower(substr($title, -2));
 
+global $wpdb;
+$sqlTotal = 'SELECT count(id) FROM kanji_' . $level;
+$total = $wpdb->get_var($sqlTotal);
+$sql = 'SELECT * FROM kanji_' . $level . ' LIMIT 100';
+$results = $wpdb->get_results($sql, ARRAY_A);
 ?>
 <div class="row">
     <div id="sub_banner">
@@ -43,8 +48,8 @@ $level = strtolower(substr($title, -2));
             <div id="search_section">
                 Sắp xếp theo
                 <select id="order_by">
-                    <option value="id">onyomi</option>
-                    <option value="kun_yomi">kunyomi</option>
+                    <option value="id">on_yomi</option>
+                    <option value="kun_yomi">kun_yomi</option>
                     <option value="so_net">Số nét</option>
                     <option value="han_viet">Âm Hán Việt</option>
                 </select>
@@ -58,10 +63,10 @@ $level = strtolower(substr($title, -2));
                     <option value="100" selected>100</option>
                     <option value="150">150</option>
                     <option value="200">200</option>
-                    <option value="all">Toàn bộ</option>
+                    <option value="<?php echo $total; ?>">Toàn bộ</option>
                 </select><br/>
                 <span style="float: left; margin: 10px 10px 0 0;">Từ cần tìm </span>
-                <input type="text" id="search_text" placeholder="Nhập kanji, Hán Việt, kun yomi, hoặc on yomi" />
+                <input type="search" id="search_text" placeholder="Nhập kanji, Hán Việt, kun yomi, hoặc on yomi" />
                 <div id="fixed_wrap">
                     <div id="toggle_button">
                         <div id="toggle_kanji" class="active">Ẩn/Hiện kanji</div>
@@ -70,15 +75,22 @@ $level = strtolower(substr($title, -2));
                 </div>
             </div>
             <div style="clear:both"></div>
+            
+            <?php $numOfPages = ceil($total / 100); ?>
+            <ul id="paging">
+                <?php
+                    if ($numOfPages > 1) {
+                        echo '<li class="active">1</li>';
+                        for ($i = 2; $i <= $numOfPages; $i++) {
+                            echo '<li>' . $i . '</li>';
+                        }
+                    }
+                ?>
+            </ul>
             <div id="list_kanji">
                 <?php
-                    global $wpdb;
-                    $sql = 'SELECT * FROM kanji_' . $level . ' LIMIT 100';
-                    $results = $wpdb->get_results($sql, ARRAY_A);
-                    
-                    $count = 0;
+                    $count = 1;
                     foreach ($results as $item) {
-                        $count++;
                         echo '<div class="item" id="item_' . $item['id'] . '">';
                         echo '<span>' . $count . '</span>';
                         echo '<div class="kanji">';
@@ -88,6 +100,7 @@ $level = strtolower(substr($title, -2));
                         echo '<span>' . $item['han_viet'] . '</span>';
                         echo '</div>';
                         echo '</div>';
+                        $count++;
                     }
                 ?>
             </div>
@@ -200,9 +213,20 @@ $level = strtolower(substr($title, -2));
     }
     .top-content select {
         width: auto;
+        font-size: 15px;
     }
     .top-content input {
         min-width: 200px;
+        height: 15px;
+    }
+    input[type="search"] {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-appearance: searchfield;
+    }
+    input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: searchfield-cancel-button;
     }
     
     .fixed_wrap {
@@ -240,9 +264,25 @@ $level = strtolower(substr($title, -2));
         left: 195px;
     }
     
+    #paging {
+        float: left;
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+    #paging li {
+        display: inline;
+        padding: 0 3px;
+    }
+    #paging li.active {
+        color: red;
+    }
+    #paging li:not(.active) {
+        cursor: pointer;
+    }
+    
     #list_kanji {
         float: left;
-        margin-top: 15px;
         width: 100%;
     }
     .item {
@@ -447,6 +487,7 @@ $level = strtolower(substr($title, -2));
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
     var level = '<?php echo $level; ?>';
+    var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
     
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
@@ -473,18 +514,44 @@ $level = strtolower(substr($title, -2));
         }
     });
     
-    $('#order, #order_by, #words_per_page, #search_text').change(function() {
+    $('#order, #order_by, #words_per_page').change(function() {
+        update_search($('#paging li.active').text());
+    });
+    $('#words_per_page').change(function() {
+        update_search();
+//        wordsTotal   = <?php // echo $total; ?>;
+//        wordsPerPage = $('#words_per_page').val();
+//        if (wordsPerPage !== 'all') {
+//            pagingTotal = Math.ceil(wordsTotal / wordsPerPage);
+//            pagingContent = '';
+//            for (i = 1; i <= pagingTotal; i++) {
+//                pagingContent += '<li>' + i + '</li>';
+//            }
+//            $('#paging').html(pagingContent);
+//            $('#paging li:first-child').addClass('active');
+//            $('#paging').show();
+//        }
+    });
+    $('#search_text').on('input', function() {
         update_search();
     });
+    $(document).on('click', '#paging li', function() {
+        if (!$(this).hasClass('active')) {
+            $('#paging li.active').removeClass('active');
+            $(this).addClass('active');
+            update_search($(this).text());
+        }
+    });
     
-    
-    var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
-    function update_search() {
+    function update_search(page) {
         $('#list_kanji').html('<div style="width: 100%; text-align: center;"><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" /></div>');
         search       = $.trim($('#search_text').val());
         orderBy      = $('#order_by').val();
         order        = $('#order').val();
         wordsPerPage = $('#words_per_page').val();
+        if (!page) {
+            page = 1;
+        }
         $.ajax({
             url: ajaxUrl,
             dataType: 'json',
@@ -494,39 +561,60 @@ $level = strtolower(substr($title, -2));
                 'search'        : search,
                 'order_by'      : orderBy,
                 'order'         : order,
+                'page'          : page,
                 'words_per_page': wordsPerPage
             },
             success: function (data) {
-                count        = 1;
                 content      = '';
                 popupContent = '';
                 
-                if (data.length === 0) {
+                listKanji = data['list'];
+                if (listKanji.length === 0) {
                     $('#list_kanji').html('<p>Không tìm thấy. Xin hãy thử lại!</p>');
                     return false;
                 }
                 
-                for (i = 0; i < data.length; i++) {
+                if (data['total']) {
+                    total = data['total'];
+                } else {
+                    total = <?php echo $total; ?>;
+                }
+                
+                numOfPage = Math.ceil(total / wordsPerPage);
+                pagingContent = '';
+                if (numOfPage > 1) {
+                    for (i = 1; i <= numOfPage; i++) {
+                        if (i == page) {
+                            pagingContent += '<li class="active">' + i + '</li>';
+                        } else {
+                            pagingContent += '<li>' + i + '</li>';
+                        }
+                    }
+                }
+                $('#paging').html(pagingContent);
+                
+                count = (page - 1) * wordsPerPage + 1;
+                for (i = 0; i < listKanji.length; i++) {
                     content += 
-                        '<div class="item" id="item_' + data[i]['id'] + '">' +
+                        '<div class="item" id="item_' + listKanji[i]['id'] + '">' +
                             '<span>' + count + '</span>' +
                             '<div class="kanji">' +
-                                '<span>' + data[i]['kanji'] + '</span>' +
+                                '<span>' + listKanji[i]['kanji'] + '</span>' +
                             '</div>' +
                             '<div class="han_viet">' +
-                                '<span>' + data[i]['han_viet'] + '</span>' +
+                                '<span>' + listKanji[i]['han_viet'] + '</span>' +
                             '</div>' +
                         '</div>';
                     popupContent += 
-                        '<div id="word_' + count + '" class="words number_' + data[i]['id'] + '">' +
-                            '<div class="position">' + count + '. ' + data[i]['han_viet'] + '</div>' +
-                            '<div class="kanji">'   + data[i]['kanji'] + '</div>' +
+                        '<div id="word_' + count + '" class="words number_' + listKanji[i]['id'] + '">' +
+                            '<div class="position">' + count + '. ' + listKanji[i]['han_viet'] + '</div>' +
+                            '<div class="kanji">'   + listKanji[i]['kanji'] + '</div>' +
                             '<div class="detail">' +
-                                '<span class="y_nghia">' + data[i]['y_nghia'] + '</span><br/>' +
-                                'Bộ thành phần: <span class="thanh_phan">' + data[i]['bo_thanh_phan'] + '</span><br/>' +
-                                'On yomi: <span class="on_yomi">' + data[i]['on_yomi'] + '</span><br/>' +
-                                'Kun yomi: <span class="kun_yomi">' + $.trim(data[i]['kun_yomi']) + '</span><br/>' +
-                                'Số nét: <span class="so_net">' + data[i]['so_net'] + '</span>' +
+                                '<span class="y_nghia">' + listKanji[i]['y_nghia'] + '</span><br/>' +
+                                'Bộ thành phần: <span class="thanh_phan">' + listKanji[i]['bo_thanh_phan'] + '</span><br/>' +
+                                'On yomi: <span class="on_yomi">' + listKanji[i]['on_yomi'] + '</span><br/>' +
+                                'Kun yomi: <span class="kun_yomi">' + $.trim(listKanji[i]['kun_yomi']) + '</span><br/>' +
+                                'Số nét: <span class="so_net">' + listKanji[i]['so_net'] + '</span>' +
                             '</div>' +
                         '</div>';
                     count++;
@@ -681,22 +769,23 @@ $level = strtolower(substr($title, -2));
                 'list_words': listWords
             },
             success: function (data) {
+                listKanji = data['list'];
                 popupContent = '';
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < listKanji.length; i++) {
                     popupContent += '<div class="question" id="question_' + (i + 1) + '">' +
-                            'Câu ' + (i + 1) + '/' + data.length +
-                            '<input type="hidden" value="' + data[i]['id'] +'" class="word_id" />' +
-                            '<br/><div class="kanji">' + data[i]['quest'] + '</div>';
+                            'Câu ' + (i + 1) + '/' + listKanji.length +
+                            '<input type="hidden" value="' + listKanji[i]['id'] +'" class="word_id" />' +
+                            '<br/><div class="kanji">' + listKanji[i]['quest'] + '</div>';
                     for (j = 0; j < 4; j++) {
                         answerName = 'answer_' + i;
                         answerId   = 'answer_' + i + '.' + j;
                         popupContent += '<div class="answer">';
-                        if (j === data[i]['right']) {
+                        if (j === listKanji[i]['right']) {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" value="right" />';
                         } else {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" />';
                         }
-                        popupContent += '<label for="' + answerId +'">' + data[i]['answer'][j] + '</label></div>';
+                        popupContent += '<label for="' + answerId +'">' + listKanji[i]['answer'][j] + '</label></div>';
                     }
                     popupContent +='</div>';
                 }

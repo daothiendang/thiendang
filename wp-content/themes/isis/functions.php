@@ -407,7 +407,7 @@ function add_custom_types_to_tax($query) {
 }
 add_filter('pre_get_posts', 'add_custom_types_to_tax');
 
-
+// get movies by tag names
 function get_movies_by_tag($tagId, $limit = '') {
     global $wpdb;
     $limitCondition = '';
@@ -424,6 +424,7 @@ function get_movies_by_tag($tagId, $limit = '') {
     return $posts;
 }
 
+/*  --------------------  page-hoc-bo-thu-tieng-nhat  ----------------------  */
 function search_bo_thu() {
     $type  = $_GET['type'];
     $value = $_GET['value'];
@@ -507,3 +508,89 @@ function create_questions_bo_thu() {
 }
 add_action('wp_ajax_create_questions_bo_thu', 'create_questions_bo_thu');
 add_action('wp_ajax_nopriv_create_questions_bo_thu', 'create_questions_bo_thu');
+/*  --------------------  page-hoc-bo-thu-tieng-nhat  ----------------------  */
+
+/*  --------------------------  page-kanji-jlpt  ---------------------------  */
+function search_kanji() {
+    $level        = $_GET['level'];
+    $search       = $_GET['search'];
+    $orderBy      = $_GET['order_by'];
+    $order        = $_GET['order'];
+    $page         = $_GET['page'];
+    $wordsPerPage = $_GET['words_per_page'];
+    global $wpdb;
+    
+    $searchCondition = '';
+    if ($search) {
+        $searchCondition = ' WHERE kanji LIKE "%' . $search . '%"
+                OR han_viet LIKE "%' . $search . '%"
+                OR on_yomi  LIKE "%' . $search . '%"
+                OR kun_yomi LIKE "%' . $search . '%"';
+    }
+    $limit = ' LIMIT ' . ($page - 1) * $wordsPerPage . ', ' . $wordsPerPage;
+    
+    if ($search) {
+        $sqlTotal = 'SELECT count(id) FROM kanji_' . $level . $searchCondition .
+                ' ORDER BY ' . $orderBy . ' ' . $order;
+        $results['total'] = $wpdb->get_var($sqlTotal);
+    }
+    
+    $sql = 'SELECT * FROM kanji_' . $level . $searchCondition .
+            ' ORDER BY ' . $orderBy . ' ' . $order . $limit;
+    $results['list'] = $wpdb->get_results($sql, ARRAY_A);
+    
+    print json_encode($results);
+    die;
+}
+add_action('wp_ajax_search_kanji', 'search_kanji');
+add_action('wp_ajax_nopriv_search_kanji', 'search_kanji');
+
+function create_questions_kanji() {
+    $testType  = $_GET['type'];
+    $total     = $_GET['total'];
+    $listWords = explode(';', $_GET['list_words']);
+    $questions = array_rand($listWords, $total);
+    
+    if (is_numeric($questions)) {
+        $questions = array($questions);
+    }
+    shuffle($questions);
+    global $wpdb;
+    
+    $i = 0;
+    if ($testType == 'chu_han') {
+        foreach ($questions as $questionId) {
+            $word = explode('.', $listWords[$questionId]);
+            $sql  = 'SELECT han_viet FROM kanji_bo_thu
+                        WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
+            $answer = $wpdb->get_col($sql);
+            $right  = rand(0, 3);
+            array_splice($answer, $right, 0, $word[2]);
+            $data[$i]['id']     = $word[0];
+            $data[$i]['quest']  = $word[1];
+            $data[$i]['answer'] = $answer;
+            $data[$i]['right']  = $right;
+            $i++;
+        }
+    } else if ($testType == 'han_viet') {
+        foreach ($questions as $questionId) {
+            $word = explode('.', $listWords[$questionId]);
+            $sql  = 'SELECT bo_thu FROM kanji_bo_thu
+                        WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
+            $answer = $wpdb->get_col($sql);
+            $right  = rand(0, 3);
+            array_splice($answer, $right, 0, $word[1]);
+            $data[$i]['id']     = $word[0];
+            $data[$i]['quest']  = $word[2];
+            $data[$i]['answer'] = $answer;
+            $data[$i]['right']  = $right;
+            $i++;
+        }
+    }
+    
+    print json_encode($data);
+    die;
+}
+add_action('wp_ajax_create_questions_kanji', 'create_questions_kanji');
+add_action('wp_ajax_nopriv_create_questions_kanji', 'create_questions_kanji');
+/*  --------------------------  page-kanji-jlpt  ---------------------------  */
