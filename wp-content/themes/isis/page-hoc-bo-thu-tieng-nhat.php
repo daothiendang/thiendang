@@ -1,171 +1,3 @@
-<?php include(locate_template('header.php')); ?>
-<div class="row">
-    <div id="sub_banner">
-        <h1><?php the_title(); ?></h1>
-    </div>
-    <div id="content">
-        <div class="top-content">
-            <div id="top_button">
-                <button class="btn btn-primary" id="btn_intro">
-                    Giới thiệu <span class="caret"></span>
-                </button>
-                <button class="btn btn-primary" id="btn_how_to_use">
-                    Hướng dẫn <span class="caret"></span>
-                </button>
-                <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
-            </div>
-            <div class="toggle_info" id="intro">
-                <h2>Giới thiệu</h2>
-                <?php echo apply_filters('the_content', $post->post_content); ?>
-            </div>
-            <div class="toggle_info" id="how_to_use">
-                <h2>Chức năng chính</h2>
-                <p>- Hiển thị theo số thứ tự hoặc số nét.</p>
-                <p>- Tìm theo bộ thủ hoặc âm Hán Việt.</p>
-                <p>- Ẩn/Hiện bộ thủ hoặc Ẩn/Hiện Hán Việt.</p>
-                <p>- Click vào bộ thủ hiện popup thông tin chi tiết.
-                    Click 2 mũi tên trên màn hình hoặc bấm nút mũi tên trên bàn phím để xem từ tiếp theo hoặc quay lại
-                    (Trên mobile và tablet có thể vuốt sang trái sang phải).
-                </p>
-                <p>- Kiểm tra: Những từ được kiểm tra là những từ đang hiện trên màn hình.
-                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu.
-                </p>
-            </div>
-            <div id="search_section">
-                <label>Hiển thị theo</label>
-                <select id="search_option">
-                    <option value="stt">Số thứ tự</option>
-                    <option value="số nét">Số nét</option>
-                </select>
-                <select id="so_thu_tu">
-                    <option value="all">Hiện toàn bộ</option>
-                    <option value="1 - 40">1 - 40</option>
-                    <option value="41 - 80">41 - 80</option>
-                    <option value="81 - 120">81 - 120</option>
-                    <option value="121 - 160">121 - 160</option>
-                    <option value="161 - 200">161 - 200</option>
-                    <option value="201 - 214">201 - 214</option>
-                </select>
-                <select id="so_net" style="display: none;">
-                    <option value="1">1 nét</option>
-                    <option value="2">2 nét</option>
-                    <option value="3">3 nét</option>
-                    <option value="4">4 nét</option>
-                    <option value="5">5 nét</option>
-                    <option value="6">6 nét</option>
-                    <option value="7">7 nét</option>
-                    <option value="8">8 nét</option>
-                    <option value="9">9 nét</option>
-                    <option value="10">10 nét</option>
-                    <option value="11">11 nét</option>
-                    <option value="12">12 nét</option>
-                    <option value="13">13 nét</option>
-                    <option value="14">14 nét</option>
-                    <option value="15">15 nét</option>
-                    <option value="16">16 nét</option>
-                    <option value="17">17 nét</option>
-                </select>
-                <div>
-                    <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
-                    <button id="search_button" class="btn-sm">Tìm kiếm</button>
-                </div>
-                <div id="fixed_wrap">
-                    <div id="toggle_button">
-                        <div id="toggle_bo_thu" class="active">Ẩn/Hiện Bộ thủ</div>
-                        <div id="toggle_han_viet" class="active">Ẩn/Hiện Hán Việt</div>
-                    </div>
-                </div>
-            </div>
-            <div style="clear:both"></div>
-            <div id="list_bo_thu">
-                <?php
-                    global $wpdb;
-                    $sql = 'SELECT * FROM kanji_bo_thu';
-                    $results = $wpdb->get_results($sql, ARRAY_A);
-                    foreach ($results as $item) {
-                        echo '<div class="item" id="item_' . $item['id'] . '">';
-                        echo '<span>' . $item['id'] . '</span>';
-                        echo '<div class="bo_thu">';
-                        echo '<span>' . $item['bo_thu'] . '</span>';
-                        echo '</div>';
-                        echo '<div class="han_viet">';
-                        echo '<span>' . $item['han_viet'] . '</span>';
-                        echo '</div>';
-                        if ($item['bien_the'] != '') {
-                            echo '<div class="bien_the">' . $item['bien_the'] . '</div>';
-                        }
-                        echo '</div>';
-                    }
-                ?>
-            </div>
-            <?php
-                $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
-                include(locate_template('share_this.php'));
-            ?>
-            <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
-            <div class="comments_template"><?php comments_template('', true); ?></div>
-        </div>
-        <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
-    </div>
-</div>
-
-<div class="popup" id="popup1">
-    <div id="popup_header">
-        <div class="popup_title">Chi Tiết</div>
-        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
-    </div>
-    <div class="popup_content">
-        <?php $count = 1; ?>
-        <?php foreach ($results as $item) { ?>
-            <div id="word_<?php echo $count; ?>" class="words number_<?php echo $item['id']; ?>">
-                <?php
-                    echo '<div class="position">' . $item['id'] . '. ' . $item['han_viet'] . '</div>';
-                    echo '<div class="bo_thu">' . $item['bo_thu'] . '</div>';
-                    echo '<div class="y_nghia">' . $item['y_nghia'] . '</div>';
-                    if ($item['bien_the'] != '') {
-                        echo '<div>Biến thể:<br/><div class="bien_the">' . $item['bien_the'] . '</div></div>';
-                    }
-                    $count++;
-                ?>
-            </div>
-        <?php } ?>
-        <a href="javascript:void(null)" class="prev glyphicon glyphicon-arrow-left"></a>
-        <a href="javascript:void(null)" class="next glyphicon glyphicon-arrow-right"></a>
-    </div>
-</div>
-<div class="popup" id="popup2">
-    <div id="popup_header">
-        <div class="popup_title">Kiểm tra</div>
-        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
-    </div>
-    <div class="popup_content">
-        <form action="#" id="test_type">
-            <h3>Chọn loại câu hỏi</h3>
-            <div class="test_type_option">
-                <input type="radio" name="test_type" value="chu_han" id="test_chu_han" checked />
-                <label for="test_chu_han">Chữ Hán</label><br/>
-            </div>
-            <div class="test_type_option">
-                <input type="radio" name="test_type" value="han_viet" id="test_han_viet" />
-                <label for="test_han_viet">Âm Hán Việt</label>
-            </div>
-            <h3>Số lượng câu hỏi</h3>
-            <div><input type="number" min="1" max="214" id="total_question" value="1" /></div>
-            <div>(Số câu tối đa <span id="max_question"></span>)</div>
-            <div>
-                <input type="submit" class="btn-success btn-sm" value="Bắt Đầu" id="btn_start_test" style="margin: 10px auto 0 auto;" />
-            </div>
-        </form>
-        <div style="display: none; text-align:center;" id="loading_message">
-            Đang tạo câu hỏi, xin đợi một chút...<br/><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
-        </div>
-        <div><button id="btn_confirm" class="btn-sm btn-success" style="display: none;">Chọn</button></div>
-        <div id="result"></div>
-    </div>
-</div>
-<div id="black_overlay"></div>
-<?php get_footer(); ?>
-
 <style type="text/css">
     @font-face {
         font-family: UVNBachTuyet;
@@ -451,6 +283,175 @@
         }
     }
 </style>
+
+<?php include(locate_template('header.php')); ?>
+<div class="row">
+    <div id="sub_banner">
+        <h1><?php the_title(); ?></h1>
+    </div>
+    <div id="content">
+        <div class="top-content">
+            <div id="top_button">
+                <button class="btn btn-primary" id="btn_intro">
+                    Giới thiệu <span class="caret"></span>
+                </button>
+                <button class="btn btn-primary" id="btn_how_to_use">
+                    Hướng dẫn <span class="caret"></span>
+                </button>
+                <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
+            </div>
+            <div class="toggle_info" id="intro">
+                <h2>Giới thiệu</h2>
+                <?php echo apply_filters('the_content', $post->post_content); ?>
+            </div>
+            <div class="toggle_info" id="how_to_use">
+                <h2>Chức năng chính</h2>
+                <p>- Hiển thị theo số thứ tự hoặc số nét.</p>
+                <p>- Tìm theo bộ thủ hoặc âm Hán Việt.</p>
+                <p>- Ẩn/Hiện bộ thủ hoặc Ẩn/Hiện Hán Việt.</p>
+                <p>- Click vào bộ thủ hiện popup thông tin chi tiết.
+                    Click 2 mũi tên trên màn hình hoặc bấm nút mũi tên trên bàn phím để xem từ tiếp theo hoặc quay lại
+                    (Trên mobile và tablet có thể vuốt sang trái sang phải).
+                </p>
+                <p>- Kiểm tra: Những từ được kiểm tra là những từ đang hiện trên màn hình.
+                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu.
+                </p>
+            </div>
+            <div id="search_section">
+                <label>Hiển thị theo</label>
+                <select id="search_option">
+                    <option value="stt">Số thứ tự</option>
+                    <option value="số nét">Số nét</option>
+                </select>
+                <select id="so_thu_tu">
+                    <option value="all">Hiện toàn bộ</option>
+                    <option value="1 - 40">1 - 40</option>
+                    <option value="41 - 80">41 - 80</option>
+                    <option value="81 - 120">81 - 120</option>
+                    <option value="121 - 160">121 - 160</option>
+                    <option value="161 - 200">161 - 200</option>
+                    <option value="201 - 214">201 - 214</option>
+                </select>
+                <select id="so_net" style="display: none;">
+                    <option value="1">1 nét</option>
+                    <option value="2">2 nét</option>
+                    <option value="3">3 nét</option>
+                    <option value="4">4 nét</option>
+                    <option value="5">5 nét</option>
+                    <option value="6">6 nét</option>
+                    <option value="7">7 nét</option>
+                    <option value="8">8 nét</option>
+                    <option value="9">9 nét</option>
+                    <option value="10">10 nét</option>
+                    <option value="11">11 nét</option>
+                    <option value="12">12 nét</option>
+                    <option value="13">13 nét</option>
+                    <option value="14">14 nét</option>
+                    <option value="15">15 nét</option>
+                    <option value="16">16 nét</option>
+                    <option value="17">17 nét</option>
+                </select>
+                <div>
+                    <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
+                    <button id="search_button" class="btn-sm">Tìm kiếm</button>
+                </div>
+                <div id="fixed_wrap">
+                    <div id="toggle_button">
+                        <div id="toggle_bo_thu" class="active">Ẩn/Hiện Bộ thủ</div>
+                        <div id="toggle_han_viet" class="active">Ẩn/Hiện Hán Việt</div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div id="list_bo_thu">
+                <?php
+                    global $wpdb;
+                    $sql = 'SELECT * FROM kanji_bo_thu';
+                    $results = $wpdb->get_results($sql, ARRAY_A);
+                    foreach ($results as $item) {
+                        echo '<div class="item" id="item_' . $item['id'] . '">';
+                        echo '<span>' . $item['id'] . '</span>';
+                        echo '<div class="bo_thu">';
+                        echo '<span>' . $item['bo_thu'] . '</span>';
+                        echo '</div>';
+                        echo '<div class="han_viet">';
+                        echo '<span>' . $item['han_viet'] . '</span>';
+                        echo '</div>';
+                        if ($item['bien_the'] != '') {
+                            echo '<div class="bien_the">' . $item['bien_the'] . '</div>';
+                        }
+                        echo '</div>';
+                    }
+                ?>
+            </div>
+            <?php
+                $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
+                include(locate_template('share_this.php'));
+            ?>
+            <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
+            <div class="comments_template"><?php comments_template('', true); ?></div>
+        </div>
+        <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
+    </div>
+</div>
+
+<div class="popup" id="popup1">
+    <div id="popup_header">
+        <div class="popup_title">Chi Tiết</div>
+        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
+    </div>
+    <div class="popup_content">
+        <?php $count = 1; ?>
+        <?php foreach ($results as $item) { ?>
+            <div id="word_<?php echo $count; ?>" class="words number_<?php echo $item['id']; ?>">
+                <?php
+                    echo '<div class="position">' . $item['id'] . '. ' . $item['han_viet'] . '</div>';
+                    echo '<div class="bo_thu">' . $item['bo_thu'] . '</div>';
+                    echo '<div class="y_nghia">' . $item['y_nghia'] . '</div>';
+                    if ($item['bien_the'] != '') {
+                        echo '<div>Biến thể:<br/><div class="bien_the">' . $item['bien_the'] . '</div></div>';
+                    }
+                    $count++;
+                ?>
+            </div>
+        <?php } ?>
+        <a href="javascript:void(null)" class="prev glyphicon glyphicon-arrow-left"></a>
+        <a href="javascript:void(null)" class="next glyphicon glyphicon-arrow-right"></a>
+    </div>
+</div>
+<div class="popup" id="popup2">
+    <div id="popup_header">
+        <div class="popup_title">Kiểm tra</div>
+        <div class="btn_close"><img src="<?php echo $themeUrl; ?>/css/img/closebox.png" /></div>
+    </div>
+    <div class="popup_content">
+        <form action="#" id="test_type">
+            <h3>Chọn loại câu hỏi</h3>
+            <div class="test_type_option">
+                <input type="radio" name="test_type" value="chu_han" id="test_chu_han" checked />
+                <label for="test_chu_han">Chữ Hán</label><br/>
+            </div>
+            <div class="test_type_option">
+                <input type="radio" name="test_type" value="han_viet" id="test_han_viet" />
+                <label for="test_han_viet">Âm Hán Việt</label>
+            </div>
+            <h3>Số lượng câu hỏi</h3>
+            <div><input type="number" min="1" max="214" id="total_question" value="1" /></div>
+            <div>(Số câu tối đa <span id="max_question"></span>)</div>
+            <div>
+                <input type="submit" class="btn-success btn-sm" value="Bắt Đầu" id="btn_start_test" style="margin: 10px auto 0 auto;" />
+            </div>
+        </form>
+        <div style="display: none; text-align:center;" id="loading_message">
+            Đang tạo câu hỏi, xin đợi một chút...<br/><img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
+        </div>
+        <div><button id="btn_confirm" class="btn-sm btn-success" style="display: none;">Chọn</button></div>
+        <div id="result"></div>
+    </div>
+</div>
+<div id="black_overlay"></div>
+<?php get_footer(); ?>
+
 <script>
     var $ = jQuery;
     $(document).bind('mobileinit', function() {
