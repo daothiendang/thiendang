@@ -125,7 +125,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         <?php foreach ($results as $item) { ?>
             <div id="word_<?php echo $count; ?>" class="words number_<?php echo $item['id']; ?>">
                 <?php
-                    echo '<div class="position">' . $count . '. ' . $item['han_viet'] . '</div>';
+                    echo '<div class="position">' . $count . '. <span class="han_viet">' . $item['han_viet'] . '</span></div>';
                     echo '<div class="kanji">' . $item['kanji'] . '</div>';
                     echo '<div class="detail">';
                     echo '<span class="y_nghia">' . $item['y_nghia'] . '</span><br/>';
@@ -149,16 +149,58 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     </div>
     <div class="popup_content">
         <form action="#" id="test_type">
-            <h3>Chọn loại câu hỏi</h3>
+            <h3>Chọn bài kiểm tra</h3>
             <div class="test_type_option">
                 <input type="radio" name="test_type" value="chu_han" id="test_chu_han" checked />
                 <label for="test_chu_han">Chữ Hán</label><br/>
             </div>
             <div class="test_type_option">
-                <input type="radio" name="test_type" value="han_viet" id="test_han_viet" />
-                <label for="test_han_viet">Âm Hán Việt</label>
+                <input type="radio" name="test_type" value="tu_vung" id="test_tu_vung" />
+                <label for="test_tu_vung">Từ vựng</label>
             </div>
-            <h3>Số lượng câu hỏi</h3>
+            <table>
+                <tr>
+                    <td id="list_quest_type">
+                        <h5>Chọn loại câu hỏi</h5>
+                        <div class="test_type_option">
+                            <input type="radio" name="quest_type" value="kanji" id="quest_chu_han" checked />
+                            <label for="quest_chu_han">Chữ Hán</label><br/>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="quest_type" value="han_viet" id="quest_han_viet" />
+                            <label for="quest_han_viet">Âm Hán Việt</label>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="quest_type" value="on_yomi" id="quest_on_yomi" />
+                            <label for="quest_on_yomi">on_yomi</label>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="quest_type" value="kun_yomi" id="quest_kun_yomi" />
+                            <label for="quest_kun_yomi">kun_yomi</label>
+                        </div>
+                    </td>
+                    <td id="list_answer_type">
+                        <h5>Chọn câu trả lời</h5>
+                        <div class="test_type_option">
+                            <input type="radio" name="answer_type" value="kanji" id="answer_chu_han" />
+                            <label for="answer_chu_han">Chữ Hán</label><br/>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="answer_type" value="han_viet" id="answer_han_viet" />
+                            <label for="answer_han_viet">Âm Hán Việt</label>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="answer_type" value="on_yomi" id="answer_on_yomi" checked />
+                            <label for="answer_on_yomi">on_yomi</label>
+                        </div>
+                        <div class="test_type_option">
+                            <input type="radio" name="answer_type" value="kun_yomi" id="answer_kun_yomi" />
+                            <label for="answer_kun_yomi">kun_yomi</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <h5>Số lượng câu hỏi</h5>
             <div><input type="number" min="1" max="214" id="total_question" value="1" /></div>
             <div>(Số câu tối đa <span id="max_question"></span>)</div>
             <div>
@@ -407,11 +449,15 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     #popup2 .popup_content {
         margin: 0 auto;
         padding: 15px;
-        width: 400px;
+        width: 600px;
         max-width: 100%;
     }
     #test_type h3 {
         margin-top: 0;
+        color: #6309DC;
+    }
+    h5 {
+        font-size: 18px;
         color: #6309DC;
     }
     #test_type div {
@@ -606,8 +652,8 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                             '</div>' +
                         '</div>';
                     popupContent += 
-                        '<div id="word_' + count + '" class="words number_' + listKanji[i]['id'] + '">' +
-                            '<div class="position">' + count + '. ' + listKanji[i]['han_viet'] + '</div>' +
+                        '<div id="word_' + listKanji[i]['id'] + '" class="words number_' + count + '">' +
+                            '<div class="position">' + count + '. <span class="han_viet">' + listKanji[i]['han_viet'] + '</span></div>' +
                             '<div class="kanji">'   + listKanji[i]['kanji'] + '</div>' +
                             '<div class="detail">' +
                                 '<span class="y_nghia">' + listKanji[i]['y_nghia'] + '</span><br/>' +
@@ -641,8 +687,8 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     index = 1;
     total = <?php echo $count - 1; ?>;
     
-    $(document).on('click', '.item .kanji', function() {
-        index = $('#list_kanji .item').index($(this).parent()) + 1;
+    $(document).on('click', '#list_kanji .item', function() {
+        index = $(this).attr('id').replace('item_', '');
         $('#popup1, #black_overlay').show();
         $('.words').hide();
         $('#word_' + index).show();
@@ -673,8 +719,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     
     <?php // prev, next ?>
     $('.prev').click(function() {
-        if (index === 1) {
-            index = total;
+        min = $('#list_kanji .item:first-child > span').text();
+        if (index == min) {
+            index = $('#list_kanji .item:last-child > span').text();;
         } else {
             index--;
         }
@@ -682,8 +729,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         $('#word_' + index).show();
     });
     $('.next').click(function() {
-        if (index === total) {
-            index = 1;
+        max = $('#list_kanji .item:last-child > span').text();
+        if (index == max) {
+            index = $('#list_kanji .item:first-child > span').text();
         } else {
             index++;
         }
@@ -733,9 +781,41 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             $(this).val(maxQuest);
         }
     });
+    $('input[name="quest_type"]').click(function() {
+        questType  = $('input[name="quest_type"]:checked').val();
+        answerType = $('input[name="answer_type"]:checked').val();
+        if (questType === answerType) {
+            currentAnswer = $('input[name="answer_type"][value="' + answerType + '"]')
+            currentAnswer.prop('checked', false);
+            if (currentAnswer.parent().is(':last-child')) {
+                $('#list_answer_type input').eq(0).prop('checked', true);
+            } else {
+                currentAnswer.parent().next().find('input').prop('checked', true);
+            }
+        }
+    });
+    $('input[name="answer_type"]').click(function() {
+        questType  = $('input[name="quest_type"]:checked').val();
+        answerType = $('input[name="answer_type"]:checked').val();
+        if (questType === answerType) {
+            currentQuest = $('input[name="quest_type"][value="' + questType + '"]')
+            currentQuest.prop('checked', false);
+            if (currentQuest.parent().is(':last-child')) {
+                $('#list_quest_type input').eq(0).prop('checked', true);
+            } else {
+                currentQuest.parent().next().find('input').prop('checked', true);
+            }
+        }
+    });
+    
     $('#btn_start_test').click(function(e) {
         e.preventDefault();
         testType   = $('input[name="test_type"]:checked').val();
+        if (testType === 'tu_vung') {
+            alert('Chưa có dữ liệu cho phần này!');
+            return false;
+        }
+        
         totalQuest = $.trim($('#total_question').val());
         if (totalQuest === '') {
             alert('Hãy nhập số lượng câu hỏi');
@@ -747,26 +827,34 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             return(alert('Số lượng câu hỏi phải lớn hơn 1'));
         }
         
+        questType  = $('input[name="quest_type"]:checked').val();
+        answerType = $('input[name="answer_type"]:checked').val();
+        
         $('#test_type').hide();
         $('#loading_message').show();
         listWords = '';
-        $('#list_kanji .item').each(function() {
-            itemId     = parseInt($(this).attr('id').replace('item_', ''));
-            boThu      = $(this).find('.kanji span').text();
-            hanViet    = $(this).find('.han_viet span').text();
-            listWords += itemId + '.' + boThu + '.' + hanViet + ';';
+        $('#popup1 .words').each(function() {
+            itemId     = parseInt($(this).attr('id').replace('word_', ''));
+            kanji      = $(this).find('.kanji').text();
+            hanViet    = $(this).find('.han_viet').text();
+            onYomi     = $(this).find('.on_yomi').text();
+            kunYomi    = $(this).find('.kun_yomi').text();
+            listWords += itemId + '+' + kanji + '+' + hanViet + '+' + onYomi + '+' + kunYomi + '&';
         });
         listWords = listWords.slice(0, -1);
         
         $.ajax({
             url: ajaxUrl,
             dataType: 'json',
+            method: 'post',
             data: {
-                'action'    : 'create_questions_kanji',
-                'level'     : level,
-                'type'      : testType,
-                'total'     : totalQuest,
-                'list_words': listWords
+                'action'     : 'create_questions_kanji',
+                'level'      : level,
+                'test_type'  : testType,
+                'quest_type' : questType,
+                'answer_type': answerType,
+                'total'      : totalQuest,
+                'list_words' : listWords
             },
             success: function (data) {
                 listKanji = data['list'];
@@ -809,11 +897,11 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             
             if ($(this).text() === 'Chọn') {
                 chosen  = $('input:checked', curQuest).val();
-                boThu   = curQuest.find('.kanji').text();
+                kanji   = curQuest.find('.kanji').text();
                 hanViet = curQuest.find('input[value=right]').next().text();
                 wordId  = curQuest.find('.word_id').val();
                 yNghia  = $('.number_' + wordId).find('.y_nghia').text();
-                result  = boThu + ' (' + hanViet + '): ' + yNghia;
+                result  = kanji + ' (' + hanViet + '): ' + yNghia;
 
                 if (chosen === 'right') {
                     $('#result').html('<div style="color: green;">Đúng</div>' + result);
