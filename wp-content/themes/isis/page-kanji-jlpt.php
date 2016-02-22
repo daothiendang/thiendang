@@ -1,3 +1,318 @@
+<style type="text/css">
+    @font-face {
+        font-family: UVNBachTuyet;
+        src: url(<?php echo $themeUrl; ?>/fonts/UVNBachTuyet.TTF);
+    }
+    @font-face {
+        font-family: UVNLaXanh;
+        src: url(<?php echo $themeUrl; ?>/fonts/UVNLaXanh.TTF);
+    }
+    
+    #top_button {
+        float: left;
+        width: 100%;
+    }
+    #top_button button {
+        float: left;
+        margin: 5px 0 20px 5px;
+        padding-right: 10px;
+    }
+    #top_button button .caret {
+        margin-left: 5px;
+    }
+    .toggle_info {
+        display: none;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+    .toggle_info p {
+        color: #097FC7;
+    }
+    .toggle_info a {
+        color: #ed008e;
+    }
+    #search_section {
+        margin: 0 10px;
+    }
+    .top-content select {
+        width: auto;
+        font-size: 15px;
+    }
+    .top-content input {
+        min-width: 200px;
+        height: 15px;
+    }
+    input[type="search"] {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-appearance: searchfield;
+    }
+    input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: searchfield-cancel-button;
+    }
+    
+    .fixed_wrap {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        border-bottom: 1px solid #CCC;
+        background: #1F0B0B;
+    }
+    #toggle_button {
+        margin-bottom: 10px;
+    }
+    #toggle_button div {
+        float: left;
+        padding: 7px;
+        border: 1px solid #090F4C;
+        background: #CCC;
+        font-size: 15px;
+        font-family: UVNBachTuyet;
+        color: #F10B0B;
+        cursor: pointer;
+    }
+    #toggle_button #toggle_han_viet {
+        margin-left: 10px;
+    }
+    .fixed_button {
+        position: relative;
+        margin: 0 auto;
+        width: 300px;
+    }
+    .fixed_button #toggle_han_viet {
+        left: 195px;
+    }
+    
+    #paging {
+        float: left;
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    #paging li {
+        display: inline;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color .3s;
+    }
+    #paging li.active {
+        color: red;
+        background-color: #4CAF50;
+        color: white;
+        cursor: default;
+    }
+    #paging li:not(.active):hover {
+        background-color: #ddd;
+    }
+    
+    #list_kanji {
+        float: left;
+        width: 100%;
+    }
+    .item {
+        float: left;
+        margin: 5px;
+        padding: 5px;
+        width: 100px;
+        text-align: center;
+    }
+    .kanji {
+        padding-top: 3px;
+        height: 80px;
+        border: 1px solid #CCC;
+        text-align: center;
+        font-size: 70px;
+        color: #75BF75;
+        cursor: pointer;
+    }
+    .han_viet {
+        margin-top: 6px;
+        height: 24px;
+        line-height: 20px;
+    }
+    
+    .popup {
+        display :none;
+        position: fixed;
+        z-index: 1001;
+        top: 5%;
+        left: 30%;
+        width: 40%;
+        height: 90%;
+        min-height: 300px;
+        max-height: 600px;
+        border-radius: 10px;
+        margin: 0;
+        background: #FFFFFF;
+        font-size: 20px;
+    }
+    #popup_header {
+        clear: both;
+        height: 35px;
+        border-bottom: 1px solid #B39C9C;
+        width: 100%;
+    }
+    .popup_title {
+        float: left;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        color: #05BAD2;
+    }
+    .btn_close {
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        width: 36px;
+        border-left: 1px solid #B39C9C;
+        border-top-right-radius: 10px;
+        background: #E6E6E6;
+        text-align: right;
+        cursor: pointer;
+    }
+    .popup_content {
+        clear: both;
+        overflow-y: auto;
+        padding: 0 34px;
+        height: 85%;
+    }
+    #popup1 .words {
+        display: none;
+        position: relative;
+        margin: 0 auto;
+        max-width: 100%;
+        text-align: center;
+        color: #841D1D;
+    }
+    #popup1 .words > div {
+        margin: 15px auto;
+    }
+    #popup1 .words .kanji {
+        width: 140px;
+        height: 140px;
+        padding-top: 10px;
+        font-size: 120px;
+        cursor: default;
+    }
+    .detail {
+        line-height: 24px;
+        font-size: 18px;
+        color: gray;
+    }
+    .detail .thanh_phan, .detail .kun_yomi, .detail .on_yomi {
+        color: #D03609;
+    }
+    
+    #black_overlay {
+        position: fixed;
+        top:0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: black;
+        z-index: 1000;
+        -moz-opacity: .9;
+        opacity: .9;
+        filter: alpha(opacity=90);
+    }
+    .popup .prev, .popup .next {
+        position: absolute;
+        z-index: 1004;
+        top: 45%;
+        font-size: 30px;
+    }
+    .prev {
+        left: 5px;
+    }
+    .next {
+        right: 5px;
+    }
+    
+    #popup2 .popup_content {
+        margin: 0 auto;
+        padding: 15px;
+        width: 600px;
+        max-width: 100%;
+    }
+    #test_type h3 {
+        margin-top: 0;
+        color: #6309DC;
+    }
+    h5 {
+        font-size: 18px;
+        color: #6309DC;
+    }
+    #test_type div {
+        float: left;
+        width: 100%;
+    }
+    .test_type_option input {
+        float: left;
+        margin-top: 3px;
+    }
+    .test_type_option label {
+        float: left;
+        margin-left: 8px;
+    }
+    #total_question {
+        width: 100px;
+    }
+    #max_question {
+        color: #F50FEE;
+    }
+    #test_type div:last-child {
+        text-align: center;
+    }
+    
+    .question {
+        display: none;
+        float: left;
+        width: 100%;
+    }
+    .question .quest_title {
+        display: inline-block;
+        margin: 10px;
+        height: auto;
+        border: 0;
+        font-size: 45px;
+        color: red;
+        cursor: default;
+    }
+    .question .answer {
+        float: left;
+        width: 100%;
+    }
+    .question .answer input {
+        float: left;
+        margin-top: 3px;
+    }
+    .question .answer label {
+        float: left;
+        margin-left: 8px;
+    }
+    
+    #result div {
+        margin-bottom: 10px;
+    }
+    
+    @media screen and (max-width: 767px) {
+        .item {
+            margin: 0;
+        }
+        .popup {
+            left: 0;
+            width: 100%;
+        }
+    }
+</style>
 <?php
 /*
  * Template Name: Page Kanji JLPT
@@ -217,312 +532,6 @@ $results = $wpdb->get_results($sql, ARRAY_A);
 <div id="black_overlay"></div>
 <?php get_footer(); ?>
 
-<style type="text/css">
-    @font-face {
-        font-family: UVNBachTuyet;
-        src: url(<?php echo $themeUrl; ?>/fonts/UVNBachTuyet.TTF);
-    }
-    @font-face {
-        font-family: UVNLaXanh;
-        src: url(<?php echo $themeUrl; ?>/fonts/UVNLaXanh.TTF);
-    }
-    
-    #top_button {
-        float: left;
-        width: 100%;
-    }
-    #top_button button {
-        float: left;
-        margin: 5px 0 20px 5px;
-        padding-right: 10px;
-    }
-    #top_button button .caret {
-        margin-left: 5px;
-    }
-    .toggle_info {
-        display: none;
-        margin-bottom: 20px;
-        padding: 0 10px;
-    }
-    .toggle_info p {
-        color: #097FC7;
-    }
-    .toggle_info a {
-        color: #ed008e;
-    }
-    #search_section {
-        margin: 0 10px;
-    }
-    .top-content select {
-        width: auto;
-        font-size: 15px;
-    }
-    .top-content input {
-        min-width: 200px;
-        height: 15px;
-    }
-    input[type="search"] {
-        -webkit-box-sizing: content-box;
-        -moz-box-sizing: content-box;
-        box-sizing: content-box;
-        -webkit-appearance: searchfield;
-    }
-    input[type="search"]::-webkit-search-cancel-button {
-        -webkit-appearance: searchfield-cancel-button;
-    }
-    
-    .fixed_wrap {
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 32px;
-        border-bottom: 1px solid #CCC;
-        background: #1F0B0B;
-    }
-    #toggle_button {
-        margin-bottom: 10px;
-    }
-    #toggle_button div {
-        float: left;
-        padding: 7px;
-        border: 1px solid #090F4C;
-        background: #CCC;
-        font-size: 15px;
-        font-family: UVNBachTuyet;
-        color: #F10B0B;
-        cursor: pointer;
-    }
-    #toggle_button #toggle_han_viet {
-        margin-left: 10px;
-    }
-    .fixed_button {
-        position: relative;
-        margin: 0 auto;
-        width: 300px;
-    }
-    .fixed_button #toggle_han_viet {
-        left: 195px;
-    }
-    
-    #paging {
-        float: left;
-        margin: 10px 0;
-        width: 100%;
-        text-align: center;
-    }
-    #paging li {
-        display: inline;
-        padding: 0 3px;
-    }
-    #paging li.active {
-        color: red;
-    }
-    #paging li:not(.active) {
-        cursor: pointer;
-    }
-    
-    #list_kanji {
-        float: left;
-        width: 100%;
-    }
-    .item {
-        float: left;
-        margin: 5px;
-        padding: 5px;
-        width: 100px;
-        text-align: center;
-    }
-    .kanji {
-        padding-top: 3px;
-        height: 80px;
-        border: 1px solid #CCC;
-        text-align: center;
-        font-size: 70px;
-        color: #75BF75;
-        cursor: pointer;
-    }
-    .han_viet {
-        margin-top: 6px;
-        height: 24px;
-        line-height: 20px;
-    }
-    
-    .popup {
-        display :none;
-        position: fixed;
-        z-index: 1001;
-        top: 5%;
-        left: 30%;
-        width: 40%;
-        height: 90%;
-        min-height: 300px;
-        max-height: 600px;
-        border-radius: 10px;
-        margin: 0;
-        background: #FFFFFF;
-        font-size: 20px;
-    }
-    #popup_header {
-        clear: both;
-        height: 35px;
-        border-bottom: 1px solid #B39C9C;
-        width: 100%;
-    }
-    .popup_title {
-        float: left;
-        margin-top: 10px;
-        width: 100%;
-        text-align: center;
-        color: #05BAD2;
-    }
-    .btn_close {
-        position: absolute;
-        right: 0;
-        padding: 10px;
-        width: 36px;
-        border-left: 1px solid #B39C9C;
-        border-top-right-radius: 10px;
-        background: #E6E6E6;
-        text-align: right;
-        cursor: pointer;
-    }
-    .popup_content {
-        clear: both;
-        overflow-y: auto;
-        height: 85%;
-    }
-    #popup1 .words {
-        display: none;
-        position: relative;
-        margin: 0 auto;
-        max-width: 100%;
-        text-align: center;
-        color: #841D1D;
-    }
-    #popup1 .words > div {
-        margin: 15px auto;
-    }
-    #popup1 .words .kanji {
-        width: 140px;
-        height: 140px;
-        padding-top: 10px;
-        font-size: 120px;
-        cursor: default;
-    }
-    .detail {
-        line-height: 24px;
-        font-size: 18px;
-        color: gray;
-    }
-    .detail .thanh_phan, .detail .kun_yomi, .detail .on_yomi {
-        color: #D03609;
-    }
-    
-    #black_overlay {
-        position: fixed;
-        top:0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        display: none;
-        background-color: black;
-        z-index: 1000;
-        -moz-opacity: .9;
-        opacity: .9;
-        filter: alpha(opacity=90);
-    }
-    .prev, .next {
-        position: absolute;
-        z-index: 1004;
-        top: 45%;
-        font-size: 30px;
-    }
-    .prev {
-        left: 5px;
-    }
-    .next {
-        right: 5px;
-    }
-    
-    #popup2 .popup_content {
-        margin: 0 auto;
-        padding: 15px;
-        width: 600px;
-        max-width: 100%;
-    }
-    #test_type h3 {
-        margin-top: 0;
-        color: #6309DC;
-    }
-    h5 {
-        font-size: 18px;
-        color: #6309DC;
-    }
-    #test_type div {
-        float: left;
-        width: 100%;
-    }
-    .test_type_option input {
-        float: left;
-        margin-top: 3px;
-    }
-    .test_type_option label {
-        float: left;
-        margin-left: 8px;
-    }
-    #total_question {
-        width: 100px;
-    }
-    #max_question {
-        color: #F50FEE;
-    }
-    #test_type div:last-child {
-        text-align: center;
-    }
-    
-    .question {
-        display: none;
-        float: left;
-        width: 100%;
-    }
-    .question .kanji {
-        display: inline-block;
-        margin: 10px;
-        height: auto;
-        border: 0;
-        font-size: 45px;
-        color: red;
-        cursor: default;
-    }
-    .question .answer {
-        float: left;
-        width: 100%;
-    }
-    .question .answer input {
-        float: left;
-        margin-top: 3px;
-    }
-    .question .answer label {
-        float: left;
-        margin-left: 8px;
-    }
-    
-    #result div {
-        margin-bottom: 10px;
-    }
-    
-    @media screen and (max-width: 767px) {
-        .item {
-            margin: 0;
-        }
-        .popup {
-            left: 0;
-            width: 100%;
-        }
-    }
-</style>
 <script>
     var $ = jQuery;
     $(document).bind('mobileinit', function() {
@@ -550,7 +559,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     
     var buttonDistance = $('#toggle_button').offset().top;
     $(window).on('scroll', function() {
-        var windowDistance = window.pageYOffset - 50;
+        var windowDistance = window.pageYOffset - 100;
         if(windowDistance > buttonDistance) {
             $('#toggle_button').addClass('fixed_button');
             $('#fixed_wrap').addClass('fixed_wrap');
@@ -857,23 +866,22 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 'list_words' : listWords
             },
             success: function (data) {
-                listKanji = data['list'];
                 popupContent = '';
-                for (i = 0; i < listKanji.length; i++) {
+                for (i = 0; i < data.length; i++) {
                     popupContent += '<div class="question" id="question_' + (i + 1) + '">' +
-                            'Câu ' + (i + 1) + '/' + listKanji.length +
-                            '<input type="hidden" value="' + listKanji[i]['id'] +'" class="word_id" />' +
-                            '<br/><div class="kanji">' + listKanji[i]['quest'] + '</div>';
+                            'Câu ' + (i + 1) + '/' + data.length +
+                            '<input type="hidden" value="' + data[i]['id'] +'" class="word_id" />' +
+                            '<br/><div class="quest_title">' + data[i]['quest'] + '</div>';
                     for (j = 0; j < 4; j++) {
                         answerName = 'answer_' + i;
                         answerId   = 'answer_' + i + '.' + j;
                         popupContent += '<div class="answer">';
-                        if (j === listKanji[i]['right']) {
+                        if (j === data[i]['right']) {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" value="right" />';
                         } else {
                             popupContent += '<input type="radio" id="' + answerId + '" name="' + answerName + '" />';
                         }
-                        popupContent += '<label for="' + answerId +'">' + listKanji[i]['answer'][j] + '</label></div>';
+                        popupContent += '<label for="' + answerId +'">' + data[i]['answer'][j] + '</label></div>';
                     }
                     popupContent +='</div>';
                 }
@@ -896,13 +904,13 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             curQuest.find('input[type=radio]').attr('disabled', 'disabled');
             
             if ($(this).text() === 'Chọn') {
+                wordId  = $('#popup1 #word_' + curQuest.find('.word_id').val());
+                kanji   = wordId.find('.kanji').text();
+                hanViet = wordId.find('.han_viet').text();
+                detail  = wordId.find('.detail').html();
+                result  = kanji + ' (' + hanViet + '):<div class="detail">' + detail + '</div>';
+                
                 chosen  = $('input:checked', curQuest).val();
-                kanji   = curQuest.find('.kanji').text();
-                hanViet = curQuest.find('input[value=right]').next().text();
-                wordId  = curQuest.find('.word_id').val();
-                yNghia  = $('.number_' + wordId).find('.y_nghia').text();
-                result  = kanji + ' (' + hanViet + '): ' + yNghia;
-
                 if (chosen === 'right') {
                     $('#result').html('<div style="color: green;">Đúng</div>' + result);
                     totalRight++;

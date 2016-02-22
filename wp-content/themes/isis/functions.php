@@ -554,6 +554,36 @@ function create_questions_kanji() {
     $listWords  = explode('&', $_POST['list_words']);
     $questions  = array_rand($listWords, $total);
     
+    // get question type and answer type
+    switch ($questType) {
+        case 'kanji':
+            $questIndex = 1;
+            break;
+        case 'han_viet':
+            $questIndex = 2;
+            break;
+        case 'on_yomi':
+            $questIndex = 3;
+            break;
+        case 'kun_yomi':
+            $questIndex = 4;
+            break;
+    }
+    switch ($answerType) {
+        case 'kanji':
+            $answerIndex = 1;
+            break;
+        case 'han_viet':
+            $answerIndex = 2;
+            break;
+        case 'on_yomi':
+            $answerIndex = 3;
+            break;
+        case 'kun_yomi':
+            $answerIndex = 4;
+            break;
+    }
+    
     if (is_numeric($questions)) {
         $questions = array($questions);
     }
@@ -565,12 +595,12 @@ function create_questions_kanji() {
         foreach ($questions as $questionId) {
             $word = explode('+', $listWords[$questionId]);
             $sql  = 'SELECT ' . $answerType . ' FROM kanji_' . $level .
-                        ' WHERE ' . $questType . ' != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
+                        ' WHERE ' . $answerType . ' != "' . $word[$answerIndex] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
-            array_splice($answer, $right, 0, $word[2]);
+            array_splice($answer, $right, 0, $word[$answerIndex]);
             $data[$i]['id']     = $word[0];
-            $data[$i]['quest']  = $word[1];
+            $data[$i]['quest']  = $word[$questIndex];
             $data[$i]['answer'] = $answer;
             $data[$i]['right']  = $right;
             $i++;
