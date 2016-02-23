@@ -47,7 +47,8 @@
         margin-left: 10px;
     }
     
-    .fixed_wrap {
+    #fixed_wrap {
+        display: none;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -57,10 +58,10 @@
         border-bottom: 1px solid #CCC;
         background: #1F0B0B;
     }
-    #toggle_button {
+    .toggle_button {
         margin-bottom: 10px;
     }
-    #toggle_button div {
+    .toggle_button div {
         float: left;
         padding: 7px;
         border: 1px solid #090F4C;
@@ -70,7 +71,7 @@
         color: #F10B0B;
         cursor: pointer;
     }
-    #toggle_button #toggle_han_viet {
+    .toggle_button .toggle_han_viet {
         margin-left: 10px;
     }
     .fixed_button {
@@ -78,7 +79,7 @@
         margin: 0 auto;
         width: 300px;
     }
-    .fixed_button #toggle_han_viet {
+    .fixed_button .toggle_han_viet {
         left: 195px;
     }
     
@@ -355,10 +356,16 @@
                     <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
                     <button id="search_button" class="btn-sm">Tìm kiếm</button>
                 </div>
+                <div id="relative_wrap">
+                    <div class="toggle_button">
+                        <div class="toggle_bo_thu active">Ẩn/Hiện kanji</div>
+                        <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                    </div>
+                </div>
                 <div id="fixed_wrap">
-                    <div id="toggle_button">
-                        <div id="toggle_bo_thu" class="active">Ẩn/Hiện Bộ thủ</div>
-                        <div id="toggle_han_viet" class="active">Ẩn/Hiện Hán Việt</div>
+                    <div class="toggle_button fixed_button">
+                        <div class="toggle_bo_thu active">Ẩn/Hiện kanji</div>
+                        <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
                     </div>
                 </div>
             </div>
@@ -391,7 +398,7 @@
             <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
             <div class="comments_template"><?php comments_template('', true); ?></div>
         </div>
-        <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
+        <?php if (of_get_option('nosidebar_checkbox') == '0') { ?><?php get_sidebar(); ?><?php } ?>
     </div>
 </div>
 
@@ -464,25 +471,23 @@
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
         $('#intro').slideToggle('slow', 'swing', function() {
-            buttonDistance = $('#toggle_button').offset().top;
+            buttonDistance = $('#relative_wrap').offset().top;
         });
     });
     $('#btn_how_to_use').click(function() {
         $('#intro').hide();
         $('#how_to_use').slideToggle('slow', 'swing', function() {
-            buttonDistance = $('#toggle_button').offset().top;
+            buttonDistance = $('#relative_wrap').offset().top;
         });
     });
     
-    var buttonDistance = $('#toggle_button').offset().top;
+    var buttonDistance = $('#relative_wrap').offset().top;
     $(window).on('scroll', function() {
-        var windowDistance = window.pageYOffset - 50;
+        var windowDistance = window.pageYOffset;
         if(windowDistance > buttonDistance) {
-            $('#toggle_button').addClass('fixed_button');
-            $('#fixed_wrap').addClass('fixed_wrap');
+            $('#fixed_wrap').show();
         } else {
-            $('#toggle_button').removeClass('fixed_button');
-            $('#fixed_wrap').removeClass('fixed_wrap');
+            $('#fixed_wrap').hide();
         }
     });
     
@@ -586,10 +591,10 @@
         });
     }
     
-    $('#toggle_bo_thu').click(function() {
+    $('.toggle_bo_thu').click(function() {
         $('.bo_thu span').toggle();
     });
-    $('#toggle_han_viet').click(function() {
+    $('.toggle_han_viet').click(function() {
         $('.han_viet span').toggle();
     });
     

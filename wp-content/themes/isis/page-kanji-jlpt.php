@@ -52,7 +52,8 @@
         -webkit-appearance: searchfield-cancel-button;
     }
     
-    .fixed_wrap {
+    #fixed_wrap {
+        display: none;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -62,10 +63,10 @@
         border-bottom: 1px solid #CCC;
         background: #1F0B0B;
     }
-    #toggle_button {
+    .toggle_button {
         margin-bottom: 10px;
     }
-    #toggle_button div {
+    .toggle_button div {
         float: left;
         padding: 7px;
         border: 1px solid #090F4C;
@@ -75,7 +76,7 @@
         color: #F10B0B;
         cursor: pointer;
     }
-    #toggle_button #toggle_han_viet {
+    .toggle_button .toggle_han_viet {
         margin-left: 10px;
     }
     .fixed_button {
@@ -83,17 +84,17 @@
         margin: 0 auto;
         width: 300px;
     }
-    .fixed_button #toggle_han_viet {
+    .fixed_button .toggle_han_viet {
         left: 195px;
     }
     
-    #paging {
+    .paging {
         float: left;
         margin-top: 15px;
         width: 100%;
         text-align: center;
     }
-    #paging li {
+    .paging li {
         display: inline;
         padding: 8px 16px;
         border-radius: 5px;
@@ -102,13 +103,13 @@
         cursor: pointer;
         transition: background-color .3s;
     }
-    #paging li.active {
+    .paging li.active {
         color: red;
         background-color: #4CAF50;
         color: white;
         cursor: default;
     }
-    #paging li:not(.active):hover {
+    .paging li:not(.active):hover {
         background-color: #ddd;
     }
     
@@ -212,7 +213,7 @@
     
     #black_overlay {
         position: fixed;
-        top:0%;
+        top: 0%;
         left: 0%;
         width: 100%;
         height: 100%;
@@ -382,26 +383,32 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 </select><br/>
                 <span style="float: left; margin: 10px 10px 0 0;">Từ cần tìm </span>
                 <input type="search" id="search_text" placeholder="Nhập kanji, Hán Việt, kun yomi, hoặc on yomi" />
+                <div id="relative_wrap">
+                    <div class="toggle_button">
+                        <div class="toggle_kanji active">Ẩn/Hiện kanji</div>
+                        <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                    </div>
+                </div>
                 <div id="fixed_wrap">
-                    <div id="toggle_button">
-                        <div id="toggle_kanji" class="active">Ẩn/Hiện kanji</div>
-                        <div id="toggle_han_viet" class="active">Ẩn/Hiện Hán Việt</div>
+                    <div class="toggle_button fixed_button">
+                        <div class="toggle_kanji active">Ẩn/Hiện kanji</div>
+                        <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
                     </div>
                 </div>
             </div>
             <div style="clear:both"></div>
             
-            <?php $numOfPages = ceil($total / 100); ?>
-            <ul id="paging">
-                <?php
-                    if ($numOfPages > 1) {
-                        echo '<li class="active">1</li>';
-                        for ($i = 2; $i <= $numOfPages; $i++) {
-                            echo '<li>' . $i . '</li>';
-                        }
+            <?php
+                $numOfPages = ceil($total / 100);
+                $pagingContent = '';
+                if ($numOfPages > 1) {
+                    $pagingContent .= '<li class="active">1</li>';
+                    for ($i = 2; $i <= $numOfPages; $i++) {
+                        $pagingContent .= '<li>' . $i . '</li>';
                     }
-                ?>
-            </ul>
+                }
+            ?>
+            <ul class="paging"><?php echo $pagingContent; ?></ul>
             <div id="list_kanji">
                 <?php
                     $count = 1;
@@ -419,6 +426,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                     }
                 ?>
             </div>
+            <ul class="paging"><?php echo $pagingContent; ?></ul>
             <?php
                 $currentLink = $linkFbComment . substr(get_permalink(), strlen(get_option('home')));
                 include(locate_template('share_this.php'));
@@ -426,7 +434,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             <div class="fb-comments" data-href="<?php echo $currentLink; ?>" data-numposts="7" data-colorscheme="light"></div>
             <div class="comments_template"><?php comments_template('', true); ?></div>
         </div>
-        <?php if (of_get_option('nosidebar_checkbox') == "0") { ?><?php get_sidebar(); ?><?php } ?>
+        <?php if (of_get_option('nosidebar_checkbox') == '0') { ?><?php get_sidebar(); ?><?php } ?>
     </div>
 </div>
 
@@ -547,52 +555,38 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
         $('#intro').slideToggle('slow', 'swing', function() {
-            buttonDistance = $('#toggle_button').offset().top;
+            buttonDistance = $('#relative_wrap').offset().top;
         });
     });
     $('#btn_how_to_use').click(function() {
         $('#intro').hide();
         $('#how_to_use').slideToggle('slow', 'swing', function() {
-            buttonDistance = $('#toggle_button').offset().top;
+            buttonDistance = $('#relative_wrap').offset().top;
         });
     });
     
-    var buttonDistance = $('#toggle_button').offset().top;
+    var buttonDistance = $('#relative_wrap').offset().top;
     $(window).on('scroll', function() {
-        var windowDistance = window.pageYOffset - 100;
+        var windowDistance = window.pageYOffset;
         if(windowDistance > buttonDistance) {
-            $('#toggle_button').addClass('fixed_button');
-            $('#fixed_wrap').addClass('fixed_wrap');
+            $('#fixed_wrap').show();
         } else {
-            $('#toggle_button').removeClass('fixed_button');
-            $('#fixed_wrap').removeClass('fixed_wrap');
+            $('#fixed_wrap').hide();
         }
     });
     
     $('#order, #order_by, #words_per_page').change(function() {
-        update_search($('#paging li.active').text());
+        update_search($('.paging li.active').text());
     });
     $('#words_per_page').change(function() {
         update_search();
-//        wordsTotal   = <?php // echo $total; ?>;
-//        wordsPerPage = $('#words_per_page').val();
-//        if (wordsPerPage !== 'all') {
-//            pagingTotal = Math.ceil(wordsTotal / wordsPerPage);
-//            pagingContent = '';
-//            for (i = 1; i <= pagingTotal; i++) {
-//                pagingContent += '<li>' + i + '</li>';
-//            }
-//            $('#paging').html(pagingContent);
-//            $('#paging li:first-child').addClass('active');
-//            $('#paging').show();
-//        }
     });
     $('#search_text').on('input', function() {
         update_search();
     });
-    $(document).on('click', '#paging li', function() {
+    $(document).on('click', '.paging li', function() {
         if (!$(this).hasClass('active')) {
-            $('#paging li.active').removeClass('active');
+            $('.paging li.active').removeClass('active');
             $(this).addClass('active');
             update_search($(this).text());
         }
@@ -646,7 +640,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                         }
                     }
                 }
-                $('#paging').html(pagingContent);
+                $('.paging').html(pagingContent);
                 
                 count = (page - 1) * wordsPerPage + 1;
                 for (i = 0; i < listKanji.length; i++) {
@@ -685,10 +679,10 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         });
     }
     
-    $('#toggle_kanji').click(function() {
+    $('.toggle_kanji').click(function() {
         $('.kanji span').toggle();
     });
-    $('#toggle_han_viet').click(function() {
+    $('.toggle_han_viet').click(function() {
         $('.han_viet span').toggle();
     });
     
