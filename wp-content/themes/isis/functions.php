@@ -565,9 +565,6 @@ function create_questions_kanji() {
         case 'on_yomi':
             $questIndex = 3;
             break;
-        case 'kun_yomi':
-            $questIndex = 4;
-            break;
     }
     switch ($answerType) {
         case 'kanji':
@@ -578,9 +575,6 @@ function create_questions_kanji() {
             break;
         case 'on_yomi':
             $answerIndex = 3;
-            break;
-        case 'kun_yomi':
-            $answerIndex = 4;
             break;
     }
     

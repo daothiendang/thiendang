@@ -497,10 +497,6 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                             <input type="radio" name="quest_type" value="on_yomi" id="quest_on_yomi" />
                             <label for="quest_on_yomi">on_yomi</label>
                         </div>
-                        <div class="test_type_option">
-                            <input type="radio" name="quest_type" value="kun_yomi" id="quest_kun_yomi" />
-                            <label for="quest_kun_yomi">kun_yomi</label>
-                        </div>
                     </td>
                     <td id="list_answer_type">
                         <h5>Chọn câu trả lời</h5>
@@ -515,10 +511,6 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                         <div class="test_type_option">
                             <input type="radio" name="answer_type" value="on_yomi" id="answer_on_yomi" checked />
                             <label for="answer_on_yomi">on_yomi</label>
-                        </div>
-                        <div class="test_type_option">
-                            <input type="radio" name="answer_type" value="kun_yomi" id="answer_kun_yomi" />
-                            <label for="answer_kun_yomi">kun_yomi</label>
                         </div>
                     </td>
                 </tr>
