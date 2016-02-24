@@ -1,5 +1,6 @@
+<button id="toggle_sidebar" class="btn-info btn-sm">Ẩn sidebar</button>
 <div id="sidebar">
-    <div class="widgets">          
+    <div class="widgets">
         <?php if (is_active_sidebar('dynamic_sidebar') || !dynamic_sidebar('Right Sidebar')) {} ?>
         <div id="archives-2" class="widget widget_archive">
             <div class="widget_wrap">

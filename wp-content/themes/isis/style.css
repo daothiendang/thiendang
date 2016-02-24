@@ -1038,14 +1038,16 @@ a.nivo-prevNav {
 }
 /*single post*/
 
-#content{ width:100%; float:left;  background-color:#FFF;
-
-          border-bottom: 1px solid rgb(213, 213, 213);
-          background-color: rgb(255, 255, 255);
+#content {
+    position: relative;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid rgb(213, 213, 213);
+    background-color: #FFF;
 }
 
 #content .top-content {
-    width:70%;
+    width: 70%;
     position: relative;
     float: left;
     background-color: #FFF;
@@ -2668,7 +2670,7 @@ a img.aligncenter {
     }
     
     #content .top-content {
-        width: 100%;
+        width: 100% !important;
         position: relative;
         float: left;
         background-color: #FFF;
@@ -2676,10 +2678,10 @@ a img.aligncenter {
     }
     
     #sidebar {
-        width: 100%;
+        width: 100% !important;
     }
 }
-@media only screen and (min-width:768px) {
+@media only screen and (min-width: 768px) {
     .icon {
         margin-left: 38%;
         margin-top: 10px;
@@ -2696,7 +2698,7 @@ a img.aligncenter {
     }
 }
 
-@media only screen and (min-width:768px) and (max-width: 992px) {
+@media only screen and (min-width: 768px) and (max-width: 992px) {
     #content .top-content {
         width: 60%;
     }

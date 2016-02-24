@@ -1,11 +1,11 @@
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 767px) {
     /*  -------------------------  override menu  --------------------------  */
     body #navmenu ul.menu li {
 	padding-left: 15px;
 	padding-right: 0;
 	text-align: left;
     }
-    body #navmenu ul.menu ul.sub-menu {
+    body #navmenu ul.menu ul.sub-menu, #toggle_sidebar {
 	display: none;
     }
     .menu_hover_custom {
@@ -16,10 +16,16 @@
 	background: url('../../images/menu_down_arrow.png') no-repeat;
 	background-size: 30px 30px;
     }
-    .icon{
+    .icon {
 	margin-left: 40%;
 	margin-top: 10px;
 	margin-bottom: 5px;
+    }
+    .paging li {
+        padding: 6px 12px;
+    }
+    #sidebar {
+        display: block !important;
     }
     /*  --------------------------------------------------------------------  */
 }
@@ -68,6 +74,53 @@
 }
 .fb-like, .fb-like * {
     max-width: 100% !important;
+}
+/*  ------------------------------------------------------------------------  */
+
+/*  -------------------------------  sidebar  ------------------------------  */
+#toggle_sidebar {
+    float: right;
+    top: 20px;
+    right: 15px;
+    font-size: 18px;
+    font-family: UVNBachTuyet;
+}
+/*  ------------------------------------------------------------------------  */
+
+/*  ---------------------------------  paging  ------------------------------  */
+.paging {
+    display: inline-block;
+    float: left;
+    margin-top: 15px;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+.paging li {
+    display: inline;
+    transition: background-color .3s;
+}
+.paging li.active a {
+    background-color: #4CAF50;
+    color: #FFF;
+    cursor: default;
+}
+.paging li:not(.active):hover a {
+   background-color: #DDD;
+}
+.paging li a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+.paging li.active a {
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+    color: white;
+}
+.paging li a:hover {
+    
 }
 /*  ------------------------------------------------------------------------  */
 

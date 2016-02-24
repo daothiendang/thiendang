@@ -8,8 +8,9 @@
     <div style="text-align:center;" id="loading_message">
         Đang tải, xin đợi một chút... <img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
     </div>
-    <div class="paging">
-        <a href="<?php echo $page1; ?>">1</a>&nbsp;&nbsp;-&nbsp;&nbsp;2
+    <div class="paging" style="height: 50px;">
+        <li><a href="<?php echo $page1; ?>">1</a>
+        <li>2</li>
     </div>
     <table border="0" cellpadding="0" cellspacing="0" class="table" style="width: 850px;">
         <tr>

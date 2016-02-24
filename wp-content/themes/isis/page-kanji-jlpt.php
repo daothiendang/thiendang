@@ -88,30 +88,6 @@
         left: 195px;
     }
     
-    .paging {
-        float: left;
-        margin-top: 15px;
-        width: 100%;
-        text-align: center;
-    }
-    .paging li {
-        display: inline;
-        padding: 8px 16px;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color .3s;
-    }
-    .paging li.active {
-        color: red;
-        background-color: #4CAF50;
-        color: white;
-        cursor: default;
-    }
-    .paging li:not(.active):hover {
-        background-color: #ddd;
-    }
     
     #list_kanji {
         float: left;
@@ -402,9 +378,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 $numOfPages = ceil($total / 100);
                 $pagingContent = '';
                 if ($numOfPages > 1) {
-                    $pagingContent .= '<li class="active">1</li>';
+                    $pagingContent .= '<li class="active"><a>1</a></li>';
                     for ($i = 2; $i <= $numOfPages; $i++) {
-                        $pagingContent .= '<li>' . $i . '</li>';
+                        $pagingContent .= '<li><a>' . $i . '</a></li>';
                     }
                 }
             ?>
@@ -626,9 +602,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 if (numOfPage > 1) {
                     for (i = 1; i <= numOfPage; i++) {
                         if (i == page) {
-                            pagingContent += '<li class="active">' + i + '</li>';
+                            pagingContent += '<li class="active"><a>' + i + '</a></li>';
                         } else {
-                            pagingContent += '<li>' + i + '</li>';
+                            pagingContent += '<li><a>' + i + '</a></li>';
                         }
                     }
                 }

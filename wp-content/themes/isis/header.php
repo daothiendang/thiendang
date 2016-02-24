@@ -94,7 +94,6 @@
     <script type="text/javascript">var siteUrl = '<?php echo get_site_url(); ?>/';</script>
 </head>
 <body <?php body_class(); ?>>
-    
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
