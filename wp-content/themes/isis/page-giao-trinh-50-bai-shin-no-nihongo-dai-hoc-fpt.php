@@ -9,7 +9,7 @@
         Đang tải, xin đợi một chút... <img src="<?php bloginfo('stylesheet_directory'); ?>/css/img/ajax_loader_blue_32.gif" />
     </div>
     <div class="paging" style="height: 50px;">
-        <li class="active"><a href="#">1</a></li>
+        <li class="active"><a>1</a></li>
         <li><a href="<?php echo $page2; ?>">2</a></li>
     </div>
     <div class="clear"></div>

@@ -10,7 +10,7 @@
     </div>
     <div class="paging" style="height: 50px;">
         <li><a href="<?php echo $page1; ?>">1</a>
-        <li>2</li>
+        <li class="active"><a>2</a></li>
     </div>
     <table border="0" cellpadding="0" cellspacing="0" class="table" style="width: 850px;">
         <tr>
