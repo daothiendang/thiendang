@@ -155,9 +155,6 @@ p {
     height:60px;
     padding-left:10px;
     padding-right:10px;
-
-
-
 }
 
 #navmenu li a {
@@ -1804,7 +1801,6 @@ a img.aligncenter {
     text-align: center;    
 }
 .wp-pagenavi .current, .wp-pagenavi a:hover  {
-
     color: #33CCFF;
 }
 .wp-pagenavi a  {

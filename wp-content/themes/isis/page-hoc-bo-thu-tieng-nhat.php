@@ -198,7 +198,7 @@
         opacity: .9;
         filter: alpha(opacity=90);
     }
-    .prev, .next {
+    .popup .prev, .popup .next {
         position: absolute;
         z-index: 1004;
         top: 45%;

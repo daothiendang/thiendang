@@ -378,9 +378,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 $numOfPages = ceil($total / 100);
                 $pagingContent = '';
                 if ($numOfPages > 1) {
-                    $pagingContent .= '<li class="active"><a>1</a></li>';
+                    $pagingContent .= '<li class="active"><a href="#">1</a></li>';
                     for ($i = 2; $i <= $numOfPages; $i++) {
-                        $pagingContent .= '<li><a>' . $i . '</a></li>';
+                        $pagingContent .= '<li><a href="#">' . $i . '</a></li>';
                     }
                 }
             ?>
@@ -552,10 +552,11 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     $('#search_text').on('input', function() {
         update_search();
     });
-    $(document).on('click', '.paging li', function() {
-        if (!$(this).hasClass('active')) {
+    $(document).on('click', '.paging li a', function(e) {
+        e.preventDefault();
+        if (!$(this).parent().hasClass('active')) {
             $('.paging li.active').removeClass('active');
-            $(this).addClass('active');
+            $(this).parent().addClass('active');
             update_search($(this).text());
         }
     });
@@ -602,9 +603,9 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 if (numOfPage > 1) {
                     for (i = 1; i <= numOfPage; i++) {
                         if (i == page) {
-                            pagingContent += '<li class="active"><a>' + i + '</a></li>';
+                            pagingContent += '<li class="active"><a href="#">' + i + '</a></li>';
                         } else {
-                            pagingContent += '<li><a>' + i + '</a></li>';
+                            pagingContent += '<li><a href="#">' + i + '</a></li>';
                         }
                     }
                 }
@@ -659,10 +660,10 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     total = <?php echo $count - 1; ?>;
     
     $(document).on('click', '#list_kanji .item', function() {
-        index = $(this).attr('id').replace('item_', '');
+        index = $(this).find('span:eq(0)').text();
         $('#popup1, #black_overlay').show();
         $('.words').hide();
-        $('#word_' + index).show();
+        $('.words:eq(' + (index - 1) + ')').show();
     });
     
     <?php // stop gallery ?>
@@ -697,7 +698,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             index--;
         }
         $('.words').hide();
-        $('#word_' + index).show();
+        $('.words:eq(' + (index - 1) + ')').show();
     });
     $('.next').click(function() {
         max = $('#list_kanji .item:last-child > span').text();
@@ -707,7 +708,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
             index++;
         }
         $('.words').hide();
-        $('#word_' + index).show();
+        $('.words:eq(' + (index - 1) + ')').show();
     });
     $(document).keydown(function(e) {
         if ($('#popup1').is(':visible')) {
