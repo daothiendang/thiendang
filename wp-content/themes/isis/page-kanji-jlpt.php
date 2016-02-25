@@ -544,7 +544,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     });
     
     $('#order, #order_by, #words_per_page').change(function() {
-        update_search($('.paging li.active').text());
+        update_search($('.paging').first().find('li.active').text());
     });
     $('#words_per_page').change(function() {
         update_search();
@@ -660,10 +660,10 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     total = <?php echo $count - 1; ?>;
     
     $(document).on('click', '#list_kanji .item', function() {
-        index = $(this).find('span:eq(0)').text();
+        index = $(this).index();
         $('#popup1, #black_overlay').show();
         $('.words').hide();
-        $('.words:eq(' + (index - 1) + ')').show();
+        $('.words:eq(' + index + ')').show();
     });
     
     <?php // stop gallery ?>
@@ -691,24 +691,23 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     
     <?php // prev, next ?>
     $('.prev').click(function() {
-        min = $('#list_kanji .item:first-child > span').text();
-        if (index == min) {
-            index = $('#list_kanji .item:last-child > span').text();;
+        if (index == 0) {
+            index = $('#list_kanji .item').length - 1;
         } else {
             index--;
         }
         $('.words').hide();
-        $('.words:eq(' + (index - 1) + ')').show();
+        $('.words:eq(' + index + ')').show();
     });
     $('.next').click(function() {
-        max = $('#list_kanji .item:last-child > span').text();
+        max = $('#list_kanji .item').length - 1;
         if (index == max) {
-            index = $('#list_kanji .item:first-child > span').text();
+            index = 0;
         } else {
             index++;
         }
         $('.words').hide();
-        $('.words:eq(' + (index - 1) + ')').show();
+        $('.words:eq(' + index + ')').show();
     });
     $(document).keydown(function(e) {
         if ($('#popup1').is(':visible')) {
