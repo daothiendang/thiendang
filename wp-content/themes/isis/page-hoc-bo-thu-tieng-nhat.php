@@ -1,3 +1,4 @@
+<?php include(locate_template('header.php')); ?>
 <style type="text/css">
     @font-face {
         font-family: UVNBachTuyet;
@@ -39,9 +40,19 @@
     }
     .top-content input {
         min-width: 200px;
+        height: 15px;
     }
     #search_text {
         float: left;
+    }
+    input[type="search"] {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-appearance: searchfield;
+    }
+    input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: searchfield-cancel-button;
     }
     #search_button {
         margin-left: 10px;
@@ -285,7 +296,6 @@
     }
 </style>
 
-<?php include(locate_template('header.php')); ?>
 <div class="row">
     <div id="sub_banner">
         <h1><?php the_title(); ?></h1>
@@ -353,7 +363,7 @@
                     <option value="17">17 nét</option>
                 </select>
                 <div>
-                    <input type="text" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
+                    <input type="search" id="search_text" placeholder="Nhập bộ thủ hoặc âm Hán Việt" />
                     <button id="search_button" class="btn-sm">Tìm kiếm</button>
                 </div>
                 <div id="relative_wrap">

@@ -1,3 +1,4 @@
+<?php include(locate_template('header.php')); ?>
 <style type="text/css">
     @font-face {
         font-family: UVNBachTuyet;
@@ -295,7 +296,6 @@
  * Template Name: Page Kanji JLPT
  */
 
-include(locate_template('header.php'));
 $title = get_the_title();
 $level = strtolower(substr($title, -2));
 
