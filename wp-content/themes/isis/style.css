@@ -819,7 +819,12 @@ a.nivo-prevNav {
 
 }
 
-.content2 { text-align:left; font-size:13px; height:85px; overflow:hidden;}	
+.content2 {
+    text-align: left;
+    font-size: 13px;
+    height: 85px;
+    overflow:hidden;
+}
 .lay1 .post_content2 {
     float:left;  width:200px; height:190px; overflow:hidden;
 }
@@ -829,10 +834,12 @@ a.nivo-prevNav {
 
 }
 
-.imgwrap a img {position: absolute;
-                overflow: hidden;
-                height: 150px;
-                width: 218px;}
+.imgwrap a img {
+    position: absolute;
+    overflow: hidden;
+    height: 150px;
+    width: 218px;
+}
 
 
 
@@ -2468,7 +2475,7 @@ a img.aligncenter {
     #navmenu ul > li::before { display:none !important;}
 }
 
-@media only screen and (max-width:767px) {
+@media only screen and (max-width: 767px) {
     #menu_wrap2  #navmenu ul.menu {
         top: 125px;
         width: 100%;
@@ -2662,7 +2669,6 @@ a img.aligncenter {
         width: 220px;
         height: 150px;
         overflow: hidden;
-        ;
     }
     
     #content .top-content {
@@ -2672,7 +2678,13 @@ a img.aligncenter {
         background-color: #FFF;
         padding: 20px 20px;
     }
-    
+    .lay1 .post_content2 {
+        padding: 0 10px;
+        width: 100%;
+    }
+    .lay1 .post_content2 .content2 {
+        text-align: justify;
+    }
     #sidebar {
         width: 100% !important;
     }

@@ -549,9 +549,16 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     $('#words_per_page').change(function() {
         update_search();
     });
+    
+    // search after finish typing 0.4 second
+    var typingTimer = 0;
+    var doneTypingInterval = 400;
     $('#search_text').on('input', function() {
-        update_search();
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(update_search, doneTypingInterval);
     });
+    
+    // paging
     $(document).on('click', '.paging li a', function(e) {
         e.preventDefault();
         if (!$(this).parent().hasClass('active')) {
@@ -589,6 +596,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 listKanji = data['list'];
                 if (listKanji.length === 0) {
                     $('#list_kanji').html('<p>Không tìm thấy. Xin hãy thử lại!</p>');
+                    $('.paging').css('visibility', 'hidden');
                     return false;
                 }
                 
@@ -609,7 +617,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                         }
                     }
                 }
-                $('.paging').html(pagingContent);
+                $('.paging').html(pagingContent).css('visibility', 'visible');
                 
                 count = (page - 1) * wordsPerPage + 1;
                 for (i = 0; i < listKanji.length; i++) {
@@ -655,10 +663,8 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         $('.han_viet span').toggle();
     });
     
-    
-    index = 1;
-    total = <?php echo $count - 1; ?>;
-    
+    // open popup "Chi tiết"
+    var index = 0;
     $(document).on('click', '#list_kanji .item', function() {
         index = $(this).index();
         $('#popup1, #black_overlay').show();
@@ -666,30 +672,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         $('.words:eq(' + index + ')').show();
     });
     
-    <?php // stop gallery ?>
-    $('.btn_close, #black_overlay').click(function() {
-        if ($('#popup2').is(':visible') && $('#popup2 .question').is(':visible')) {
-            var stop = confirm('Bạn muốn dừng bài kiểm tra?\n(Dữ liệu bài kiểm tra sẽ mất)');
-            if (stop) {
-                $('#test_type').show();
-                $('#popup2 .question').remove();
-                $('#btn_confirm').text('Chọn');
-                $('#result').html('');
-                totalRight = 0;
-                $('#popup2 .popup_title').text('Kiểm tra');
-                $('.popup, #black_overlay, #btn_confirm, #result').hide();
-            }
-        } else if ($('#popup2').is(':visible')) {
-            $('#result').html('');
-            $('#popup2 .question').remove();
-            $('#popup2 .popup_title').text('Kiểm tra');
-            $('.popup, #black_overlay, #result').hide();
-        } else if ($('#popup1').is(':visible')) {
-            $('.popup, #black_overlay').hide();
-        }
-    });
-    
-    <?php // prev, next ?>
+    // click prev, next
     $('.prev').click(function() {
         if (index == 0) {
             index = $('#list_kanji .item').length - 1;
@@ -735,6 +718,30 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         }
     });
     
+    // close popup
+    $('.btn_close, #black_overlay').click(function() {
+        if ($('#popup2').is(':visible') && $('#popup2 .question').is(':visible')) {
+            var stop = confirm('Bạn muốn dừng bài kiểm tra?\n(Dữ liệu bài kiểm tra sẽ mất)');
+            if (stop) {
+                $('#test_type').show();
+                $('#popup2 .question').remove();
+                $('#btn_confirm').text('Chọn');
+                $('#result').html('');
+                totalRight = 0;
+                $('#popup2 .popup_title').text('Kiểm tra');
+                $('.popup, #black_overlay, #btn_confirm, #result').hide();
+            }
+        } else if ($('#popup2').is(':visible')) {
+            $('#result').html('');
+            $('#popup2 .question').remove();
+            $('#popup2 .popup_title').text('Kiểm tra');
+            $('.popup, #black_overlay, #result').hide();
+        } else if ($('#popup1').is(':visible')) {
+            $('.popup, #black_overlay').hide();
+        }
+    });
+    
+    // open popup "Kiểm tra" and check condtion before creating a test
     var maxQuest = 0;
     $('#btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
@@ -779,6 +786,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         }
     });
     
+    // create questions for the test
     $('#btn_start_test').click(function(e) {
         e.preventDefault();
         testType   = $('input[name="test_type"]:checked').val();
@@ -857,6 +865,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         });
     });
     
+    // validate question and return result
     var totalRight = 0;
     $('#btn_confirm').on('click', function() {
         curQuest  = $('.popup_content .question:visible');
