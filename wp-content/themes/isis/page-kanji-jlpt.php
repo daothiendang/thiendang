@@ -22,9 +22,9 @@
         margin-left: 5px;
     }
     .toggle_info {
-        display: none;
         margin-bottom: 20px;
         padding: 0 10px;
+        border-bottom: 1px solid #483A08;
     }
     .toggle_info p {
         color: #097FC7;
@@ -34,6 +34,7 @@
     }
     #search_section {
         margin: 0 10px;
+        padding-top: 25px;
     }
     .top-content select {
         width: auto;
@@ -321,11 +322,11 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
             </div>
             <div class="toggle_info" id="intro">
-                <h2>Giới thiệu</h2>
+                <h3>Giới thiệu</h3>
                 <?php echo apply_filters('the_content', $post->post_content); ?>
             </div>
-            <div class="toggle_info" id="how_to_use">
-                <h2>Chức năng chính</h2>
+            <div class="toggle_info" id="how_to_use" style="display: none;">
+                <h3>Chức năng chính</h3>
                 <p>- Hiển thị theo số thứ tự hoặc số nét.</p>
                 <p>- Tìm theo kanji hoặc âm Hán Việt.</p>
                 <p>- Ẩn/Hiện kanji hoặc Ẩn/Hiện Hán Việt.</p>
@@ -334,7 +335,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                     (Trên mobile và tablet có thể vuốt sang trái sang phải).
                 </p>
                 <p>- Kiểm tra: Những từ được kiểm tra là những từ đang hiện trên màn hình.
-                    Chọn loại câu hỏi và số lượng câu hỏi, bấm Bắt Đầu.
+                    Chọn loại câu hỏi, câu trả lời và số lượng câu hỏi, bấm Bắt Đầu.
                 </p>
             </div>
             <div id="search_section">
