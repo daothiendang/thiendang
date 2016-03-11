@@ -588,7 +588,7 @@ function create_questions_kanji() {
     if ($testType == 'chu_han') {
         foreach ($questions as $questionId) {
             $word = explode('+', $listWords[$questionId]);
-            $sql  = 'SELECT ' . $answerType . ' FROM kanji_' . $level .
+            $sql  = 'SELECT DISTINCT ' . $answerType . ' FROM kanji_' . $level .
                         ' WHERE ' . $answerType . ' != "' . $word[$answerIndex] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
@@ -599,7 +599,7 @@ function create_questions_kanji() {
             $data[$i]['right']  = $right;
             $i++;
         }
-    } else if ($testType == 'han_viet') {
+    } else if ($testType == 'tu_vung') {
         foreach ($questions as $questionId) {
             $word = explode('+', $listWords[$questionId]);
             $sql  = 'SELECT bo_thu FROM kanji_bo_thu
