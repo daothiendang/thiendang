@@ -70,7 +70,6 @@
         background: #1F0B0B;
     }
     .toggle_button {
-        float: left;
         margin-bottom: 10px;
     }
     .toggle_button div {
@@ -631,6 +630,7 @@
         $('#popup1, #black_overlay').show();
         $('.words').hide();
         $('#word_' + index).show();
+        $('body').css('overflow', 'hidden');
     });
     
     <?php // stop gallery ?>
@@ -654,6 +654,7 @@
         } else if ($('#popup1').is(':visible')) {
             $('.popup, #black_overlay').hide();
         }
+        $('body').css('overflow', 'auto');
     });
     
     <?php // prev, next ?>

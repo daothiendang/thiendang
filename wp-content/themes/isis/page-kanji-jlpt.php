@@ -684,6 +684,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         $('#popup1, #black_overlay').show();
         $('.words').hide();
         $('.words:eq(' + index + ')').show();
+        $('body').css('overflow', 'hidden');
     });
     
     // click prev, next
@@ -753,6 +754,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         } else if ($('#popup1').is(':visible')) {
             $('.popup, #black_overlay').hide();
         }
+        $('body').css('overflow', 'auto');
     });
     
     // open popup "Kiểm tra" and check condtion before creating a test
