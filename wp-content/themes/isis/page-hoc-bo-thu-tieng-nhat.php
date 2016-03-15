@@ -70,6 +70,7 @@
         background: #1F0B0B;
     }
     .toggle_button {
+        float: left;
         margin-bottom: 10px;
     }
     .toggle_button div {
@@ -82,13 +83,17 @@
         color: #F10B0B;
         cursor: pointer;
     }
-    .toggle_button .toggle_han_viet {
+    .toggle_button .toggle_han_viet, .toggle_button .btn_test {
         margin-left: 10px;
+    }
+    .toggle_button .btn_test {
+        padding: 4px 10px;
     }
     .fixed_button {
         position: relative;
         margin: 0 auto;
-        width: 300px;
+        width: 370px;
+        max-width: 100%;
     }
     .fixed_button .toggle_han_viet {
         left: 195px;
@@ -294,6 +299,14 @@
             width: 100%;
         }
     }
+    @media screen and (max-width: 480px) {
+        .toggle_bo_thu {
+            display: none;
+        }
+        .bo_thu span {
+            display: block !important;
+        }
+    }
 </style>
 
 <div class="row">
@@ -309,7 +322,6 @@
                 <button class="btn btn-primary" id="btn_how_to_use">
                     Hướng dẫn <span class="caret"></span>
                 </button>
-                <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
             </div>
             <div class="toggle_info" id="intro">
                 <h3>Giới thiệu</h3>
@@ -370,12 +382,14 @@
                     <div class="toggle_button">
                         <div class="toggle_bo_thu active">Ẩn/Hiện kanji</div>
                         <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                        <button class="btn_test btn btn-danger">Kiểm tra</button>
                     </div>
                 </div>
                 <div id="fixed_wrap">
                     <div class="toggle_button fixed_button">
                         <div class="toggle_bo_thu active">Ẩn/Hiện kanji</div>
                         <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                        <button class="btn_test btn btn-danger">Kiểm tra</button>
                     </div>
                 </div>
             </div>
@@ -688,7 +702,7 @@
     });
     
     var maxQuest = 0;
-    $('#btn_test').click(function() {
+    $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
         maxQuest = $('#list_bo_thu .item').length;
         $('#max_question').text(maxQuest);

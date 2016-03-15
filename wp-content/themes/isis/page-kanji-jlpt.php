@@ -78,13 +78,17 @@
         color: #F10B0B;
         cursor: pointer;
     }
-    .toggle_button .toggle_han_viet {
+    .toggle_button .toggle_han_viet, .toggle_button .btn_test {
         margin-left: 10px;
+    }
+    .toggle_button .btn_test {
+        padding: 4px 10px;
     }
     .fixed_button {
         position: relative;
         margin: 0 auto;
-        width: 300px;
+        width: 370px;
+        max-width: 100%;
     }
     .fixed_button .toggle_han_viet {
         left: 195px;
@@ -291,6 +295,14 @@
             width: 100%;
         }
     }
+    @media screen and (max-width: 480px) {
+        .toggle_kanji {
+            display: none;
+        }
+        .kanji span {
+            display: block !important;
+        }
+    }
 </style>
 <?php
 /*
@@ -319,7 +331,6 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 <button class="btn btn-primary" id="btn_how_to_use">
                     Hướng dẫn <span class="caret"></span>
                 </button>
-                <button id="btn_test" class="btn btn-danger">Kiểm tra</button>
             </div>
             <div class="toggle_info" id="intro">
                 <h3>Giới thiệu</h3>
@@ -364,12 +375,14 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                     <div class="toggle_button">
                         <div class="toggle_kanji active">Ẩn/Hiện kanji</div>
                         <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                        <button class="btn_test btn btn-danger">Kiểm tra</button>
                     </div>
                 </div>
                 <div id="fixed_wrap">
                     <div class="toggle_button fixed_button">
                         <div class="toggle_kanji active">Ẩn/Hiện kanji</div>
                         <div class="toggle_han_viet active">Ẩn/Hiện Hán Việt</div>
+                        <button class="btn_test btn btn-danger">Kiểm tra</button>
                     </div>
                 </div>
             </div>
@@ -744,7 +757,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     
     // open popup "Kiểm tra" and check condtion before creating a test
     var maxQuest = 0;
-    $('#btn_test').click(function() {
+    $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
         maxQuest = $('#list_kanji .item').length;
         $('#max_question').text(maxQuest);
