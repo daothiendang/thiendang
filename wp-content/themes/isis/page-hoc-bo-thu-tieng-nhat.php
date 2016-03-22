@@ -705,6 +705,7 @@
     var maxQuest = 0;
     $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
+        $('body').css('overflow', 'hidden');
         maxQuest = $('#list_bo_thu .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);

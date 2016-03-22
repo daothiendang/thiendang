@@ -761,6 +761,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     var maxQuest = 0;
     $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
+        $('body').css('overflow', 'hidden');
         maxQuest = $('#list_kanji .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);
