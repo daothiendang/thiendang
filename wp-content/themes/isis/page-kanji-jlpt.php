@@ -531,7 +531,8 @@ $results = $wpdb->get_results($sql, ARRAY_A);
 </script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
-    var level = '<?php echo $level; ?>';
+    var bodyPos = 0;
+    var level   = '<?php echo $level; ?>';
     var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
     
     $('#btn_intro').click(function() {
@@ -684,7 +685,8 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         $('#popup1, #black_overlay').show();
         $('.words').hide();
         $('.words:eq(' + index + ')').show();
-        $('body').css('overflow', 'hidden');
+        bodyPos = $(document).scrollTop();
+        $('html, body').css('overflow', 'hidden').css('position', 'relative').height('100%');
     });
     
     // click prev, next
@@ -754,14 +756,16 @@ $results = $wpdb->get_results($sql, ARRAY_A);
         } else if ($('#popup1').is(':visible')) {
             $('.popup, #black_overlay').hide();
         }
-        $('body').css('overflow', 'auto');
+        $('html, body').css('overflow', 'auto').css('position', 'static').height('auto');
+        $(window).scrollTop(bodyPos);
     });
     
     // open popup "Kiểm tra" and check condtion before creating a test
     var maxQuest = 0;
     $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
-        $('body').css('overflow', 'hidden');
+        bodyPos = $(document).scrollTop();
+        $('html, body').css('overflow', 'hidden').css('position', 'relative').height('100%');
         maxQuest = $('#list_kanji .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);

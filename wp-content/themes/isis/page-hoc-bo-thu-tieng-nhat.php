@@ -491,6 +491,8 @@
 </script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
+    var bodyPos = 0;
+    
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
         $('#intro').slideToggle('slow', 'swing', function() {
@@ -630,7 +632,8 @@
         $('#popup1, #black_overlay').show();
         $('.words').hide();
         $('#word_' + index).show();
-        $('body').css('overflow', 'hidden');
+        bodyPos = $(document).scrollTop();
+        $('html, body').css('overflow', 'hidden').css('position', 'relative').height('100%');
     });
     
     <?php // stop gallery ?>
@@ -654,7 +657,8 @@
         } else if ($('#popup1').is(':visible')) {
             $('.popup, #black_overlay').hide();
         }
-        $('body').css('overflow', 'auto');
+        $('html, body').css('overflow', 'auto').css('position', 'static').height('auto');
+        $(window).scrollTop(bodyPos);
     });
     
     <?php // prev, next ?>
@@ -705,7 +709,8 @@
     var maxQuest = 0;
     $('.btn_test').click(function() {
         $('#test_type, #popup2, #black_overlay').show();
-        $('body').css('overflow', 'hidden');
+        bodyPos = $(document).scrollTop();
+        $('html, body').css('overflow', 'hidden').css('position', 'relative').height('100%');
         maxQuest = $('#list_bo_thu .item').length;
         $('#max_question').text(maxQuest);
         $('#total_question').attr('max', maxQuest);
