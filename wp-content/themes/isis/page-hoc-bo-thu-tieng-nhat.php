@@ -209,9 +209,6 @@
         display: none;
         background-color: black;
         z-index: 1000;
-        -moz-opacity: .9;
-        opacity: .9;
-        filter: alpha(opacity=90);
     }
     .popup .prev, .popup .next {
         position: absolute;
