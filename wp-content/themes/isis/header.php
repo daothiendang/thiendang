@@ -34,21 +34,18 @@
     <meta name="keywords" content="thiendang" />
         
     <?php if (is_singular('movie')) { ?>
-        <meta property="og:description" content="<?php echo ($post->post_title) . ' - ' . htmlentities(get_post_field('post_content', $post->ID)); ?>" />
+        <meta property="og:description" content="<?php echo strip_tags(get_post_field('post_content', $post->ID)); ?>" />
         <meta property="og:image" content="<?php echo get_post_meta($post->ID, 'movie_image_url', true); ?>" />
     <?php } else if (is_page() || is_single()) { ?>
-        <meta property="og:description" content="<?php echo ($post->post_title) . ' - ' . htmlentities(get_post_field('post_content', $post->ID)); ?>" />
+        <meta property="og:description" content="<?php echo wp_trim_words(strip_tags(get_post_field('post_content', $post->ID)), 100); ?>" />
         <meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>" />
     <?php } else { ?>
         <meta property="og:description" content="<?php echo ($title); ?>" />
     <?php } ?>
     
-    <?php if ($post->ID != '') { ?>
-        <meta property="og:url" content="<?php get_permalink( $post->ID ); ?>" />
-    <?php } else { ?>
-        <meta property="og:url" content="http://thiendang/tk" />
-    <?php } ?>
-        
+    <meta property="og:url" content="http://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>" />
+    <meta property="fb:app_id" content="682690658535443" />
+    
     <title><?php echo $title; ?></title>
     <link rel="shortcut icon" href="<?php echo get_site_url();?>/icon/favicon.png?v=0.1" />
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
@@ -94,6 +91,15 @@
     <script type="text/javascript">var siteUrl = '<?php echo get_site_url(); ?>/';</script>
 </head>
 <body <?php body_class(); ?>>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId  : '682690658535443',
+                xfbml  : true,
+                version: 'v2.5'
+            });
+        };
+    </script>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
