@@ -4074,9 +4074,9 @@
             <td>49.1</td>
             <td>Các cách để tạo TÔN KÍNH NGỮ</td>
             <td>
-                <div class="summarize">1. Dùng tiền tố 「お」 và 「ご」(viết chữ Hán đều là 御 (NGỰ))</div>
+                <div class="summarize">1. Dùng tiền tố 「お」 và 「ご」(viết chữ Hán đều là 御 (NGỰ)</div>
                 <div class="explain">
-                    - Tiền tố 「お」 và「 ご」được sử dụng rất nhiều trong câu kính ngữ. Chữ 御 (NGỰ)) với tư cách là 
+                    - Tiền tố 「お」 và「 ご」được sử dụng rất nhiều trong câu kính ngữ. Chữ 御 (NGỰ) với tư cách là 
                     tiền tố được thêm vào phía trước các loại từ (danh từ, tính từ, phó từ ) và có 2 cách đọc, lúc là
                     「お」, lúc là「 ご」tùy theo loại từ nó ghép là <span class="bold">từ thuần Nhật</span> (Hòa ngữ - 和語) hay là <span class="bold">từ gốc Hán</span>
                     (Hán ngữ - 漢語)<br>
@@ -4816,7 +4816,7 @@
         <div class="toPopup" id="popup_dong_tu_the_dieu_kien" style="width: 600px;">
             <div class="popup_header">
                 <div class="popup_title">
-                    <span>35.1 Động từ thể điều kiên</span> <a href="dong_tu_the_dieu_kien.html" target="_blank">Xem trong tab mới</a>
+                    <span>35.1 Động từ thể điều kiện</span> <a href="dong_tu_the_dieu_kien.html" target="_blank">Xem trong tab mới</a>
                 </div>
                 <div class="btn_close"></div>
             </div>
