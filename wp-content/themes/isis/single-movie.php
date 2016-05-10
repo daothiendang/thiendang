@@ -62,9 +62,20 @@
                     <div style="margin: 0 5px 20px 55px;">
                         <?php echo apply_filters('the_content', $post->post_content); ?>
                     </div>
-                    <?php $linkGoogleDrive = get_post_meta($post->ID, 'google_drive_id', true);?>
+                    <?php
+                        $googleDriveId  = get_post_meta($post->ID, 'google_drive_id', true);
+                        if ($googleDriveId) {
+                            $linkMovie      = 'https://docs.google.com/file/d/' . $googleDriveId . '/preview';
+                            $downloadLink[] = 'https://docs.google.com/uc?export=download&id=' . $googleDriveId;
+                        }
+                        $youtubeId = get_post_meta($post->ID, 'youtube_id', true);
+                        if ($youtubeId) {
+                            $linkMovie      = 'https://www.youtube.com/embed/' . $youtubeId;
+                            $downloadLink[] = 'http://keepvid.com/?url=https://www.youtube.com/watch?v=' . $youtubeId;
+                        }
+                    ?>
                     <div class="movie_container">
-                        <iframe class="movie_iframe" src="https://docs.google.com/file/d/<?php echo $linkGoogleDrive;?>/preview" width="536" height="302" allowfullscreen></iframe>
+                        <iframe class="movie_iframe" src="<?php echo $linkMovie; ?>" width="536" height="302" allowfullscreen></iframe>
                     </div>
                     <div class="post_wrap_n">
                         <?php wp_link_pages('<p class="pages"><strong>Pages: </strong>', '</p>', 'number'); ?>
@@ -91,7 +102,13 @@
                                     Download Phim <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a target="_blank" href="https://docs.google.com/uc?export=download&id=<?php echo $linkGoogleDrive;?>">Link 1</a></li>
+                                    <?php
+                                        $i = 0;
+                                        foreach ($downloadLink as $link) {
+                                            $i++;
+                                            echo '<li><a target="_blank" href="' . $link . '">Link ' . $i . '</a></li>';
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
