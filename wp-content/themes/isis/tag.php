@@ -13,13 +13,10 @@
                     <div class="imgwrap">
                     <a href="<?php the_permalink(); ?>">
                         <?php $linkImg = get_post_meta($post->ID, 'movie_image_url', true);?>
-                        <img src="<?php echo $linkImg;?>" alt="Chưa có ảnh đại diện" class="thn_thumbnail"/>
+                        <img src="<?php echo $linkImg;?>" alt="<?php the_title(); ?>" class="thn_thumbnail"/>
                         <div class="ch-item ch-img-1 "> 
                         <div class="ch-info">
-                    <h3>
-                    <?php // echo get_the_content(); ?>
-                    </h3>
-                            <a class="xem_phim" href="<?php the_permalink(); ?>" >Xem phim</a>
+                            <a class="xem_phim" href="<?php the_permalink(); ?>">Xem phim</a>
                         </div>
                         </div>
                     </a>
@@ -111,4 +108,4 @@
     </div>
     </div>
 </div>
-<?php get_footer(); ?>
+<?php get_footer();
