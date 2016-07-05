@@ -3,7 +3,9 @@
     <?php if (get_post_type($post->ID) == 'movie') { ?>
         <div class="lay1 list_movie">
             <div class="post_title">
-                <?php the_tags('', '  '); ?>
+                <a href="<?php echo get_tag_link($tag_id); ?>">
+                    <?php single_tag_title(); ?>
+                </a>
             </div>
         <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
         <?php query_posts($query_string .'&orderby=CAST(SUBSTRING(SUBSTRING_INDEX(wp_posts.post_title, " ", 1), 4) AS DECIMAL)&order=ASC&posts_per_page=24&paged=' . $paged); ?>

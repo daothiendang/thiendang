@@ -10,9 +10,9 @@
  */
 
 // global variable
-$linkFbComment = 'http://thiendang.tk/';
-$siteUrl = get_site_url();
-$themeUrl = get_template_directory_uri();
+$linkFbComment = 'http://thiendang.vn/';
+$siteUrl       = get_site_url();
+$themeUrl      = get_template_directory_uri();
 
 if (!isset($content_width)) {
     $content_width = 630;
