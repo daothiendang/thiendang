@@ -14,9 +14,9 @@
         <?php if (of_get_option('frontcat_checkbox') == '1') {
             if (is_front_page()) {
             $args = array(
-                'cat' => '' . $os_front = of_get_option('front_cat') . '',
-                'post_type' => 'post',
-                'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1),
+                'cat'            => '' . $os_front = of_get_option('front_cat') . '',
+                'post_type'      => 'post',
+                'paged'          => (get_query_var('paged') ? get_query_var('paged') : 1),
                 'posts_per_page' => '' . $os_fonts = of_get_option('frontnum_select') . ''
             );
             new WP_Query($args);
@@ -92,6 +92,4 @@
         <?php } ?>
     </div>
     <?php get_template_part('pagination'); ?>             
-</div>
-</div>
 </div>
