@@ -35,7 +35,7 @@
 
 <div class="row">
     <div class="columns">
-        <div id="content" >
+        <div id="content">
             <div class="top-content">
                 <div <?php post_class(); ?>></div>
                 <div id="content" class="content_blog blog_style_b1" role="main">
