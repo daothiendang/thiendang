@@ -9,12 +9,17 @@
  */
 
 get_header(); ?>
-<div class="row  warp">
-    <div class="large-12 ">
-        <div style="min-height:500px; margin-top:40px;">
+<div class="row warp">
+    <div id="content">
+        <div class="top-content">
             <?php get_template_part('' . $isis = of_get_option('layout1_images') . ''); ?>
+            <?php get_template_part('pagination'); ?>
         </div>
-        <?php get_template_part('pagination'); ?>  
+        <?php
+            if (of_get_option('nosidebar_checkbox') == "0") {
+                get_sidebar();
+            }
+        ?>
     </div>
 </div> 
 <?php get_footer();
