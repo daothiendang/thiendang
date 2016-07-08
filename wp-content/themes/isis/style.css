@@ -133,9 +133,6 @@ p {
 .tinynav, .tinynav1 {
     display: none;
 }
-#navmenu {
-
-}
 .nav-header {
     margin: auto;
     padding: 0;
@@ -234,9 +231,18 @@ p {
     border-left-width: 1px;
     border-left-style: solid;
     border-left-color: #CCC;
-
 }
 
+/*HOT LIST*/
+#hot_list {
+    padding: 10px;
+    background: #416557;
+    color: #07ddde;
+}
+#hot_list a {
+    line-height: 20px;
+    color: #FFF;
+}
 
 /*SLIDER*/
 #slider {

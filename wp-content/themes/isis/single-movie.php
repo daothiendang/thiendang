@@ -60,7 +60,7 @@
                         <?php the_post_thumbnail('medium'); ?>
                     </div>
                     <div style="margin: 0 5px 20px 55px;">
-                        <?php echo apply_filters('the_content', $post->post_content); ?>
+                        <?php echo apply_filters('the_content', $post->post_content) . '&nbsp;'; ?>
                     </div>
                     <?php
                         $googleDriveId  = get_post_meta($post->ID, 'google_drive_id', true);
