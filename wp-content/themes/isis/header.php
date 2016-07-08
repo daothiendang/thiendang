@@ -30,7 +30,7 @@
     
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
-    <meta name="description" content="Website dùng để test code. Khi nào có gì hay ho mình sẽ post lên đây" />
+    <meta name="description" content="Welcome to thiendang.tk" />
     <meta name="keywords" content="thiendang" />
         
     <?php if (is_singular('movie')) { ?>
