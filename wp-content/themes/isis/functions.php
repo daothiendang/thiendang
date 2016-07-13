@@ -621,3 +621,60 @@ function create_questions_kanji() {
 add_action('wp_ajax_create_questions_kanji', 'create_questions_kanji');
 add_action('wp_ajax_nopriv_create_questions_kanji', 'create_questions_kanji');
 /*  --------------------------  page-kanji-jlpt  ---------------------------  */
+
+/*  -----------------------  customize login form  -------------------------  */
+function my_custom_login() {
+    echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/login/custom-login-styles.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+// change the Login Logo URL
+function my_login_logo_url() {
+    return get_bloginfo( 'url' );
+}
+add_filter('login_headerurl', 'my_login_logo_url');
+
+function my_login_logo_url_title() {
+    return 'thiendang.vn - Vì Cuộc Sống Tươi Đẹp';
+}
+add_filter('login_headertitle', 'my_login_logo_url_title');
+
+// hide the Login Error Message
+function login_error_override() {
+    return 'Incorrect login details.';
+}
+add_filter('login_errors', 'login_error_override');
+
+// remove the Login Page Shake
+function my_login_head() {
+    remove_action('login_head', 'wp_shake_js', 12);
+}
+add_action('login_head', 'my_login_head');
+
+// set "Remember Me" To Checked
+function login_checked_remember_me() {
+    add_filter('login_footer', 'rememberme_checked');
+}
+add_action('init', 'login_checked_remember_me');
+function rememberme_checked() {
+    echo "<script>document.getElementById('rememberme').checked = true;</script>";
+}
+
+function overwrite_login_head() {
+	function overwrite_username_label($translated_text, $text, $domain) {
+		if ('Username or Email' === $text || 'Username' === $text) {
+			$translated_text = 'Tên tài khoản';
+		} else if ('Password' === $text) {
+            $translated_text = 'Mật khẩu';
+        } else if ('Remember Me' == $text) {
+            $translated_text = 'Lưu tài khoản';
+        }
+        if (in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'))) {
+            $translated_text = str_ireplace('Back to %s', '<span style="color: #2804ed;">Quay lại trang chủ</span>', $translated_text);
+        }
+		return $translated_text;
+	}
+	add_filter('gettext', 'overwrite_username_label', 20, 3);
+}
+add_action('login_head', 'overwrite_login_head');
+/*  -----------------------  customize login form  -------------------------  */
