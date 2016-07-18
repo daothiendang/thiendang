@@ -84,7 +84,7 @@
                     <div class="post_info post_info_3 clearboth" style="margin-top:10px;">
                         <?php if (of_get_option('disscats_checkbox') == "0" && has_tag()) { ?>
                             <span class="post_tags">
-                                <span class="tags_label">Tags:</span>
+                                <span class="tags_label">Phim:</span>
                                 <a class="tag_link"><?php the_tags('', ', '); ?></a>
                             </span>
                         <?php } ?>
