@@ -660,19 +660,25 @@ function rememberme_checked() {
     echo "<script>document.getElementById('rememberme').checked = true;</script>";
 }
 
+// change login text
 function overwrite_login_head() {
-	function overwrite_username_label($translated_text, $text, $domain) {
-		if ('Username or Email' === $text || 'Username' === $text) {
-			$translated_text = 'Tên tài khoản';
-		} else if ('Password' === $text) {
-            $translated_text = 'Mật khẩu';
-        } else if ('Remember Me' == $text) {
-            $translated_text = 'Lưu tài khoản';
+	function overwrite_username_label($translatedText, $text) {
+		if ($text === 'Username or Email' || $text === 'Username') {
+			$translatedText = 'Tên tài khoản';
+		} else if ($text === 'Password') {
+            $translatedText = 'Mật khẩu';
+        } else if ($text === 'Remember Me') {
+            $translatedText = 'Lưu tài khoản';
+        } else if ($text === 'Register') {
+            $translatedText = 'Đăng ký';
+        } else if ($text === 'Lost your password?') {
+            $translatedText = 'Quên mật khẩu?';
         }
+        
         if (in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'))) {
-            $translated_text = str_ireplace('Back to %s', '<span style="color: #2804ed;">Quay lại trang chủ</span>', $translated_text);
+            $translatedText = str_ireplace('&larr; Back to %s', '<span style="color: #2804ed;">&larr; Quay lại trang chủ</span>', $translatedText);
         }
-		return $translated_text;
+		return $translatedText;
 	}
 	add_filter('gettext', 'overwrite_username_label', 20, 3);
 }
