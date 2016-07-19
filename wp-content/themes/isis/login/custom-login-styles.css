@@ -68,8 +68,3 @@ body.login {
     -webkit-border-radius: 4px;
     border: 1px solid #0d9ed9;
 }
-
-/* remove the Lost Password Link */
-p#nav {
-    display: none;
-}
