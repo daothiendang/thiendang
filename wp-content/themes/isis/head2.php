@@ -19,7 +19,9 @@
     <div id="hot_list">
         Top phim hot:
         <a href="http://thiendang.vn/phineas-and-ferb/">Phineas and Ferb;</a>
-        <a href="http://thiendang.vn/tag/ban-trai-toi-500-tuoi/">Bạn Trai Tôi 500 Tuổi;</a>
+        <a href="http://thiendang.vn/phim-bac-si-phim-hot-thang-7/">Bác Sĩ;</a>
+        <a href="http://thiendang.vn/phim-hau-due-mat-troi/">Hậu Duệ Mặt Trời;</a>        
+        <a href="http://thiendang.vn/phim-ban-trai-toi-500-tuoi/">Bạn Trai Tôi 500 Tuổi;</a>
         <a href="http://thiendang.vn/tag/khi-nguoi-dan-ong-yeu/">Khi Người Đàn Ông Yêu;</a>
         <a href="http://thiendang.vn/tag/ceo-tai-ba/">CEO Tài Ba</a>
     </div>
