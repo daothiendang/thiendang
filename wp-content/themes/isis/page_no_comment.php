@@ -35,7 +35,7 @@
                     </div>
                 <!--<div class="comments_template"><?php // comments_template('', true); ?></div>-->
             <?php endif ?>
-            <div class="fb-comments" data-href="https://thiendang.tk" data-numposts="7" data-colorscheme="light"></div>
+            <div class="fb-comments" data-href="<?php echo $linkFbComment; ?>" data-numposts="7" data-colorscheme="light"></div>
         </div>
 
 
@@ -47,4 +47,4 @@
 </div>
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
