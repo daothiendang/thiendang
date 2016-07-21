@@ -393,7 +393,7 @@
             <div id="list_bo_thu">
                 <?php
                     global $wpdb;
-                    $sql = 'SELECT * FROM kanji_bo_thu';
+                    $sql = 'SELECT * FROM wp_kanji_bo_thu';
                     $results = $wpdb->get_results($sql, ARRAY_A);
                     foreach ($results as $item) {
                         echo '<div class="item" id="item_' . $item['id'] . '">';

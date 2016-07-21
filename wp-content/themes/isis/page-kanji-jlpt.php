@@ -310,9 +310,9 @@ $title = get_the_title();
 $level = strtolower(substr($title, -2));
 
 global $wpdb;
-$sqlTotal = 'SELECT count(id) FROM kanji_' . $level;
+$sqlTotal = 'SELECT count(id) FROM wp_kanji_' . $level;
 $total = $wpdb->get_var($sqlTotal);
-$sql = 'SELECT * FROM kanji_' . $level . ' LIMIT 100';
+$sql = 'SELECT * FROM wp_kanji_' . $level . ' LIMIT 100';
 $results = $wpdb->get_results($sql, ARRAY_A);
 ?>
 <div class="row">

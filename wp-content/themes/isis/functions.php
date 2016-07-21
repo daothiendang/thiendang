@@ -434,19 +434,19 @@ function search_bo_thu() {
     switch ($type) {
         case 'so_thu_tu':
             if ($value == 'all') {
-                $sql = 'SELECT * FROM kanji_bo_thu';
+                $sql = 'SELECT * FROM wp_kanji_bo_thu';
             } else {
                 $ranges = explode(' - ', $value);
                 $limit  = $ranges[1] - $ranges[0] + 1;
                 $start  = $ranges[0] - 1;
-                $sql = 'SELECT * FROM kanji_bo_thu LIMIT ' . $start . ', ' . $limit;
+                $sql = 'SELECT * FROM wp_kanji_bo_thu LIMIT ' . $start . ', ' . $limit;
             }
             break;
         case 'so_net':
-            $sql = 'SELECT * FROM kanji_bo_thu WHERE so_net = ' . $value;
+            $sql = 'SELECT * FROM wp_kanji_bo_thu WHERE so_net = ' . $value;
             break;
         case 'search':
-            $sql = 'SELECT * FROM kanji_bo_thu WHERE
+            $sql = 'SELECT * FROM wp_kanji_bo_thu WHERE
                 han_viet    LIKE "%' . $value . '%"
                 OR bo_thu   LIKE "%' . $value . '%"
                 OR bien_the LIKE "%' . $value . '%"';
@@ -476,7 +476,7 @@ function create_questions_bo_thu() {
     if ($testType == 'chu_han') {
         foreach ($questions as $questionId) {
             $word = explode('.', $listWords[$questionId]);
-            $sql  = 'SELECT han_viet FROM kanji_bo_thu
+            $sql  = 'SELECT han_viet FROM wp_kanji_bo_thu
                         WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
@@ -490,7 +490,7 @@ function create_questions_bo_thu() {
     } else if ($testType == 'han_viet') {
         foreach ($questions as $questionId) {
             $word = explode('.', $listWords[$questionId]);
-            $sql  = 'SELECT bo_thu FROM kanji_bo_thu
+            $sql  = 'SELECT bo_thu FROM wp_kanji_bo_thu
                         WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
@@ -530,12 +530,12 @@ function search_kanji() {
     $limit = ' LIMIT ' . ($page - 1) * $wordsPerPage . ', ' . $wordsPerPage;
     
     if ($search) {
-        $sqlTotal = 'SELECT count(id) FROM kanji_' . $level . $searchCondition .
+        $sqlTotal = 'SELECT count(id) FROM wp_kanji_' . $level . $searchCondition .
                 ' ORDER BY ' . $orderBy . ' ' . $order;
         $results['total'] = $wpdb->get_var($sqlTotal);
     }
     
-    $sql = 'SELECT * FROM kanji_' . $level . $searchCondition .
+    $sql = 'SELECT * FROM wp_kanji_' . $level . $searchCondition .
             ' ORDER BY ' . $orderBy . ' ' . $order . $limit;
     $results['list'] = $wpdb->get_results($sql, ARRAY_A);
     
@@ -588,7 +588,7 @@ function create_questions_kanji() {
     if ($testType == 'chu_han') {
         foreach ($questions as $questionId) {
             $word = explode('+', $listWords[$questionId]);
-            $sql  = 'SELECT DISTINCT ' . $answerType . ' FROM kanji_' . $level .
+            $sql  = 'SELECT DISTINCT ' . $answerType . ' FROM wp_kanji_' . $level .
                         ' WHERE ' . $answerType . ' != "' . $word[$answerIndex] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
@@ -602,7 +602,7 @@ function create_questions_kanji() {
     } else if ($testType == 'tu_vung') {
         foreach ($questions as $questionId) {
             $word = explode('+', $listWords[$questionId]);
-            $sql  = 'SELECT bo_thu FROM kanji_bo_thu
+            $sql  = 'SELECT bo_thu FROM wp_kanji_bo_thu
                         WHERE han_viet != "' . $word[2] . '" ORDER BY RAND() LIMIT 3';
             $answer = $wpdb->get_col($sql);
             $right  = rand(0, 3);
