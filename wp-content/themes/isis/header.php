@@ -14,11 +14,11 @@
     
     <?php
         if (is_single() || is_page()) {
-            $title = get_the_title() . ' - ' . get_bloginfo();
+            $title = get_the_title() . ' - Thiendang.vn';
         } else if (is_tag()) {
-            $title = single_tag_title('', false) . ' - ' . get_bloginfo();
+            $title = single_tag_title('', false) . ' - Thiendang.vn';
         } else {
-            $title = get_bloginfo();
+            $title = 'Thiendang.vn';
         }
         
         global $post;
