@@ -26,11 +26,11 @@
         $themeUrl = get_template_directory_uri();
     ?>
     <meta property="og:title" content="<?php echo $title;?>" />
-    <meta property="og:site_name" content="thiendang.tk"/>
+    <meta property="og:site_name" content="thiendang.vn"/>
     
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
-    <meta name="description" content="Welcome to thiendang.tk" />
+    <meta name="description" content="Welcome to thiendang.vn" />
     <meta name="keywords" content="thiendang" />
         
     <?php if (is_singular('movie')) { ?>
