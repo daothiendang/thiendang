@@ -96,6 +96,7 @@
                         <?php next_post_link('<div class="alignright">%link</div>', '%title &raquo; '); ?>
                     </div>
                     <div style="width:100%;">
+                        <?php /*
                         <div class="download_button">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -112,6 +113,7 @@
                                 </ul>
                             </div>
                         </div>
+                         */?>
                         <?php
                             $tags = wp_get_post_tags($post->ID);
                             $relatedEpisode = get_movies_by_tag($tags[0]->term_id);
