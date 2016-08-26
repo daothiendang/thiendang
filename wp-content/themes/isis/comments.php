@@ -54,7 +54,7 @@ if ( !defined('ABSPATH')) exit;
                 $defaults = array(
                     'fields' => apply_filters('comment_form_default_fields', $fields),
                     'comment_field' => '<p class="comment-form-comment"><label for="comment">Comment</label><textarea id="comment" name="comment" cols="45" rows="1" aria-required="true"></textarea></p>',
-                    'must_log_in' => '<p class="must-log-in">' .  sprintf(('Bạn cần phải <a href="%s">đăng nhập</a> để comment.'), wp_login_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
+                    'must_log_in' => '<p class="must-log-in">' .  sprintf(('Bạn cần phải <a href="%s" style="color: red;" target="_blank">đăng nhập</a> để comment.'), wp_login_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
                     'logged_in_as' => '<p class="logged-in-as">' . sprintf(('Xin chào <a href="%1$s">%2$s</a>. <a href="%3$s" title="Đăng xuất">Đăng xuất?</a>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
                     'label_submit' => 'Post Comment',
                     'title_reply' => 'Để lại comment'
