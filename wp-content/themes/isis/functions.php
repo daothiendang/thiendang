@@ -9,6 +9,27 @@
  *
  */
 
+$arrayText   = explode(' ', $text);
+        $specialChar = array('.', ',', '?', '!');
+foreach ($arrayText as $text) {
+    $i = -1;
+    while (in_array(substr($text, $i, 1), $specialChar)) {
+        $i--;
+    }
+    if (mb_substr($text, $i - 2, 3) == 'erb') {
+        $text   = substr($text, 0, strlen($text) + $i - 2).substr($text, $i + 1, $i + 1);
+        $j = -1;
+        while (mb_substr($text, $j) !== '-') {
+            $j--;
+        }
+        $vowel      = mb_substr($text, strlen($text) - $j);
+        $consonant  = mb_substr($text, strlen($text) - $j);
+        $isFerb = true;
+    }
+    $result .= $text.' ';
+}
+
+
 // global variable
 $linkFbComment = 'http://thiendang.vn/';
 $siteUrl       = get_site_url();
@@ -684,3 +705,146 @@ function overwrite_login_head() {
 }
 add_action('login_head', 'overwrite_login_head');
 /*  -----------------------  customize login form  -------------------------  */
+
+function translate_sky() {
+    $text = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $_GET['text']);
+    $text = rtrim($text);
+    
+    if ($text) {
+        $arrayText = explode(' ', $text);
+        $specialChar = array('.', ',', '?', '!');
+        
+        $result = '';
+        switch ($_GET['option']) {
+            case 'to_sky':
+                foreach ($arrayText as $text) {
+                    $i = -1;
+                    while (in_array(substr($text, $i, 1), $specialChar)) {
+                        $i--;
+                    }
+                    $text = substr_replace($text, '\'s', strlen($text) + $i + 1, 0);
+                    $result .= $text.' ';
+                }
+                break;
+            case 'from_sky':
+                $isSky = false;
+                foreach ($arrayText as $text) {
+                    $i = -1;
+                    while (in_array(substr($text, $i, 1), $specialChar)) {
+                        $i--;
+                    }
+                    if (substr($text, $i - 1, 2) == '\'s') {
+                        $text  = substr($text, 0, strlen($text) + $i - 2).substr($text, $i + 1, $i + 1);
+                        $isSky = true;
+                    }
+                    $result .= $text.' ';
+                }
+                if ($isSky == false) {
+                    $result = 'Đây không phải ngôn ngữ Sky. Ngôn ngữ Sky phải có phẩy ét ở cuối mỗi từ';
+                }
+                break;
+        }
+        die($result);
+    }
+    die('Ký tự nhập vào không hợp lệ');
+}
+add_action('wp_ajax_translate_sky', 'translate_sky');
+add_action('wp_ajax_nopriv_translate_sky', 'translate_sky');
+
+function translate_ferb() {
+    $text = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $_GET['text']);
+    $text = rtrim($text);
+    
+    if ($text) {
+        $arrayText   = explode(' ', $text);
+        $specialChar = array('.', ',', '?', '!');
+        $consonant3 = 'ngh';
+        $consonant2 = array('ch', 'gh', 'gi', 'kh', 'nh', 'ng', 'ph', 'th', 'tr', 'qu');
+        $consonant1 = array('b', 'c', 'd', 'đ', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'x', 'z');
+        
+        $result = '';
+        switch ($_GET['option']) {
+            case 'to_ferb':
+                foreach ($arrayText as $text) {
+                    $i = -1;
+                    while (in_array(substr($text, $i, 1), $specialChar)) {
+                        $i--;
+                    }
+                    if (mb_strlen($text) > 2) {
+                        $vowelStart = 0;
+                        $lowerText  = mb_strtolower($text);
+                        if (substr($lowerText, 0, 3) == $consonant3) {
+                            $vowelStart = 3;
+                        } else if (in_array(substr($lowerText, 0, 2), $consonant2)) {
+                            $vowelStart = 2;
+                        } else if (in_array(mb_substr($lowerText, 0, 1), $consonant1)) {
+                            $vowelStart = 1;
+                        }
+                        
+                        if ($vowelStart != 0) {
+                            $consonant  = mb_substr($text, 0, $vowelStart);
+                            $remainWord = mb_substr($text, $vowelStart);
+                            if (ctype_upper($consonant[0]) || $consonant == 'Đ') {
+                                $remainWord = mb_ucfirst($remainWord);
+                                $consonant  = mb_strtolower($consonant);
+                            }
+                            $word       = substr_replace($remainWord, '-'.$consonant.'erb', strlen($remainWord) + $i + 1, 0);
+                        } else {
+                            $word       = substr_replace($text, '-erb', strlen($text) + $i + 1, 0);
+                        }
+                    } else {
+                        $word = substr_replace($text, '-erb', strlen($text) + $i + 1, 0);
+                    }
+                    $result .= $word.' ';
+                }
+                break;
+            case 'from_ferb':
+                $isFerb = false;
+                foreach ($arrayText as $text) {
+                    $word = $text;
+                    $i = -1;
+                    while (in_array(substr($text, $i, 1), $specialChar)) {
+                        $i--;
+                    }
+                    if (mb_substr($text, $i - 3, 4) == '-erb') {
+                        $word = mb_substr($text, 0, $i - 3);
+                    } else if (mb_substr($text, $i - 2, 3) == 'erb') {
+                        $word   = substr($text, 0, strlen($text) + $i - 2).substr($text, $i + 1, $i + 1);
+                        $j = -1;
+                        while (mb_substr($word, $j, 1) !== '-') {
+                            $j--;
+                        }
+                        $vowel      = mb_substr($word, 0, mb_strlen($word) + $j);
+                        $consonant  = mb_substr($word, $j + 1);
+                        if (starts_with_upper($vowel)) {
+                            $word   = mb_ucfirst($consonant).mb_lcfirst($vowel).substr($text, $i + 1);
+                        } else {
+                            $word   = $consonant.$vowel.substr($text, $i + 1, $i+1);
+                        }
+                        $isFerb = true;
+                    }
+                    $result .= $word.' ';
+                }
+                if ($isFerb == false) {
+                    $result = 'Đây không phải ngôn ngữ Ferb Latin. Ngôn ngữ Ferb Latin phải có dạng -Ferb, -lerb, -serb...';
+                }
+                break;
+            
+        }
+        die($result);
+    }
+    die('Ký tự nhập vào không hợp lệ');
+}
+add_action('wp_ajax_translate_ferb', 'translate_ferb');
+add_action('wp_ajax_nopriv_translate_ferb', 'translate_ferb');
+
+function mb_ucfirst($string) {
+    return mb_strtoupper(mb_substr($string, 0, 1)).mb_substr($string, 1);
+}
+function mb_lcfirst($string) {
+    return mb_strtolower(mb_substr($string, 0, 1)).(mb_substr($string, 1));
+}
+function starts_with_upper($str) {
+    $chr = mb_substr ($str, 0, 1, "UTF-8");
+    return mb_strtolower($chr, "UTF-8") != $chr;
+}
