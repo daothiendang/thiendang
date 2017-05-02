@@ -34,7 +34,10 @@
     }
     #search_section {
         margin: 0 10px;
-        padding-top: 25px;
+    }
+    #search_section .search_title {
+        float: left;
+        width: 150px;
     }
     .top-content select {
         width: auto;
@@ -347,7 +350,21 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                 </p>
             </div>
             <div id="search_section">
-                Sắp xếp theo
+				<div class="search_title">Level</div>
+				<select id="level">
+					<?php
+						for ($i = 1; $i <= 5; $i++)
+						{
+							$selected = '';
+							if ($level == 'n'.$i)
+							{
+								$selected = 'selected';
+							}
+							echo '<option value="'.$i.'" '.$selected.'>N'.$i.'</option>';
+						}
+					?>
+				</select><br/>
+                <div class="search_title">Sắp xếp theo</div>
                 <select id="order_by">
                     <option value="id">on_yomi</option>
                     <option value="kun_yomi">kun_yomi</option>
@@ -358,7 +375,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                     <option value="asc">Tăng dần (abcxyz)</option>
                     <option value="desc">Giảm dần (zyxcba)</option>
                 </select><br/>
-                Số từ trên một trang
+                <div class="search_title">Số từ trên một trang</div>
                 <select id="words_per_page">
                     <option value="50">50</option>
                     <option value="100" selected>100</option>
@@ -366,7 +383,7 @@ $results = $wpdb->get_results($sql, ARRAY_A);
                     <option value="200">200</option>
                     <option value="<?php echo $total; ?>">Toàn bộ</option>
                 </select><br/>
-                <span style="float: left; margin: 10px 10px 0 0;">Từ cần tìm </span>
+                <div class="search_title" style="float: left; margin-top: 10px;">Từ cần tìm</div>
                 <input type="search" id="search_text" placeholder="Nhập kanji, Hán Việt, kun yomi, hoặc on yomi" />
                 <div id="relative_wrap">
                     <div class="toggle_button">
@@ -532,6 +549,10 @@ $results = $wpdb->get_results($sql, ARRAY_A);
     var level   = '<?php echo $level; ?>';
     var ajaxUrl = siteUrl + 'wp-admin/admin-ajax.php';
     
+	$('#level').change(function() {
+		window.location.href = siteUrl + '/kanji-n' + $(this).val();
+	});
+	
     $('#btn_intro').click(function() {
         $('#how_to_use').hide();
         $('#intro').slideToggle('slow', 'swing', function() {
