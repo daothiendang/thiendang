@@ -16,11 +16,19 @@ get_header(); ?>
                     <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1000px;margin:0px auto 98px;">
                         <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
                             <ul class="amazingslider-slides" style="display:none;">
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/amsterdam_windmill.jpg" alt="holland_windmill" data-description="Breakdance windmill vs real Holland windmill :))" />
+                                </li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/paris_eiffel.jpg" alt="paris_eiffel" data-description="Paris - In the city of love" />
+                                </li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower.jpg" alt="pisa_leaning_tower" data-description="Leaning at Pisa - The leanning Tower" />
+                                </li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colussium.jpg" alt="rome_colussium" data-description="Nike kick - Đấu trường La Mã" />
+                                </li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand.jpg" alt="one_hand_stand" data-description="Treo chuối một tay ở Big Ben :))" />
                                 </li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/air_baby.jpg" alt="air_baby" data-description="Airbaby at the beach" />
                                 </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand.jpg" alt="elbow_handstand" data-description="Chống khuỷu ở Stonehenge" />
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand.jpg" alt="elbow_handstand" data-description="Elbow freeze at Stonehenge" />
                                 </li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/airchair.jpg" alt="airchair_on_a_chair" data-description="airchair trên ghế" />
                                 </li>
@@ -50,6 +58,10 @@ get_header(); ?>
                                 </li>
                             </ul>
                             <ul class="amazingslider-thumbnails" style="display:none;">
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/amsterdam_windmill-tn.jpg" alt="one_hand_stand" /></li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/paris_eiffel-tn.jpg" alt="one_hand_stand" /></li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower-tn.jpg" alt="one_hand_stand" /></li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colussium-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/air_baby-tn.jpg" alt="air_baby" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand-tn.jpg" alt="elbow_handstand" /></li>
