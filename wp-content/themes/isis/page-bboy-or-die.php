@@ -22,7 +22,7 @@ get_header(); ?>
                                 </li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower.jpg" alt="pisa_leaning_tower" data-description="Leaning at Pisa - The leanning Tower" />
                                 </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colussium.jpg" alt="rome_colussium" data-description="Nike kick - Đấu trường La Mã" />
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colosseum.jpg" alt="rome_colosseum" data-description="Nike kick - Đấu trường La Mã" />
                                 </li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand.jpg" alt="one_hand_stand" data-description="Treo chuối một tay ở Big Ben :))" />
                                 </li>
@@ -61,7 +61,7 @@ get_header(); ?>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/amsterdam_windmill-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/paris_eiffel-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colussium-tn.jpg" alt="one_hand_stand" /></li>
+                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colosseum-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand-tn.jpg" alt="one_hand_stand" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/air_baby-tn.jpg" alt="air_baby" /></li>
                                 <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand-tn.jpg" alt="elbow_handstand" /></li>
