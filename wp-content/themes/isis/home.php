@@ -130,7 +130,6 @@
 <!--LATEST POSTS-->
 <?php
     $category = get_categories();
-    var_dump($category);
     $sql = 'SELECT * FROM wp_posts
                 WHERE post_type = "post" AND post_status = "publish"
                 ORDER BY post_date DESC LIMIT 8';
@@ -179,7 +178,7 @@
                                             } ?>
                                         </h3>
                                         <p><?php the_time('d'); the_time('S'); the_time('M'); the_time('Y'); ?></p>
-                                        <a class="more2"  href="<?php the_permalink(); ?>" >More</a>
+                                        <a class="more2" href="<?php the_permalink(); ?>" >More</a>
                                     </div>
                                 </div>
                             </div>
