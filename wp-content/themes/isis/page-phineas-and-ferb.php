@@ -22,7 +22,7 @@
                                             <span data-hover="Season 1">Season 1</span>
                                         </a>
                                         <figure class="effect-julia">
-                                            <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS1.jpg" alt="img01" />
+                                            <img src="//c1.staticflickr.com/5/4147/35386958320_83cffe09c5.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 1 completed</h2>
                                                 <div>47/47 tập</div>
@@ -33,7 +33,7 @@
                                             <span data-hover="Season 2">Season 2</span>
                                         </a>
                                         <figure class="effect-julia">
-                                            <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS2.jpg" alt="img01" />
+                                            <img src="//c1.staticflickr.com/5/4236/35605339692_3ae17d4b80.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 2 completed</h2>
                                                 <div>65/65 tập</div>
@@ -44,19 +44,19 @@
                                     <nav class="cl-effect-14">
                                         <a href="<?php echo $siteUrl; ?>/tag/pf-season-3/">Season 3</a>
                                         <figure class="effect-goliath">
-                                            <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS3.jpg" alt="img01" />
+                                            <img src="//c1.staticflickr.com/5/4214/34934164304_8ae6e9af1a.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 3 on-going</h2>
-                                                <div>8/63 tập</div>
+                                                <div>29/63 tập</div>
                                                 <a href="<?php echo $siteUrl; ?>/tag/pf-season-3/">Xem phim</a>
                                             </figcaption>
                                         </figure>
                                         <a href="<?php echo $siteUrl; ?>/tag/pf-season-4/">Season 4</a>
                                         <figure class="effect-goliath">
-                                            <img src="http://i747.photobucket.com/albums/xx116/daothiendang/Web/PampF-SS4.jpg" alt="img01" />
+                                            <img src="//c1.staticflickr.com/5/4257/35605339832_4dc848b50e.jpg" alt="img01" />
                                             <figcaption>
                                                 <h2>Season 4 on-going</h2>
-                                                <div>7/48 tập</div>
+                                                <div>9/48 tập</div>
                                                 <a href="<?php echo $siteUrl; ?>/tag/pf-season-4/">Xem phim</a>
                                             </figcaption>
                                         </figure>
