@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
-                <?php query_posts($query_string .'&orderby=CAST(SUBSTRING(SUBSTRING_INDEX(wp_posts.post_title, " ", 1), 4) AS DECIMAL)&order=ASC&posts_per_page=24&paged=' . $paged); ?>
+                <?php query_posts($query_string .'&orderby=post_title&order=ASC&posts_per_page=24&paged=' . $paged); ?>
                 <?php if (have_posts()) {
                     while (have_posts()) {
                         the_post(); ?>

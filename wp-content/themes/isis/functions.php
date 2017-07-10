@@ -440,7 +440,7 @@ function get_movies_by_tag($tagId, $limit = '') {
             INNER JOIN wp_term_relationships ON wp_term_relationships.object_id = wp_posts.ID
             INNER JOIN wp_terms ON wp_term_relationships.term_taxonomy_id = wp_terms.term_id
             WHERE post_status="publish" AND wp_terms.`term_id`=' . $tagId . '
-            ORDER BY post_date' . $limitCondition;
+            ORDER BY wp_posts.post_title' . $limitCondition;
     $posts = $wpdb->get_results($sql);
     return $posts;
 }
