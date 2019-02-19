@@ -9,149 +9,585 @@
 /** WordPress Administration Bootstrap */
 require_once( dirname( __FILE__ ) . '/admin.php' );
 
-wp_enqueue_style( 'wp-mediaelement' );
-wp_enqueue_script( 'wp-mediaelement' );
-wp_localize_script( 'mediaelement', '_wpmejsSettings', array(
-	'pluginPath' => includes_url( 'js/mediaelement/', 'relative' ),
-	'pauseOtherPlayers' => ''
-) );
+wp_enqueue_script( 'underscore' );
 
-$title = __( 'About' );
+/* translators: Page title of the About WordPress page in the admin. */
+$title = _x( 'About', 'page title' );
 
-list( $display_version ) = explode( '-', $wp_version );
+list( $display_version ) = explode( '-', get_bloginfo( 'version' ) );
+
+wp_enqueue_style( 'wp-block-library' );
 
 include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
-<div class="wrap about-wrap">
+	<div class="wrap about-wrap full-width-layout">
+		<h1><?php printf( __( 'Welcome to WordPress&nbsp;%s' ), $display_version ); ?></h1>
 
-<h1><?php printf( __( 'Welcome to WordPress&nbsp;%s' ), $display_version ); ?></h1>
+		<p class="about-text"><?php printf( __( 'Thank you for updating to the latest version! WordPress %s introduces a robust new content creation experience.' ), $display_version ); ?></p>
 
-<div class="about-text"><?php printf( __( 'Thank you for updating! WordPress %s helps you communicate and share, globally.' ), $display_version ); ?></div>
-
-<div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
-
-<h2 class="nav-tab-wrapper">
-	<a href="about.php" class="nav-tab nav-tab-active">
-		<?php _e( 'What&#8217;s New' ); ?>
-	</a><a href="credits.php" class="nav-tab">
-		<?php _e( 'Credits' ); ?>
-	</a><a href="freedoms.php" class="nav-tab">
-		<?php _e( 'Freedoms' ); ?>
-	</a>
-</h2>
-
-<div class="changelog point-releases">
-	<h3><?php echo _n( 'Maintenance and Security Release', 'Maintenance and Security Releases', 3 ); ?></h3>
-	<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
-         '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 20 ), '4.2.3', number_format_i18n( 20 ) ); ?>
-		<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'http://codex.wordpress.org/Version_4.2.3' ); ?>
-	</p>
-	<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
-         '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 13 ), '4.2.2', number_format_i18n( 13 ) ); ?>
-		<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'http://codex.wordpress.org/Version_4.2.2' ); ?>
-	</p>
-	<p><?php printf( _n( '<strong>Version %1$s</strong> addressed a security issue.',
-         '<strong>Version %1$s</strong> addressed some security issues.', 1 ), '4.2.1' ); ?>
-		<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'http://codex.wordpress.org/Version_4.2.1' ); ?>
- 	</p>
-</div>
-
-<div class="headline-feature feature-video">
-	<embed type="application/x-shockwave-flash" src="https://v0.wordpress.com/player.swf?v=1.04" width="1000" height="560" wmode="direct" seamlesstabbing="true" allowfullscreen="true" allowscriptaccess="always" overstretch="true" flashvars="guid=e9kH4FzP&amp;isDynamicSeeking=true"></embed>
-</div>
-
-<hr />
-
-<div class="feature-section two-col">
-	<div class="col">
-		<h3><?php _e( 'An easier way to share content' ); ?></h3>
-		<p><?php printf( __( 'Clip it, edit it, publish it. Get familiar with the new and improved Press This. From the <a href="%s">Tools</a> menu, add Press This to your browser bookmark bar or your mobile device home screen. Once installed you can share your content with lightning speed. Sharing your favorite videos, images, and content has never been this fast or this easy.' ), admin_url( 'tools.php' ) ); ?></p>
-		<p><?php _e( 'Drag the bookmarklet below to your bookmarks bar. Then, when you&#8217;re on a page you want to share, simply &#8220;press&#8221; it.' ); ?></p>
-
-		<p class="pressthis-bookmarklet-demo">
-			<a class="pressthis-bookmarklet" onclick="return false;" href="<?php echo htmlspecialchars( get_shortcut_link() ); ?>"><span><?php _e( 'Press This' ); ?></span></a>
-		</p>
-	</div>
-
-	<div class="col">
-		<img src="//s.w.org/images/core/4.2/press-this.jpg" />
-	</div>
-</div>
-
-<div class="feature-section two-col">
-	<div class="col">
-		<img src="//s.w.org/images/core/4.2/unicode.png" />
-	</div>
-	<div class="col">
-		<h3><?php _e( 'Extended character support' ); ?></h3>
-		<p><?php _e( 'Writing in WordPress, whatever your language, just got better. WordPress 4.2 supports a host of new characters out-of-the-box, including native Chinese, Japanese, and Korean characters, musical and mathematical symbols, and hieroglyphs.' ); ?></p>
-		<p><?php
-			/* translators: 1: heart emoji, 2: frog face emoji, 3, monkey emoji, 4: pizza emoji, 5: Emoji Codex link */
-			printf( __( 'Don&#8217;t use any of those characters? You can still have fun &mdash; emoji are now available in WordPress! Get creative and decorate your content with %1$s, %2$s, %3$s, %4$s, and all the many other <a href="%5$s">emoji</a>.' ), '&#x1F499', '&#x1F438', '&#x1F412', '&#x1F355', __( 'https://codex.wordpress.org/Emoji' ) );
-		?></p>
-	</div>
-</div>
-
-<div class="changelog feature-section three-col">
-	<div>
-		<img src="//s.w.org/images/core/4.2/theme-switcher.png" />
-		<h3><?php _e( 'Switch themes in the Customizer' ); ?></h3>
-		<p><?php _e( 'Browse and preview your installed themes from the Customizer. Make sure the theme looks great with <em>your</em> content, before it debuts on your site. ' ); ?></p>
-	</div>
-	<div>
-		<img src="//s.w.org/images/core/4.2/embeds.png" />
-		<h3><?php _e( 'Even more embeds' ); ?></h3>
-		<p><?php _e( 'Paste links from Tumblr.com and Kickstarter and watch them magically appear right in the editor. With every release, your publishing and editing experience get closer together.' ); ?></p>
-	</div>
-	<div class="last-feature">
-		<img src="//s.w.org/images/core/4.2/plugins.png" />
-		<h3><?php _e( 'Streamlined plugin updates' ); ?></h3>
-		<p><?php _e( 'Goodbye boring loading screen, hello smooth and simple plugin updates. Click <em>Update&nbsp;Now</em> and watch the magic happen.' ); ?></p>
-	</div>
-</div>
-
-<div class="changelog under-the-hood feature-list">
-	<h3><?php _e( 'Under the Hood' ); ?></h3>
-
-	<div class="feature-section col two-col">
-		<div>
-			<h4><?php _e( 'utf8mb4 support' ); ?></h4>
-			<p><?php _e( 'Database character encoding has changed from utf8 to utf8mb4, which adds support for a whole range of new 4-byte characters.' ); ?></p>
-
-			<h4><?php _e( 'JavaScript accessibility' ); ?></h4>
-			<p><?php
-				/* translators: %s wp.a11y.speak() */
-				printf( __( 'You can now send audible notifications to screen readers in JavaScript with %s. Pass it a string, and an update will be sent to a dedicated ARIA live notifications area.' ), '<code>wp.a11y.speak()</code>' );
-			?></p>
-		</div>
-		<div class="last-feature">
-			<h4><?php _e( 'Shared term splitting' ); ?></h4>
-			<p><?php
-				/* translators: 1: Term splitting guide link */
-				printf( __( 'Terms shared across multiple taxonomies will be split when one of them is updated. Find out more in the <a href="%1$s">Plugin Developer Handbook</a>.' ), 'https://developer.wordpress.org/plugins/taxonomy/working-with-split-terms-in-wp-4-2/' );
-			?></p>
-
-			<h4><?php _e( 'Complex query ordering' ); ?></h4>
-			<p><?php
-				/* translators: 1: WP_Query, 2: WP_Comment_Query, 3: WP_User_Query */
-				printf( __( '%1$s, %2$s, and %3$s now support complex ordering with named meta query clauses.' ), '<code>WP_Query</code>', '<code>WP_Comment_Query</code>', '<code>WP_User_Query</code>' );
-			?></p>
-		</div>
-
-	<hr />
-
-	<div class="return-to-dashboard">
-		<?php if ( current_user_can( 'update_core' ) && isset( $_GET['updated'] ) ) : ?>
-		<a href="<?php echo esc_url( self_admin_url( 'update-core.php' ) ); ?>"><?php
-			is_multisite() ? _e( 'Return to Updates' ) : _e( 'Return to Dashboard &rarr; Updates' );
-		?></a> |
+		<?php if (
+			// Was the Gutenberg plugin installed before upgrading to 5.0.x?
+			get_option( 'upgrade_500_was_gutenberg_active' ) == '1'  &&
+			current_user_can( 'activate_plugins' ) &&
+			// Has it not been reactivated since?
+			is_plugin_inactive( 'gutenberg/gutenberg.php' ) &&
+			// Is it still installed?
+			file_exists( WP_PLUGIN_DIR . '/gutenberg/gutenberg.php' )
+		) : ?>
+			<div class="about-text" style="font-style:italic;">
+				<?php
+				printf(
+					/* translators: 1: WordPress version, 2: HTML start tag of link, 3: HTML end tag of link */
+					__( 'The Gutenberg plugin has been deactivated, as the features are now included in WordPress %1$s by default. If you&#8217;d like to continue to test the upcoming changes in the WordPress editing experience, please %2$sreactivate the Gutenberg plugin%3$s.' ),
+					$display_version,
+					'<a href="' . esc_url( self_admin_url( 'plugins.php?s=gutenberg&plugin_status=all' ) ) . '">',
+					'</a>'
+				);
+				?>
+			</div>
+		<?php elseif ( ! file_exists( WP_PLUGIN_DIR . '/classic-editor/classic-editor.php' ) ) : ?>
+			<p class="about-text">
+				&#x2139; <a href="#classic-editor"><?php _e( 'Learn how to keep using the old editor.' ); ?></a>
+			</p>
 		<?php endif; ?>
-		<a href="<?php echo esc_url( self_admin_url() ); ?>"><?php
-			is_blog_admin() ? _e( 'Go to Dashboard &rarr; Home' ) : _e( 'Go to Dashboard' ); ?></a>
-	</div>
-</div>
 
-</div>
+		<div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
+
+		<h2 class="nav-tab-wrapper wp-clearfix">
+			<a href="about.php" class="nav-tab nav-tab-active"><?php _e( 'What&#8217;s New' ); ?></a>
+			<a href="credits.php" class="nav-tab"><?php _e( 'Credits' ); ?></a>
+			<a href="freedoms.php" class="nav-tab"><?php _e( 'Freedoms' ); ?></a>
+			<a href="freedoms.php?privacy-notice" class="nav-tab"><?php _e( 'Privacy' ); ?></a>
+		</h2>
+
+		<div class="changelog point-releases">
+			<h3><?php _e( 'Maintenance and Security Releases' ); ?></h3>
+			<p>
+				<?php
+				printf(
+					/* translators: 1: WordPress version number, 2: plural number of bugs. */
+					_n(
+						'<strong>Version %1$s</strong> addressed %2$s bug.',
+						'<strong>Version %1$s</strong> addressed %2$s bugs.',
+						44
+					),
+					'5.0.3',
+					number_format_i18n( 44 )
+				);
+				?>
+				<?php
+				/* translators: %s: Codex URL */
+				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_5.0.3' );
+				?>
+			</p>
+			<p>
+				<?php
+				printf(
+					/* translators: 1: WordPress version number, 2: plural number of bugs. */
+					_n(
+						'<strong>Version %1$s</strong> addressed %2$s bug.',
+						'<strong>Version %1$s</strong> addressed %2$s bugs.',
+						73
+					),
+					'5.0.2',
+					number_format_i18n( 73 )
+				);
+				?>
+				<?php
+				/* translators: %s: Codex URL */
+				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_5.0.2' );
+				?>
+			</p>
+			<p>
+				<?php
+				/* translators: %s: WordPress version number */
+				printf( __( '<strong>Version %s</strong> addressed some security issues.' ), '5.0.1' );
+				?>
+				<?php
+				/* translators: %s: Codex URL */
+				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_5.0.1' );
+				?>
+			</p>
+		</div>
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<h2><?php _e( 'Say Hello to the New Editor' ); ?></h2>
+			</div>
+		</div>
+
+		<div class="full-width">
+			<picture>
+				<source type="image/webp" media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/header/Gutenberg%20Mobile1x.webp 1x, https://s.w.org/images/core/5.0/header/Gutenberg%20Mobile.webp 2x" />
+				<source media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/header/Gutenberg%20Mobile1x.jpg 1x, https://s.w.org/images/core/5.0/header/Gutenberg%20Mobile.jpg 2x" />
+				<source type="image/webp" srcset="https://s.w.org/images/core/5.0/header/Gutenberg1x.webp 1x, https://s.w.org/images/core/5.0/header/Gutenberg.webp 2x" />
+				<img src="https://s.w.org/images/core/5.0/header/Gutenberg1x.jpg" srcset="https://s.w.org/images/core/5.0/header/Gutenberg1x.jpg 1x, https://s.w.org/images/core/5.0/header/Gutenberg.jpg 2x" alt="">
+			</picture>
+		</div>
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<p><?php _e( 'You&#8217;ve successfully upgraded to WordPress 5.0! We’ve made some big changes to the editor. Our new block-based editor is the first step toward an exciting new future with a streamlined editing experience across your site. You’ll have more flexibility with how content is displayed, whether you are building your first site, revamping your blog, or write code for a living.' ); ?></p>
+			</div>
+		</div>
+
+		<div class="feature-section four-col">
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/features/Plugins1x.webp 1x, https://s.w.org/images/core/5.0/features/Plugins.webp 2x">
+						<img src="https://s.w.org/images/core/5.0/features/Plugins1x.jpg" srcset="https://s.w.org/images/core/5.0/features/Plugins1x.jpg 1x, https://s.w.org/images/core/5.0/features/Plugins.jpg 2x" alt="" width="250" height="250" />
+					</picture>
+					<figcaption><?php _e( 'Do more with fewer plugins.' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/features/Layout1x.webp 1x, https://s.w.org/images/core/5.0/features/Layout.webp 2x">
+						<img src="https://s.w.org/images/core/5.0/features/Layout1x.jpg" srcset="https://s.w.org/images/core/5.0/features/Layout1x.jpg 1x, https://s.w.org/images/core/5.0/features/Layout.jpg 2x" alt="" width="250" height="250" />
+					</picture>
+					<figcaption><?php _e( 'Create modern, multimedia-heavy layouts.' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/features/Responsive1x.webp 1x, https://s.w.org/images/core/5.0/features/Responsive.webp 2x">
+						<img src="https://s.w.org/images/core/5.0/features/Responsive1x.jpg" srcset="https://s.w.org/images/core/5.0/features/Responsive1x.jpg 1x, https://s.w.org/images/core/5.0/features/Responsive.jpg 2x" alt="" width="250" height="250" />
+					</picture>
+					<figcaption><?php _e( 'Work across all screen sizes and devices.' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/features/Editor%20Styles1x.webp 1x, https://s.w.org/images/core/5.0/features/Editor%20Styles.webp 2x">
+						<img src="https://s.w.org/images/core/5.0/features/Editor%20Styles1x.jpg" srcset="https://s.w.org/images/core/5.0/features/Editor%20Styles1x.jpg 1x, https://s.w.org/images/core/5.0/features/Editor%20Styles.jpg 2x" alt="" width="250" height="250" />
+					</picture>
+					<figcaption><?php _e( 'Trust that your editor looks like your website.' ); ?></figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<h2><?php _e( 'Building with Blocks' ); ?></h2>
+				<p><?php _e( 'The new block-based editor won&#8217;t change the way any of your content looks to your visitors. What it will do is let you insert any type of multimedia in a snap and rearrange to your heart&#8217;s content. Each piece of content will be in its own block; a distinct wrapper for easy maneuvering. If you&#8217;re more of an HTML and CSS sort of person, then the blocks won&#8217;t stand in your way. WordPress is here to simplify the process, not the outcome.' ); ?></p>
+				<video controls>
+					<source src="https://s.w.org/images/core/5.0/videos/add-block.mp4" type="video/mp4">
+					<source src="https://s.w.org/images/core/5.0/videos/add-block.webm" type="video/webm">
+					<p><?php printf( __('Your browser doesn&#8217;t support HTML5 video. Here is a %1$slink to the video%2$s instead.'), '<a href="https://wordpress.org/gutenberg/files/2018/11/add-block.mp4">', '</a>'); ?></p>
+				</video>
+				<p><?php _e( 'We have tons of blocks available by default, and more get added by the community every day. Here are a few of the blocks to help you get started:' ); ?></p>
+			</div>
+		</div>
+
+		<div class="feature-section eight-col">
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Paragraph@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Paragraph.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Paragraph@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Paragraph@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Paragraph.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Paragraph' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Heading@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Heading.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Heading@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Heading@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Heading.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Heading' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Preformatted@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Preformatted.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Preformatted@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Preformatted@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Preformatted.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Preformatted' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Quote@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Quote.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Quote@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Quote@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Quote.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Quote' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Image@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Image.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Image@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Image@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Image.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Image' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Gallery@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Gallery.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Gallery@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Gallery@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Gallery.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Gallery' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Cover%20Image@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Cover%20Image.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Cover%20Image@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Cover%20Image@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Cover%20Image.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Cover' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Video@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Video.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Video@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Video@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Video.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Video' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Audio@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Audio.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Audio@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Audio@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Audio.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Audio' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Column@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Column.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Column@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Column@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Column.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Columns' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20File@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20File.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20File@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20File@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20File.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'File' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Code@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Code.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Code@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Code@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Code.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Code' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20List@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20List.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20List@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20List@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20List.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'List' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Button@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Button.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Button@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Button@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Button.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Button' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Embeds@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Embeds.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Embeds@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Embeds@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20Embeds.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'Embeds' ); ?></figcaption>
+				</figure>
+			</div>
+			<div class="col">
+				<figure>
+					<picture>
+						<source type="image/webp" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20More@1x.webp 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20More.webp 2x" />
+						<img src="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20More@1x.jpg" srcset="https://s.w.org/images/core/5.0/blocks/Block%20Icon%20More@1x.jpg 1x, https://s.w.org/images/core/5.0/blocks/Block%20Icon%20More.jpg 2x" alt=""/>
+					</picture>
+					<figcaption><?php _e( 'More' ); ?></figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<h2><?php _e( 'Freedom to Build, Freedom to Write' ); ?></h2>
+				<p><?php _e( 'This new editing experience provides a more consistent treatment of design as well as content. If you&#8217;re building client sites, you can create reusable blocks. This lets your clients add new content anytime, while still maintaining a consistent look and feel.' ); ?></p>
+				<video controls>
+					<source src="https://s.w.org/images/core/5.0/videos/build.mp4" type="video/mp4">
+					<source src="https://s.w.org/images/core/5.0/videos/build.webm" type="video/webm">
+					<p><?php printf( __('Your browser doesn&#8217;t support HTML5 video. Here is a %1$slink to the video%2$s instead.'), '<a href="https://wordpress.org/gutenberg/files/2018/11/build.mp4">', '</a>'); ?></p>
+				</video>
+			</div>
+		</div>
+
+		<?php if ( current_user_can( 'edit_posts' ) ) { ?>
+			<div class="feature-section one-col cta">
+				<div class="col">
+					<a class="button button-primary button-hero" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php _e( 'Build your first post' ); ?></a>
+				</div>
+			</div>
+		<?php } ?>
+
+
+		<hr />
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<h2><?php _e( 'A Stunning New Default Theme' ); ?></h2>
+			</div>
+		</div>
+
+		<div class="full-width">
+			<figure>
+				<picture>
+					<source type="image/webp" media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen-mobile@1x.webp 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen-mobile.webp 2x" />
+					<source media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen-mobile@1x.jpg 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen-mobile.jpg 2x" />
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen@1x.webp 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen@1x.jpg" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen@1x.jpg 1x, https://s.w.org/images/core/5.0/header/twenty-nineteen.jpg 2x" alt="">
+				</picture>
+
+				<figcaption><?php _e( 'The front-end of Twenty Nineteen on the left, and how it looks in the editor on the right.' ); ?></figcaption>
+			</figure>
+		</div>
+
+		<div class="feature-section one-col">
+			<div class="col">
+				<p><?php _e( 'Introducing Twenty Nineteen, a new default theme that shows off the power of the new editor.' ); ?></p>
+			</div>
+		</div>
+
+		<div class="feature-section three-col">
+			<div class="col">
+				<picture>
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/block%20editor@1x.webp 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/block%20editor.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/twenty%20nineteen/block%20editor@1x.jpg" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/block%20editor@1x.jpg 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/block%20editor.jpg 2x" alt="">
+				</picture>
+				<h3><?php _e( 'Designed for the block editor' ); ?></h3>
+				<p><?php _e( 'Twenty Nineteen features custom styles for the blocks available by default in 5.0. It makes extensive use of editor styles throughout the theme. That way, what you create in your content editor is what you see on the front of your site.' ); ?></p>
+			</div>
+			<div class="col">
+				<picture>
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/typography@1x.webp 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/typography.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/twenty%20nineteen/typography@1x.jpg" srcset="https://s.w.org/images/core/5.0/twenty%20nineteen/typography@1x.jpg 1x, https://s.w.org/images/core/5.0/twenty%20nineteen/typography.jpg 2x" alt="">
+				</picture>
+				<h3><?php _e( 'Simple, type-driven layout' ); ?></h3>
+				<p><?php _e( 'Featuring ample whitespace, and modern sans-serif headlines paired with classic serif body text, Twenty Nineteen is built to be beautiful on the go. It uses system fonts to increase loading speed. No more long waits on slow networks!' ); ?></p>
+			</div>
+			<div class="col">
+				<img src="https://s.w.org/images/core/5.0/twenty%20nineteen/twenty-nineteen-versatile.gif" alt="">
+				<h3><?php _e( 'Versatile design for all sites' ); ?></h3>
+				<p><?php _e( 'Twenty Nineteen is designed to work for a wide variety of use cases. Whether you’re running a photo blog, launching a new business, or supporting a non-profit, Twenty Nineteen is flexible enough to fit your needs.' ); ?></p>
+			</div>
+		</div>
+
+		<?php if ( current_user_can( 'customize' ) ) { ?>
+			<div class="feature-section one-col cta">
+				<div class="col">
+					<a class="button button-primary button-hero load-customize hide-if-no-customize" href="<?php echo esc_url( admin_url( 'customize.php?theme=twentynineteen' ) ); ?>"><?php _e( 'Give Twenty Nineteen a try' ); ?></a>
+				</div>
+			</div>
+		<?php } ?>
+
+		<hr />
+
+		<div class="under-the-hood feature-section">
+			<div class="col">
+				<h2><?php _e( 'Developer Happiness' ); ?></h2>
+			</div>
+		</div>
+
+		<div class="under-the-hood feature-section three-col">
+			<div class="col">
+				<picture>
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/devs/Protect1x.webp 1x, https://s.w.org/images/core/5.0/devs/Protect.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/devs/Protect1x.jpg" srcset="https://s.w.org/images/core/5.0/devs/Protect1x.jpg 1x, https://s.w.org/images/core/5.0/devs/Protect.jpg 2x" alt="">
+				</picture>
+				<h3><?php _e( 'Protect' ); ?></h3>
+				<p><?php _e( 'Blocks provide a comfortable way for users to change content directly, while also ensuring the content structure cannot be easily disturbed by accidental code edits. This allows the developer to control the output, building polished and semantic markup that is preserved through edits and not easily broken.' ); ?></p>
+			</div>
+			<div class="col">
+				<picture>
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/devs/Compose1x.webp 1x, https://s.w.org/images/core/5.0/devs/Compose.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/devs/Compose1x.jpg" srcset="https://s.w.org/images/core/5.0/devs/Compose1x.jpg 1x, https://s.w.org/images/core/5.0/devs/Compose.jpg 2x" alt="">
+				</picture>
+				<h3><?php _e( 'Compose' ); ?></h3>
+				<p><?php _e( 'Take advantage of a wide collection of APIs and interface components to easily create blocks with intuitive controls for your clients. Utilizing these components not only speeds up development work but also provide a more consistent, usable, and accessible interface to all users.' ); ?></p>
+			</div>
+			<div class="col">
+				<picture>
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/devs/Create1x.webp 1x, https://s.w.org/images/core/5.0/devs/Create.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/devs/Create1x.jpg" srcset="https://s.w.org/images/core/5.0/devs/Create1x.jpg 1x, https://s.w.org/images/core/5.0/devs/Create.jpg 2x" alt="">
+				</picture>
+				<h3><?php _e( 'Create' ); ?></h3>
+				<p><?php _e( 'The new block paradigm opens up a path of exploration and imagination when it comes to solving user needs. With the unified block insertion flow, it&#8217;s easier for your clients and customers to find and use blocks for all types of content. Developers can focus on executing their vision and providing rich editing experiences, rather than fussing with difficult APIs.' ); ?></p>
+			</div>
+		</div>
+
+		<div class="under-the-hood feature-section one-col cta">
+			<div class="col">
+				<a class="button button-primary button-hero" href="<?php echo esc_url( 'https://wordpress.org/gutenberg/handbook/' ); ?>"><?php _e( 'Learn how to get started' ); ?></a>
+			</div>
+		</div>
+
+		<hr />
+
+		<?php if ( ! file_exists( WP_PLUGIN_DIR . '/classic-editor/classic-editor.php' ) ) : ?>
+			<div class="feature-section one-col" id="classic-editor">
+				<div class="col">
+					<h2><?php _e( 'Keep it Classic' ); ?></h2>
+				</div>
+			</div>
+
+			<div class="full-width">
+				<picture>
+					<source type="image/webp" media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/classic/Classic%20Mobile1x.webp 1x, https://s.w.org/images/core/5.0/classic/Classic%20Mobile.webp 2x" />
+					<source media="(max-width: 782px)" srcset="https://s.w.org/images/core/5.0/classic/Classic%20Mobile1x.jpg 1x, https://s.w.org/images/core/5.0/classic/Classic%20Mobile.jpg 2x" />
+					<source type="image/webp" srcset="https://s.w.org/images/core/5.0/classic/Classic@1x.webp 1x, https://s.w.org/images/core/5.0/classic/Classic.webp 2x" />
+					<img src="https://s.w.org/images/core/5.0/classic/Classic@1x.jpg" srcset="https://s.w.org/images/core/5.0/classic/Classic@1x.jpg 1x, https://s.w.org/images/core/5.0/header/Classic.jpg 2x" alt="">
+				</picture>
+			</div>
+
+			<div class="feature-section one-col">
+				<div class="col">
+					<p><?php _e( 'Prefer to stick with the familiar Classic Editor? No problem! Support for the Classic Editor plugin will remain in WordPress through 2021.' ); ?></p>
+					<p><?php _e( 'The Classic Editor plugin restores the previous WordPress editor and the Edit Post screen. It lets you keep using plugins that extend it, add old-style meta boxes, or otherwise depend on the previous editor. To install, visit your plugins page and click the &#8220;Install Now&#8221; button next to &#8220;Classic Editor&#8221;. After the plugin finishes installing, click &#8220;Activate&#8221;. That’s it!' ); ?></p>
+					<p><?php _e( 'Note to users of assistive technology: if you experience usability issues with the block editor, we recommend you continue to use the Classic Editor.' ); ?></p>
+					<?php if ( current_user_can( 'install_plugins' ) ) { ?>
+						<div class="col cta">
+							<a class="button button-primary button-hero" href="<?php echo esc_url( wp_nonce_url( self_admin_url( 'plugin-install.php?tab=favorites&user=wordpressdotorg&save=0' ), 'save_wporg_username_' . get_current_user_id() ) ); ?>"><?php _e( 'Install the Classic Editor' ); ?></a>
+						</div>
+					<?php } ?>
+				</div>
+			</div>
+
+			<hr />
+		<?php endif; ?>
+
+		<div class="return-to-dashboard">
+			<?php if ( current_user_can( 'update_core' ) && isset( $_GET['updated'] ) ) : ?>
+				<a href="<?php echo esc_url( self_admin_url( 'update-core.php' ) ); ?>">
+					<?php is_multisite() ? _e( 'Return to Updates' ) : _e( 'Return to Dashboard &rarr; Updates' ); ?>
+				</a> |
+			<?php endif; ?>
+			<a href="<?php echo esc_url( self_admin_url() ); ?>"><?php is_blog_admin() ? _e( 'Go to Dashboard &rarr; Home' ) : _e( 'Go to Dashboard' ); ?></a>
+		</div>
+	</div>
+
+	<script>
+		(function( $ ) {
+			$( function() {
+				var $window = $( window );
+				var $adminbar = $( '#wpadminbar' );
+				var $sections = $( '.floating-header-section' );
+				var offset = 0;
+
+				// Account for Admin bar.
+				if ( $adminbar.length ) {
+					offset += $adminbar.height();
+				}
+
+				function setup() {
+					$sections.each( function( i, section ) {
+						var $section = $( section );
+						// If the title is long, switch the layout
+						var $title = $section.find( 'h2' );
+						if ( $title.innerWidth() > 300 ) {
+							$section.addClass( 'has-long-title' );
+						}
+					} );
+				}
+
+				var adjustScrollPosition = _.throttle( function adjustScrollPosition() {
+					$sections.each( function( i, section ) {
+						var $section = $( section );
+						var $header = $section.find( 'h2' );
+						var width = $header.innerWidth();
+						var height = $header.innerHeight();
+
+						if ( $section.hasClass( 'has-long-title' ) ) {
+							return;
+						}
+
+						var sectionStart = $section.offset().top - offset;
+						var sectionEnd = sectionStart + $section.innerHeight();
+						var scrollPos = $window.scrollTop();
+
+						// If we're scrolled into a section, stick the header
+						if ( scrollPos >= sectionStart && scrollPos < sectionEnd - height ) {
+							$header.css( {
+								position: 'fixed',
+								top: offset + 'px',
+								bottom: 'auto',
+								width: width + 'px'
+							} );
+						// If we're at the end of the section, stick the header to the bottom
+						} else if ( scrollPos >= sectionEnd - height && scrollPos < sectionEnd ) {
+							$header.css( {
+								position: 'absolute',
+								top: 'auto',
+								bottom: 0,
+								width: width + 'px'
+							} );
+						// Unstick the header
+						} else {
+							$header.css( {
+								position: 'static',
+								top: 'auto',
+								bottom: 'auto',
+								width: 'auto'
+							} );
+						}
+					} );
+				}, 100 );
+
+				function enableFixedHeaders() {
+					if ( $window.width() > 782 ) {
+						setup();
+						adjustScrollPosition();
+						$window.on( 'scroll', adjustScrollPosition );
+					} else {
+						$window.off( 'scroll', adjustScrollPosition );
+						$sections.find( '.section-header' )
+							.css( {
+								width: 'auto'
+							} );
+						$sections.find( 'h2' )
+							.css( {
+								position: 'static',
+								top: 'auto',
+								bottom: 'auto',
+								width: 'auto'
+							} );
+					}
+				}
+				$( window ).resize( enableFixedHeaders );
+				enableFixedHeaders();
+			} );
+		})( jQuery );
+	</script>
+
 <?php
 
 include( ABSPATH . 'wp-admin/admin-footer.php' );
@@ -159,13 +595,19 @@ include( ABSPATH . 'wp-admin/admin-footer.php' );
 // These are strings we may use to describe maintenance/security releases, where we aim for no new strings.
 return;
 
-_n_noop( 'Maintenance Release', 'Maintenance Releases' );
-_n_noop( 'Security Release', 'Security Releases' );
-_n_noop( 'Maintenance and Security Release', 'Maintenance and Security Releases' );
+__( 'Maintenance Release' );
+__( 'Maintenance Releases' );
 
-/* translators: 1: WordPress version number. */
-_n_noop( '<strong>Version %1$s</strong> addressed a security issue.',
-         '<strong>Version %1$s</strong> addressed some security issues.' );
+__( 'Security Release' );
+__( 'Security Releases' );
+
+__( 'Maintenance and Security Release' );
+__( 'Maintenance and Security Releases' );
+
+/* translators: %s: WordPress version number */
+__( '<strong>Version %s</strong> addressed one security issue.' );
+/* translators: %s: WordPress version number */
+__( '<strong>Version %s</strong> addressed some security issues.' );
 
 /* translators: 1: WordPress version number, 2: plural number of bugs. */
 _n_noop( '<strong>Version %1$s</strong> addressed %2$s bug.',
@@ -179,4 +621,5 @@ _n_noop( '<strong>Version %1$s</strong> addressed a security issue and fixed %2$
 _n_noop( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
          '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.' );
 
+/* translators: %s: Codex URL */
 __( 'For more information, see <a href="%s">the release notes</a>.' );

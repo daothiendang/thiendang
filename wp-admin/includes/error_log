@@ -1,0 +1,2 @@
+[01-Oct-2018 13:00:19 UTC] PHP Fatal error:  Class 'WP_Filesystem_Base' not found in /home/cp898415/public_html/thiendang.vn/wp-admin/includes/class-wp-filesystem-ssh2.php on line 36
+[01-Oct-2018 16:23:02 UTC] PHP Fatal error:  Class 'WP_Filesystem_Base' not found in /home/cp898415/public_html/thiendang.vn/wp-admin/includes/class-wp-filesystem-ssh2.php on line 36
