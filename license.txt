@@ -1,4 +1,4 @@
-WordPress - Web publishing software test commit
+WordPress - Web publishing software
 
 Copyright 2011-2021 by the contributors
 

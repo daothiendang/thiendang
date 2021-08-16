@@ -135,7 +135,7 @@
                             </select>
                         </div>
                         <?php
-                            $currentLink = $linkFbComment . substr(get_permalink($post->ID), strlen(get_option('home')));
+                            $currentLink = $linkFbComment . str_replace(home_url(), '', get_permalink());
                             include(locate_template('share_this.php'));
                         ?>
                         <div style="margin: 15px auto; width: 90%;">
