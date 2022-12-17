@@ -15,72 +15,50 @@ get_header(); ?>
                     </div>
                     <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:1000px;margin:0px auto 98px;">
                         <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+							<?php
+							$bboy = array(
+								array("fujisan_airchair", "Airchair or die"),
+								array('skiing', 'Trượt tuyết Nagoya'),
+								array("paris_eiffel", "Paris - In the city of love"),
+								array("one_hand_stand", "Treo chuối một tay ở Big Ben :))"),
+								array("sing_marina_bay", "Hello from the horizontal side"),
+								array("malaysia_petronas_towers", "Tháp đôi Kuala Lumpur"),
+								array("amsterdam_windmill", "Breakdance windmill vs real Holland windmill :))"),
+								array("pisa_leaning_tower", "Leaning at Pisa - The leanning Tower"),
+								array("rome_colosseum", "Nike kick - Đấu trường La Mã"),
+								array("elbow_handstand", "Elbow freeze at Stonehenge"),
+								array("tokyo_tower_handhop", "Handhop - Tokyo đất chật người đông"),
+								array("osaka_castle", "Thành cổ osaka"),
+								array("kyoto_bamboo_forest", "Các chàng trai vàng trong làng airchair =))"),
+								array("airchair", "Airchair on a chair"),
+								array("airbaby_with_bending_leg", "airbaby gập chân"),
+								array("bntt", "Bước nhảy tuổi teen"),
+								array("bntt_2", "Bước nhảy tuổi teen"),
+								array("handstand", "Handstand"),
+								#array("handhop", "Nhảy chuối một tay"),
+								#array("handstand_1", ""),
+								array("headspin", "Quay đầu là hiphop"),
+								array("leaning_handstand", "Biển Quảng Bình"),
+								array("NiI", "NiI Crew"),
+								array("sidechair", "Sidechair"),
+								array("turtle_freeze", "Ke rùa một tay"),
+								array("vũ điệu trẻ", "Giải nhất Vũ điệu trẻ"),
+							);
+							
+							?>
                             <ul class="amazingslider-slides" style="display:none;">
-								<li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/sing_marina_bay.jpg" alt="sing_marina_bay" data-description="Hello from the horizontal side" />
-                                </li>
-								<li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/malaysia_petronas_towers.jpg" alt="malaysia_petronas_towers" data-description="Tháp đôi Kuala Lumpur" />
-                                </li>
-								<li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/amsterdam_windmill.jpg" alt="holland_windmill" data-description="Breakdance windmill vs real Holland windmill :))" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/paris_eiffel.jpg" alt="paris_eiffel" data-description="Paris - In the city of love" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower.jpg" alt="pisa_leaning_tower" data-description="Leaning at Pisa - The leanning Tower" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colosseum.jpg" alt="rome_colosseum" data-description="Nike kick - Đấu trường La Mã" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand.jpg" alt="one_hand_stand" data-description="Treo chuối một tay ở Big Ben :))" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand.jpg" alt="elbow_handstand" data-description="Elbow freeze at Stonehenge" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/airchair.jpg" alt="airchair_on_a_chair" data-description="airchair trên ghế" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/airbaby_with_bending_leg.jpg" alt="airbaby_at_home" data-description="air baby gập chân" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/bntt.jpg" alt="bntt" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/bntt_2.jpg" alt="bntt_2" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handhop.jpg" alt="handhop" data-description="Nhảy chuối một tay" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handstand.jpg" alt="handstand" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handstand_1.jpg" alt="handstand_1" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/headspin.jpg" alt="headspin" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/leaning_handstand.jpg" alt="leaning_handstand" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/NiI.jpg" alt="NII crew" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/sidechair.jpg" alt="sidechair" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/turtle_freeze.jpg" alt="turtle_freeze" data-description="Ke rùa một tay" />
-                                </li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/v%C5%A9%20%C4%91i%E1%BB%87u%20tr%E1%BA%BB.jpg" alt="vũ điệu trẻ" data-description="Giải nhất Vũ điệu trẻ" />
-                                </li>
+								<?php
+								foreach ($bboy as $big_photo) {
+									echo '<li><img src="' . $themeUrl . '/images/bboy_or_die/' . $big_photo[0] . '.jpg" alt="' . $big_photo[0] . '"data-description="' . $big_photo[1] . '" /></li>';
+								}
+								?>
                             </ul>
                             <ul class="amazingslider-thumbnails" style="display:none;">
-								<li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/sing_marina_bay-tn.jpg" alt="sing_marina_bay" /></li>
-								<li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/malaysia_petronas_towers-tn.jpg" alt="sing_marina_bay" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/amsterdam_windmill-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/paris_eiffel-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/pisa_leaning_tower-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/rome_colosseum-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/one_hand_stand-tn.jpg" alt="one_hand_stand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/elbow_handstand-tn.jpg" alt="elbow_handstand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/airchair-tn.jpg" alt="airchair_on_a_chair" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/airbaby_with_bending_leg-tn.jpg" alt="airbaby_at_home" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/bntt-tn.jpg" alt="bntt" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/bntt_2-tn.jpg" alt="bntt_2" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handhop-tn.jpg" alt="handhop" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handstand-tn.jpg" alt="handstand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/handstand_1-tn.jpg" alt="handstand_1" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/headspin-tn.jpg" alt="headspin" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/leaning_handstand-tn.jpg" alt="leaning_handstand" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/NiI-tn.jpg" alt="NII crew" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/sidechair-tn.jpg" alt="sidechair" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/turtle_freeze-tn.jpg" alt="turtle_freeze" /></li>
-                                <li><img src="<?php echo $themeUrl;?>/images/bboy_or_die/v%C5%A9%20%C4%91i%E1%BB%87u%20tr%E1%BA%BB-tn.jpg" alt="vũ điệu trẻ" /></li>
+								<?php
+								foreach ($bboy as $small_photo) {
+									echo '<li><img src="' . $themeUrl . '/images/bboy_or_die/' . $small_photo[0] . '-tn.jpg" alt="' . $small_photo[0] . '"/></li>';
+								}
+								?>
                             </ul>
                             <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive jQuery Image Slider">Responsive jQuery Image Slider</a></div>
                         </div>
